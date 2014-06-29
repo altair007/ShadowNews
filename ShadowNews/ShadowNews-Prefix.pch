@@ -14,3 +14,34 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+/* 使工程同时支持 ARC 和 MRC. */
+#if ! __has_feature(objc_arc)
+#define SNAutorelease(__v) ([__v autorelease]);
+#define SNReturnAutoreleased SNAutorelease
+
+#define SNRetain(__v) ([__v retain]);
+#define SNReturnRetained SNRetain
+
+#define SNRelease(__v) ([__v release]);
+
+#define SNDispatchQueueRelease(__v) (dispatch_release(__v));
+#else
+// -fobjc-arc
+#define SNAutorelease(__v)
+#define SNReturnAutoreleased(__v) (__v)
+
+#define SNRetain(__v)
+#define SNReturnRetained(__v) (__v)
+
+#define SNRelease(__v)
+
+// If OS_OBJECT_USE_OBJC=1, then the dispatch objects will be treated like ObjC objects
+// and will participate in ARC.
+// See the section on "Dispatch Queues and Automatic Reference Counting" in "Grand Central Dispatch (GCD) Reference" for details.
+#if OS_OBJECT_USE_OBJC
+#define SNDispatchQueueRelease(__v)
+#else
+#define SNispatchQueueRelease(__v) (dispatch_release(__v));
+#endif
+#endif
