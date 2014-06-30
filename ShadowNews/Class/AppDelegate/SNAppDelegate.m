@@ -9,12 +9,24 @@
 #import "SNAppDelegate.h"
 
 @implementation SNAppDelegate
+- (void)dealloc
+{
+    self.window = nil;
+#if ! __has_feature(objc_arc)
+    [super dealloc];
+#endif
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow * window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = window;
+    SNRelease(window);
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
