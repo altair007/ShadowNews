@@ -35,8 +35,8 @@ typedef void(^SNLocalPageModelFailBlock)(NSError * error);
 *  @param success 获取数据成功,执行此 block.
 *  @param fail    获取数据失败,执行此 block.
 */
-+ (void) local: (NSString *) city
-         range: (NSRange) range
-       success: (SNLocalPageModelSuccessBlock) success
-          fail: (SNLocalPageModelFailBlock) faill;
++ (void) localPageModelWithCity: (NSString *) city
+                          range: (NSRange) range
+                        success: (SNLocalPageModelSuccessBlock) success
+                           fail: (SNLocalPageModelFailBlock) fail;
 @end

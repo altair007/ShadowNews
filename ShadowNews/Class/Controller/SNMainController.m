@@ -39,6 +39,7 @@ static SNMainController * sharedObj = nil;
     return  self;
 }
 
+#if ! __has_feature(objc_arc)
 - (instancetype)retain
 {
     return self;
@@ -58,6 +59,8 @@ static SNMainController * sharedObj = nil;
 {
     return self;
 }
+#endif
+
 
 #pragma mark - 实例方法
 -(void)dealloc
@@ -76,13 +79,5 @@ static SNMainController * sharedObj = nil;
     }
     
     return self;
-}
-
-- (void) localNews: (NSString *) city
-             range: (NSRange) range
-           success: (void(^)(NSArray * array)) success
-              fail: (void(^)(NSError * error)) fail
-{
-    [self.model localNews: city range:range success:success fail: fail];
 }
 @end

@@ -38,7 +38,8 @@
                                docId: (NSString *) docId
 {
     SNLocalNewsModel * model = [[[self class] alloc] initWithImgSrc: imgSrc title: title publishTime: pulishTime replyCount: replyCount docId: docId];
-    return SNAutorelease(model);
+    SNAutorelease(model);
+    return model;
 }
 
 /**
@@ -69,4 +70,12 @@
     return self;
 }
 
+- (instancetype) init
+{
+    if (self = [self initWithImgSrc: nil title:nil publishTime: nil replyCount: NSUIntegerMax docId: nil]) {
+        /* 暂不需要额外的初始化工作. */
+    }
+    
+    return self;
+}
 @end

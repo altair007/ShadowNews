@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  本地新闻数据模型.
+ */
 @interface SNLocalNewsModel : NSObject
 @property (copy, nonatomic, readonly) NSString * imgSrc; //!< 主题图片网址.
 @property (copy, nonatomic, readonly) NSString * title; //!< 新闻标题.

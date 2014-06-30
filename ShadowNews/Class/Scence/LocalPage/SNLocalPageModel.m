@@ -12,10 +12,10 @@
 #import "SNLocalNewsModel.h"
 
 @implementation SNLocalPageModel
-+ (void) local: (NSString *) city
-         range: (NSRange) range
-       success: (SNLocalPageModelSuccessBlock) success
-          fail: (SNLocalPageModelFailBlock) fail
++ (void) localPageModelWithCity: (NSString *) city
+                          range: (NSRange) range
+                        success: (SNLocalPageModelSuccessBlock) success
+                           fail: (SNLocalPageModelFailBlock) fail;
 {
     NSString * urlStr = [NSString stringWithFormat: @"http://c.3g.163.com/nc/article/local/%@/%lu-%lu.html", [city base64EncodedString], range.location, range.length];
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
@@ -34,7 +34,7 @@
         
         success(localNewsArray);
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        fail(error);
+         fail(error);
     }];
 }
 @end

@@ -36,12 +36,12 @@
 		C23EDB521961612F007CAC81 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C23EDB461961612F007CAC81 /* AFURLResponseSerialization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C23EDB531961612F007CAC81 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C23EDB481961612F007CAC81 /* AFURLSessionManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C23EDB541961612F007CAC81 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C23EDB491961612F007CAC81 /* LICENSE */; };
+		C2B0F11C1961942E00E872A6 /* SNLocalNewsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B0F11B1961942E00E872A6 /* SNLocalNewsDetailModel.m */; };
 		C2FC183C1960EF3E00610CCA /* SNMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC183B1960EF3E00610CCA /* SNMainController.m */; };
 		C2FC18791961032B00610CCA /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FC18781961032B00610CCA /* libsqlite3.0.dylib */; };
 		C2FC18A31961165400610CCA /* SNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC18A21961165400610CCA /* SNNavigationController.m */; };
 		C2FC18A71961175A00610CCA /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC18A61961175A00610CCA /* Base64.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C2FC18AB1961231F00610CCA /* bug.md in Resources */ = {isa = PBXBuildFile; fileRef = C2FC18AA1961231F00610CCA /* bug.md */; };
-		C2FC18B4196147F600610CCA /* SNLocalNewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC18B3196147F600610CCA /* SNLocalNewsDetail.m */; };
 		C2FC18BD1961536700610CCA /* SNLocalPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC18BA1961536700610CCA /* SNLocalPageModel.m */; };
 		C2FC18C1196156AF00610CCA /* SNLocalNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC18C0196156AF00610CCA /* SNLocalNewsModel.m */; };
 /* End PBXBuildFile section */
@@ -108,6 +108,8 @@
 		C23EDB481961612F007CAC81 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		C23EDB491961612F007CAC81 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C23EDB56196161FB007CAC81 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C2B0F11A1961942E00E872A6 /* SNLocalNewsDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLocalNewsDetailModel.h; sourceTree = "<group>"; };
+		C2B0F11B1961942E00E872A6 /* SNLocalNewsDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLocalNewsDetailModel.m; sourceTree = "<group>"; };
 		C2FC183A1960EF3E00610CCA /* SNMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMainController.h; sourceTree = "<group>"; };
 		C2FC183B1960EF3E00610CCA /* SNMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMainController.m; sourceTree = "<group>"; };
 		C2FC18781961032B00610CCA /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -122,8 +124,6 @@
 		C2FC18A81961178600610CCA /* LICENCE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENCE.md; sourceTree = "<group>"; };
 		C2FC18A91961178600610CCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		C2FC18AA1961231F00610CCA /* bug.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bug.md; sourceTree = "<group>"; };
-		C2FC18B2196147F600610CCA /* SNLocalNewsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLocalNewsDetail.h; sourceTree = "<group>"; };
-		C2FC18B3196147F600610CCA /* SNLocalNewsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLocalNewsDetail.m; sourceTree = "<group>"; };
 		C2FC18B91961536700610CCA /* SNLocalPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLocalPageModel.h; sourceTree = "<group>"; };
 		C2FC18BA1961536700610CCA /* SNLocalPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLocalPageModel.m; sourceTree = "<group>"; };
 		C2FC18BF196156AF00610CCA /* SNLocalNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLocalNewsModel.h; sourceTree = "<group>"; };
@@ -232,7 +232,6 @@
 			children = (
 				C22E95A4196063AC001B8745 /* AppDelegate */,
 				C22E95A7196063AC001B8745 /* Controller */,
-				C22E95A9196063AC001B8745 /* Model */,
 				C22E95BE196063AC001B8745 /* Scence */,
 				C22E95AA196063AC001B8745 /* OpenSource */,
 				C22E95A8196063AC001B8745 /* Helper */,
@@ -264,15 +263,6 @@
 				C2FC18AA1961231F00610CCA /* bug.md */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		C22E95A9196063AC001B8745 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C2FC18B2196147F600610CCA /* SNLocalNewsDetail.h */,
-				C2FC18B3196147F600610CCA /* SNLocalNewsDetail.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C22E95AA196063AC001B8745 /* OpenSource */ = {
@@ -320,6 +310,7 @@
 		C22E95BE196063AC001B8745 /* Scence */ = {
 			isa = PBXGroup;
 			children = (
+				C2B0F1191961942E00E872A6 /* LocalNewsDetailPage */,
 				C2FC18B81961536700610CCA /* LocalPage */,
 				C2FC18A01961165400610CCA /* news */,
 			);
@@ -359,6 +350,15 @@
 				C23EDB491961612F007CAC81 /* LICENSE */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		C2B0F1191961942E00E872A6 /* LocalNewsDetailPage */ = {
+			isa = PBXGroup;
+			children = (
+				C2B0F11A1961942E00E872A6 /* SNLocalNewsDetailModel.h */,
+				C2B0F11B1961942E00E872A6 /* SNLocalNewsDetailModel.m */,
+			);
+			path = LocalNewsDetailPage;
 			sourceTree = "<group>";
 		};
 		C2FC18A01961165400610CCA /* news */ = {
@@ -501,8 +501,8 @@
 				C22E95CA196063AC001B8745 /* YFDataBase.m in Sources */,
 				C23EDB4C1961612F007CAC81 /* AFHTTPRequestOperationManager.m in Sources */,
 				C2FC183C1960EF3E00610CCA /* SNMainController.m in Sources */,
+				C2B0F11C1961942E00E872A6 /* SNLocalNewsDetailModel.m in Sources */,
 				C23EDB4F1961612F007CAC81 /* AFSecurityPolicy.m in Sources */,
-				C2FC18B4196147F600610CCA /* SNLocalNewsDetail.m in Sources */,
 				C22E95C3196063AC001B8745 /* FMDatabasePool.m in Sources */,
 				C23EDB511961612F007CAC81 /* AFURLRequestSerialization.m in Sources */,
 				C23EDB4E1961612F007CAC81 /* AFNetworkReachabilityManager.m in Sources */,
@@ -632,7 +632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowNews/ShadowNews-Prefix.pch";
 				INFOPLIST_FILE = "ShadowNews/ShadowNews-Info.plist";
@@ -646,7 +646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowNews/ShadowNews-Prefix.pch";
 				INFOPLIST_FILE = "ShadowNews/ShadowNews-Info.plist";

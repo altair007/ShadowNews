@@ -9,6 +9,8 @@
 #import "SNAppDelegate.h"
 #import "SNMainController.h"
 #import "SNLocalPageModel.h"
+#import "SNLocalNewsDetailModel.h"
+#import "SNLocalNewsDetailModel.h"
 
 @implementation SNAppDelegate
 - (void)dealloc
@@ -28,13 +30,18 @@
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    // ???: 如果不是 0  ,20  链接 还有效吗?
     
-    [SNLocalPageModel local: @"北京" range: NSMakeRange(0, 20) success:^(NSArray *localNewsArray) {
+    [SNLocalPageModel localPageModelWithCity: @"北京" range: NSMakeRange(10, 1) success:^(NSArray *localNewsArray) {
         NSLog(@"%@", localNewsArray);
     } fail:^(NSError *error) {
         NSLog(@"%@", error);
     }];
+    
+//    [SNLocalNewsDetailModel localNewsDetailModelWithDocId: @"9VV25L1D00014AED" success:^(SNLocalNewsDetailModel *model) {
+//        NSLog(@"%@", model);
+//    } fail:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
     
     [self.window makeKeyAndVisible];
     
