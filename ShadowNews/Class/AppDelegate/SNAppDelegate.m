@@ -11,7 +11,7 @@
 @implementation SNAppDelegate
 - (void)dealloc
 {
-    self.window = nil;
+    self.window = nil; 
 #if ! __has_feature(objc_arc)
     [super dealloc];
 #endif
