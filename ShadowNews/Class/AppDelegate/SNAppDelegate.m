@@ -7,11 +7,13 @@
 //
 
 #import "SNAppDelegate.h"
+#import "SNMainController.h"
 
 @implementation SNAppDelegate
 - (void)dealloc
 {
     self.window = nil;
+    
 #if ! __has_feature(objc_arc)
     [super dealloc];
 #endif
@@ -26,9 +28,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    /*测试3*/
+    [[SNMainController sharedInstance] localNews: @"北京" range: NSMakeRange(0, 20) success:^(NSArray *array) {
+        NSArray * arraya = array;
+    } fail:^(NSError *error) {
+        NSError * errora = error;
+    }];
     
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
