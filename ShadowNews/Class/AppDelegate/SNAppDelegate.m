@@ -3,7 +3,7 @@
 //  ShadowNews
 //
 //  Created by   颜风 on 14-6-29.
-//  Copyright (c) 2014年 ShadowNews. All rights reserved.s
+//  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
 #import "SNAppDelegate.h"
@@ -11,7 +11,7 @@
 @implementation SNAppDelegate
 - (void)dealloc
 {
-    self.window = nil; 
+    self.window = nil;
 #if ! __has_feature(objc_arc)
     [super dealloc];
 #endif
