@@ -7,7 +7,6 @@
 //
 
 #import "SNMainController.h"
-#import "SNShadowNewsModel.h"
 
 @interface SNMainController ()
 @property (retain, nonatomic, readwrite) SNShadowNewsModel * model; //!< 数据模型.
@@ -74,9 +73,6 @@ static SNMainController * sharedObj = nil;
 - (instancetype) init
 {
     if (self = [super init]) {
-        SNShadowNewsModel * model = [[SNShadowNewsModel alloc] init];
-        self.model = model;
-        SNRelease(model);
     }
     
     return self;

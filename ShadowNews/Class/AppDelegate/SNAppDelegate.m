@@ -8,6 +8,7 @@
 
 #import "SNAppDelegate.h"
 #import "SNMainController.h"
+#import "SNLocalPageModel.h"
 
 @implementation SNAppDelegate
 - (void)dealloc
@@ -27,11 +28,12 @@
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    // ???: 如果不是 0  ,20  链接 还有效吗?
     
-    [[SNMainController sharedInstance] localNews: @"北京" range: NSMakeRange(0, 20) success:^(NSArray *array) {
-        NSArray * arraya = array;
+    [SNLocalPageModel local: @"北京" range: NSMakeRange(0, 20) success:^(NSArray *localNewsArray) {
+        NSLog(@"%@", localNewsArray);
     } fail:^(NSError *error) {
-        NSError * errora = error;
+        NSLog(@"%@", error);
     }];
     
     [self.window makeKeyAndVisible];

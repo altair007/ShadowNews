@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class SNShadowNewsModel;
 @class SNNavigationController;
+//!!!: 这个类或许没有存在的价值.
 
 /**
  *  主控制器.
