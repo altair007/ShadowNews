@@ -12,7 +12,6 @@
 		C22E957719605FE8001B8745 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957619605FE8001B8745 /* UIKit.framework */; };
 		C22E957D19605FE8001B8745 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C22E957B19605FE8001B8745 /* InfoPlist.strings */; };
 		C22E957F19605FE8001B8745 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E957E19605FE8001B8745 /* main.m */; };
-		C22E958519605FE8001B8745 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22E958419605FE8001B8745 /* Images.xcassets */; };
 		C22E958C19605FE8001B8745 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E958B19605FE8001B8745 /* XCTest.framework */; };
 		C22E958D19605FE8001B8745 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957219605FE8001B8745 /* Foundation.framework */; };
 		C22E958E19605FE8001B8745 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957619605FE8001B8745 /* UIKit.framework */; };
@@ -48,7 +47,6 @@
 		C22E957C19605FE8001B8745 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C22E957E19605FE8001B8745 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C22E958019605FE8001B8745 /* ShadowNews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowNews-Prefix.pch"; sourceTree = "<group>"; };
-		C22E958419605FE8001B8745 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C22E958A19605FE8001B8745 /* ShadowNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShadowNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E958B19605FE8001B8745 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C22E959319605FE8001B8745 /* ShadowNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowNewsTests-Info.plist"; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				C22E957B19605FE8001B8745 /* InfoPlist.strings */,
 				C22E957E19605FE8001B8745 /* main.m */,
 				C22E958019605FE8001B8745 /* ShadowNews-Prefix.pch */,
-				C22E958419605FE8001B8745 /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -349,7 +346,6 @@
 			files = (
 				C22E95A219606399001B8745 /* README.md in Resources */,
 				C22E957D19605FE8001B8745 /* InfoPlist.strings in Resources */,
-				C22E958519605FE8001B8745 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
