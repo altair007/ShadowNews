@@ -7,6 +7,7 @@
 //
 
 #import "SNAppDelegate.h"
+#import "SNNavigationController.h"
 
 @implementation SNAppDelegate
 
@@ -15,6 +16,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    SNNavigationController * navController = [[SNNavigationController alloc]init];
+    self.window.rootViewController = navController;
+    SNRelease(navController);
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
