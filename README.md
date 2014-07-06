@@ -1,1 +1,2 @@
-#简易新闻客户端 DEMO
+##影子新闻
+Not News,Just Shadow!

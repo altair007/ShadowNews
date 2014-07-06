@@ -25,11 +25,8 @@
 		C22E95C3196063AC001B8745 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95B1196063AC001B8745 /* FMDatabasePool.m */; };
 		C22E95C4196063AC001B8745 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95B3196063AC001B8745 /* FMDatabaseQueue.m */; };
 		C22E95C5196063AC001B8745 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95B6196063AC001B8745 /* FMResultSet.m */; };
-		C22E95C6196063AC001B8745 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = C22E95B7196063AC001B8745 /* LICENSE.txt */; };
-		C22E95C7196063AC001B8745 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C22E95B8196063AC001B8745 /* README.markdown */; };
-		C22E95C8196063AC001B8745 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = C22E95BA196063AC001B8745 /* LICENSE.txt */; };
-		C22E95C9196063AC001B8745 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C22E95BB196063AC001B8745 /* README.md */; };
 		C22E95CA196063AC001B8745 /* YFDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95BD196063AC001B8745 /* YFDataBase.m */; };
+		C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,12 +68,13 @@
 		C22E95B4196063AC001B8745 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		C22E95B5196063AC001B8745 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		C22E95B6196063AC001B8745 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		C22E95B7196063AC001B8745 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		C22E95B8196063AC001B8745 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		C22E95BA196063AC001B8745 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		C22E95BB196063AC001B8745 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		C22E95BC196063AC001B8745 /* YFDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFDataBase.h; sourceTree = "<group>"; };
 		C22E95BD196063AC001B8745 /* YFDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFDataBase.m; sourceTree = "<group>"; };
+		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		C2A6C2921969191D0006E26E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		C2A6C2931969191D0006E26E /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		C2A6C2941969192F0006E26E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		C2A6C2951969192F0006E26E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */,
 				C22E957519605FE8001B8745 /* CoreGraphics.framework in Frameworks */,
 				C22E957719605FE8001B8745 /* UIKit.framework in Frameworks */,
 				C22E957319605FE8001B8745 /* Foundation.framework in Frameworks */,
@@ -125,6 +124,7 @@
 		C22E957119605FE8001B8745 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */,
 				C22E957219605FE8001B8745 /* Foundation.framework */,
 				C22E957419605FE8001B8745 /* CoreGraphics.framework */,
 				C22E957619605FE8001B8745 /* UIKit.framework */,
@@ -229,6 +229,8 @@
 		C22E95AB196063AC001B8745 /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
+				C2A6C2921969191D0006E26E /* LICENSE.txt */,
+				C2A6C2931969191D0006E26E /* README.markdown */,
 				C22E95AC196063AC001B8745 /* FMDatabase.h */,
 				C22E95AD196063AC001B8745 /* FMDatabase.m */,
 				C22E95AE196063AC001B8745 /* FMDatabaseAdditions.h */,
@@ -240,8 +242,6 @@
 				C22E95B4196063AC001B8745 /* FMDB.h */,
 				C22E95B5196063AC001B8745 /* FMResultSet.h */,
 				C22E95B6196063AC001B8745 /* FMResultSet.m */,
-				C22E95B7196063AC001B8745 /* LICENSE.txt */,
-				C22E95B8196063AC001B8745 /* README.markdown */,
 			);
 			path = fmdb;
 			sourceTree = "<group>";
@@ -249,8 +249,8 @@
 		C22E95B9196063AC001B8745 /* FMDB-ActiveRecord */ = {
 			isa = PBXGroup;
 			children = (
-				C22E95BA196063AC001B8745 /* LICENSE.txt */,
-				C22E95BB196063AC001B8745 /* README.md */,
+				C2A6C2941969192F0006E26E /* LICENSE.txt */,
+				C2A6C2951969192F0006E26E /* README.md */,
 				C22E95BC196063AC001B8745 /* YFDataBase.h */,
 				C22E95BD196063AC001B8745 /* YFDataBase.m */,
 			);
@@ -347,10 +347,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22E95C8196063AC001B8745 /* LICENSE.txt in Resources */,
-				C22E95C6196063AC001B8745 /* LICENSE.txt in Resources */,
-				C22E95C7196063AC001B8745 /* README.markdown in Resources */,
-				C22E95C9196063AC001B8745 /* README.md in Resources */,
 				C22E95A219606399001B8745 /* README.md in Resources */,
 				C22E957D19605FE8001B8745 /* InfoPlist.strings in Resources */,
 				C22E958519605FE8001B8745 /* Images.xcassets in Resources */,
@@ -580,6 +576,7 @@
 				C22E959D19605FE8001B8745 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C22E959E19605FE8001B8745 /* Build configuration list for PBXNativeTarget "ShadowNewsTests" */ = {
 			isa = XCConfigurationList;
@@ -588,6 +585,7 @@
 				C22E95A019605FE8001B8745 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
