@@ -42,6 +42,6 @@
 #if OS_OBJECT_USE_OBJC
 #define SNDispatchQueueRelease(__v)
 #else
-#define SNispatchQueueRelease(__v) (dispatch_release(__v));
+#define SNDispatchQueueRelease(__v) (dispatch_release(__v));
 #endif
 #endif
