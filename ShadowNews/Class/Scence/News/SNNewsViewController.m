@@ -57,7 +57,7 @@
     // !!!:控制器,应该可以自动向对应的model请求数据.等到数据请求完成后,再设置代理.
     // !!!: 由控制器来决定导航栏样式.
     // !!!: 美化一下导航栏.
-    self.navigationItem.title = @"魅影资讯";
+    self.navigationItem.title = @"影子";
     // !!!:此处需要加按钮事件.
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle: @"菜单" style:UIBarButtonItemStylePlain target:nil action: NULL];
     self.navigationItem.leftBarButtonItem = leftItem;
@@ -98,7 +98,7 @@
     // !!!:预加载,优先从本地读取数据,且只从本地读取数据.(除非本地数据不存在,再发起网络请求.).
     
     // !!!: title对应的url,应从配置文件或网络中动态获取.最好支持,动态从网络中更新.
-    cell.backgroundColor = [UIColor yellowColor];
+    cell.backgroundColor = [UIColor grayColor];
     return cell;
 }
 

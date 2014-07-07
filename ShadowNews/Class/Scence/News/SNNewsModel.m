@@ -10,6 +10,7 @@
 #import "SNNewsMenu.h"
 #import "AFNetworking.h"
 #import "SNNews.h"
+#import "SNNewsDetail.h"
 
 @interface SNNewsModel ()
 @property (retain, nonatomic, readwrite) SNNewsMenu * menu;//!< 新闻菜单.
@@ -81,19 +82,45 @@
         NSArray * newsOriginalArray = [responseObject objectForKey: secret];
         NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
         [newsOriginalArray enumerateObjectsUsingBlock:^(NSDictionary * newsOriginal, NSUInteger idx, BOOL *stop) {
+            
             // ???:news对象,可能还需要一个 tag 属性.
             NSString * imgSrc = [newsOriginal objectForKey: @"imgsrc"];
             NSString * title = [newsOriginal objectForKey: @"title"];
-            NSString * publishTime = [newsOriginal objectForKey: @"lmodify"];
+            NSString * digest = [newsOriginal objectForKey: @"digest"];
             NSUInteger replyCount = [(NSNumber *)[newsOriginal objectForKey: @"replyCount"] unsignedIntegerValue];
             NSString * docId = [newsOriginal objectForKey: @"docid"];
-            [newsArray addObject:[SNNews newsWithImgSrc:imgSrc title:title publishTime:publishTime replyCount:replyCount docId:docId]];
+            [newsArray addObject:[SNNews newsWithImgSrc:imgSrc title:title publishTime:digest replyCount:replyCount docId:docId]];
         }];
         success(newsArray);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
     }];
+}
+
++ (void) detailModelWithDocId: (NSString *) docId
+                      success: (SNNewsModelSuccessBlock) success
+                         fail: (SNNewsModelFailBlock) fail
+{
+    NSString * urlStr = [NSString stringWithFormat: @"http://c.3g.163.com/nc/article/%@/full.html", docId];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
+    [manager GET: urlStr parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary * detailNews = [responseObject objectForKey: docId];
+        NSString * title = [detailNews objectForKey: @"title"];
+        NSString * source = [detailNews objectForKey: @"source"];
+        NSString * publishTime = [detailNews objectForKey: @"ptime"];
+        NSUInteger replyCount = [[detailNews objectForKey: @"replyCount"] unsignedIntegerValue];
+        NSString * sourceUrl = [detailNews objectForKey: @"source_url"];
+        NSString * templateType= [detailNews objectForKey: @"template"];
+        NSString * body = [detailNews objectForKey: @"body"];
+        
+        success([SNNewsDetail detailWithDocId: docId title: title source: source publishTime: publishTime replyCount: replyCount sourceUrl: sourceUrl templateType: templateType body: body]);
+    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+        fail(error);
+    }];
+
 }
 
 - (instancetype) init
@@ -104,4 +131,5 @@
     
     return self;
 }
+
 @end

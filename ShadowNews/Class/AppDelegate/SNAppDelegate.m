@@ -17,9 +17,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    SNNavigationController * navController = [[SNNavigationController alloc]init];
-    self.window.rootViewController = navController;
-    SNRelease(navController);
+    self.window.rootViewController = [SNNavigationController sharedInstance];
     
     [self.window makeKeyAndVisible];
     return YES;

@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 @class SNNews;
 
+/**
+ *  用于各个新闻页面的单元格类
+ */
 @interface SNNewsPageViewCell : UITableViewCell
 @property(nonatomic,retain) SNNews * news; //!< 单条概要新闻.
 

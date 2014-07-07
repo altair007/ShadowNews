@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  自定义导航控制器.
+ */
 @interface SNNavigationController : UINavigationController
+/**
+ *  获取单例对象.
+ *
+ *  @return 单例对象.
+ */
++ (SNNavigationController *) sharedInstance;
 
 @end

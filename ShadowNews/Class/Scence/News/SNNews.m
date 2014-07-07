@@ -9,11 +9,11 @@
 #import "SNNews.h"
 
 @interface SNNews ()
-@property (copy, nonatomic, readwrite) NSString * imgSrc; //!< 主题图片网址.
-@property (copy, nonatomic, readwrite) NSString * title; //!< 新闻标题.
-@property (copy, nonatomic, readwrite) NSString * publishTime; //!< 发表时间.
-@property (assign, nonatomic, readwrite) NSUInteger replyCount; //!< 跟帖数.
-@property (copy, nonatomic, readwrite) NSString * docId; //!< 文章唯一标识.
+@property (copy, nonatomic, readwrite) NSString * imgSrc;
+@property (copy, nonatomic, readwrite) NSString * title;
+@property (copy, nonatomic, readwrite) NSString * digest;
+@property (assign, nonatomic, readwrite) NSUInteger replyCount;
+@property (copy, nonatomic, readwrite) NSString * docId;
 @end
 
 @implementation SNNews
@@ -21,7 +21,7 @@
 {
     self.imgSrc = nil;
     self.title = nil;
-    self.publishTime = nil;
+    self.digest = nil;
     self.docId = nil;
     
 #if ! __has_feature(objc_arc)
@@ -46,7 +46,7 @@
     if (self = [super init]) {
         self.imgSrc = imgSrc;
         self.title = title;
-        self.publishTime = pulishTime;
+        self.digest = pulishTime;
         self.replyCount = replyCount;
         self.docId = docId;
     }

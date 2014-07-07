@@ -48,7 +48,6 @@
 		C23880A7196A798200909314 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = C238809F196A798200909314 /* UIWebView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C23880AC196A85E900909314 /* SNNews.m in Sources */ = {isa = PBXBuildFile; fileRef = C23880AB196A85E900909314 /* SNNews.m */; };
 		C23880AF196A9A8D00909314 /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C23880AE196A9A8D00909314 /* SNNewsPageViewCell.m */; };
-		C23880B1196AA2EA00909314 /* 002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C23880B0196AA2EA00909314 /* 002.jpg */; };
 		C255F23B196A463900F702A9 /* SNNewsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C255F23A196A463900F702A9 /* SNNewsPageView.m */; };
 		C28F687019692BBF00ACA47D /* SNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F686F19692BBF00ACA47D /* SNNavigationController.m */; };
 		C28F68771969324000ACA47D /* SNNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F68761969324000ACA47D /* SNNewsViewController.m */; };
@@ -56,6 +55,10 @@
 		C28F687D1969391900ACA47D /* SNNewsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F687C1969391900ACA47D /* SNNewsMenu.m */; };
 		C28F6884196977DF00ACA47D /* SNNewsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F687F196977DF00ACA47D /* SNNewsHeaderView.m */; };
 		C28F6885196977DF00ACA47D /* SNNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F6881196977DF00ACA47D /* SNNewsView.m */; };
+		C29CF860196ABDA8004AE8C8 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CF85F196ABDA8004AE8C8 /* default.png */; };
+		C29CF863196AC452004AE8C8 /* SNNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CF862196AC452004AE8C8 /* SNNewsDetailViewController.m */; };
+		C29CF866196AC519004AE8C8 /* SNNewsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CF865196AC519004AE8C8 /* SNNewsDetailView.m */; };
+		C29CF869196AD40B004AE8C8 /* SNNewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CF868196AD40B004AE8C8 /* SNNewsDetail.m */; };
 		C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */; };
 		C2A6C29919691C080006E26E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2A6C29819691C080006E26E /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -148,7 +151,6 @@
 		C23880AB196A85E900909314 /* SNNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNews.m; sourceTree = "<group>"; };
 		C23880AD196A9A8D00909314 /* SNNewsPageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewCell.h; sourceTree = "<group>"; };
 		C23880AE196A9A8D00909314 /* SNNewsPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewCell.m; sourceTree = "<group>"; };
-		C23880B0196AA2EA00909314 /* 002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 002.jpg; sourceTree = "<group>"; };
 		C255F239196A463900F702A9 /* SNNewsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageView.h; sourceTree = "<group>"; };
 		C255F23A196A463900F702A9 /* SNNewsPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageView.m; sourceTree = "<group>"; };
 		C28F686E19692BBF00ACA47D /* SNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationController.h; sourceTree = "<group>"; };
@@ -163,6 +165,13 @@
 		C28F687F196977DF00ACA47D /* SNNewsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsHeaderView.m; sourceTree = "<group>"; };
 		C28F6880196977DF00ACA47D /* SNNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsView.h; sourceTree = "<group>"; };
 		C28F6881196977DF00ACA47D /* SNNewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsView.m; sourceTree = "<group>"; };
+		C29CF85F196ABDA8004AE8C8 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		C29CF861196AC452004AE8C8 /* SNNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsDetailViewController.h; sourceTree = "<group>"; };
+		C29CF862196AC452004AE8C8 /* SNNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsDetailViewController.m; sourceTree = "<group>"; };
+		C29CF864196AC519004AE8C8 /* SNNewsDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsDetailView.h; sourceTree = "<group>"; };
+		C29CF865196AC519004AE8C8 /* SNNewsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsDetailView.m; sourceTree = "<group>"; };
+		C29CF867196AD40B004AE8C8 /* SNNewsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsDetail.h; sourceTree = "<group>"; };
+		C29CF868196AD40B004AE8C8 /* SNNewsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsDetail.m; sourceTree = "<group>"; };
 		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C2A6C2921969191D0006E26E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C2A6C2931969191D0006E26E /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
@@ -350,7 +359,7 @@
 		C22E95BF196063AC001B8745 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C23880B0196AA2EA00909314 /* 002.jpg */,
+				C29CF85F196ABDA8004AE8C8 /* default.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -362,6 +371,8 @@
 				C28F68761969324000ACA47D /* SNNewsViewController.m */,
 				C220FCAC196A450A00332EB3 /* SNNewsDelegate.h */,
 				C220FCAD196A450A00332EB3 /* SNNewsDelegate.m */,
+				C29CF861196AC452004AE8C8 /* SNNewsDetailViewController.h */,
+				C29CF862196AC452004AE8C8 /* SNNewsDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -375,6 +386,8 @@
 				C28F687C1969391900ACA47D /* SNNewsMenu.m */,
 				C23880AA196A85E900909314 /* SNNews.h */,
 				C23880AB196A85E900909314 /* SNNews.m */,
+				C29CF867196AD40B004AE8C8 /* SNNewsDetail.h */,
+				C29CF868196AD40B004AE8C8 /* SNNewsDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -390,6 +403,8 @@
 				C255F23A196A463900F702A9 /* SNNewsPageView.m */,
 				C23880AD196A9A8D00909314 /* SNNewsPageViewCell.h */,
 				C23880AE196A9A8D00909314 /* SNNewsPageViewCell.m */,
+				C29CF864196AC519004AE8C8 /* SNNewsDetailView.h */,
+				C29CF865196AC519004AE8C8 /* SNNewsDetailView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -552,12 +567,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C23880B1196AA2EA00909314 /* 002.jpg in Resources */,
 				C2A6C29919691C080006E26E /* Images.xcassets in Resources */,
 				C22E95A219606399001B8745 /* README.md in Resources */,
 				C238808C196A797B00909314 /* LICENCE.md in Resources */,
 				C2388084196A797300909314 /* LICENSE in Resources */,
 				C22E957D19605FE8001B8745 /* InfoPlist.strings in Resources */,
+				C29CF860196ABDA8004AE8C8 /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +605,7 @@
 				C220FCAE196A450A00332EB3 /* SNNewsDelegate.m in Sources */,
 				C23880A7196A798200909314 /* UIWebView+AFNetworking.m in Sources */,
 				C22E95C1196063AC001B8745 /* FMDatabase.m in Sources */,
+				C29CF869196AD40B004AE8C8 /* SNNewsDetail.m in Sources */,
 				C23880A0196A798200909314 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				C22E957F19605FE8001B8745 /* main.m in Sources */,
 				C23880A2196A798200909314 /* UIAlertView+AFNetworking.m in Sources */,
@@ -597,6 +613,7 @@
 				C238807F196A797300909314 /* AFSecurityPolicy.m in Sources */,
 				C28F687A1969363400ACA47D /* SNNewsModel.m in Sources */,
 				C22E95C5196063AC001B8745 /* FMResultSet.m in Sources */,
+				C29CF866196AC519004AE8C8 /* SNNewsDetailView.m in Sources */,
 				C28F6884196977DF00ACA47D /* SNNewsHeaderView.m in Sources */,
 				C238807C196A797300909314 /* AFHTTPRequestOperationManager.m in Sources */,
 				C22E95CA196063AC001B8745 /* YFDataBase.m in Sources */,
@@ -612,6 +629,7 @@
 				C238807B196A797300909314 /* AFHTTPRequestOperation.m in Sources */,
 				C2388082196A797300909314 /* AFURLResponseSerialization.m in Sources */,
 				C22E95C4196063AC001B8745 /* FMDatabaseQueue.m in Sources */,
+				C29CF863196AC452004AE8C8 /* SNNewsDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

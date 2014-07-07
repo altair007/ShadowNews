@@ -14,7 +14,7 @@
  *
  *  @param array 一个数组,存储本地新闻对象.
  */
-typedef void(^SNNewsModelSuccessBlock)(NSArray * newsArray);
+typedef void(^SNNewsModelSuccessBlock)(id responseObject);
 
 /**
  *  获取数据失败时,执行此 block.
@@ -48,4 +48,15 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
                 range: (NSRange) range
               success: (SNNewsModelSuccessBlock) success
                  fail: (SNNewsModelFailBlock) fail;
+
+/**
+ *  根据新闻唯一标识符获取新闻详情.
+ *
+ *  @param docId   新闻唯一标识符.
+ *  @param success 获取新闻详情成功时执行的 block.
+ *  @param fail    获取新闻详情失败时执行的 block.
+ */
++ (void) detailModelWithDocId: (NSString *) docId
+                               success: (SNNewsModelSuccessBlock) success
+                         fail: (SNNewsModelFailBlock) fail;
 @end

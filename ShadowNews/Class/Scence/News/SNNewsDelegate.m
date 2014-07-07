@@ -6,12 +6,13 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-#import "UIKit+AFNetworking.h"
 #import "SNNewsDelegate.h"
 #import "SNNewsPageView.h"
 #import "SNNewsModel.h"
 #import "SNNews.h"
 #import "SNNewsPageViewCell.h"
+#import "SNNavigationController.h"
+#import "SNNewsDetailViewController.h"
 
 @interface SNNewsDelegate ()
 @property (retain, nonatomic) SNNewsPageView * SNNDCell; //!< 新闻视图单元格.
@@ -73,27 +74,29 @@
 // ???:在tableView显示之后,只改变代理,不调用reloadData方法,会自动刷新页面吗?
 
 #pragma mark - UITableViewDelegate协议方法.
-
+// !!!: 有一个BUG:点返回时,可能崩掉.先左移几次!可能和代理的不正确retai,有关.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString * docId = [(SNNews *)self.SNNDNewsArray[indexPath.row] docId];
+    SNNewsDetailViewController * detailVC = [[SNNewsDetailViewController alloc] initWIthDocId:docId];
+    [[SNNavigationController sharedInstance] pushViewController:detailVC animated: YES];
+}
 #pragma mark - UITableViewDataSource协议方法.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // ???:不应该用固定值.
     return self.SNNDNewsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
-    // !!!:暂不区分图片新闻与普通新闻cell.
+    // !!!:优化方向:区分图片新闻与普通新闻cell.
     // ???:尝试使用另外一种可以绑定类和cell标志名的语法初始化
     
-    // ???:暂时不使用自定义cell.
-    // !!!:迭代至此,先重新规划新闻的属性.
-    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"news"];
-    [cell.imageView setImageWithURL:[NSURL URLWithString: news.imgSrc]];
-    cell.textLabel.text = news.title;
-    cell.detailTextLabel.text = @"啊哈adsfsfsdsdgsgksjglas撒的结构i啊哈adsfsfsdsdgsgksjglas撒的结构i";
-    
+    // ???:建议使用自定义cell.
+    SNNewsPageViewCell * cell = [[SNNewsPageViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"news"];
+    cell.news = news;
+
     return cell;
 }
 @end

@@ -143,6 +143,6 @@
 #pragma mark - UIScrollViewDelegate协议方法.
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
+    
 }
 @end

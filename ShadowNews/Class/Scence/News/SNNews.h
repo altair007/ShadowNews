@@ -15,7 +15,7 @@
 @interface SNNews : NSObject
 @property (copy, nonatomic, readonly) NSString * imgSrc; //!< 主题图片网址.
 @property (copy, nonatomic, readonly) NSString * title; //!< 新闻标题.
-@property (copy, nonatomic, readonly) NSString * publishTime; //!< 发表时间.
+@property (copy, nonatomic, readonly) NSString * digest; //!< 摘要.
 @property (assign, nonatomic, readonly) NSUInteger replyCount; //!< 跟帖数.
 @property (copy, nonatomic, readonly) NSString * docId; //!< 文章唯一标识.
 
