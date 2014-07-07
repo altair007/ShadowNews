@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C220FCAE196A450A00332EB3 /* SNNewsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C220FCAD196A450A00332EB3 /* SNNewsDelegate.m */; };
 		C22E957319605FE8001B8745 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957219605FE8001B8745 /* Foundation.framework */; };
 		C22E957519605FE8001B8745 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957419605FE8001B8745 /* CoreGraphics.framework */; };
 		C22E957719605FE8001B8745 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957619605FE8001B8745 /* UIKit.framework */; };
@@ -25,6 +26,7 @@
 		C22E95C4196063AC001B8745 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95B3196063AC001B8745 /* FMDatabaseQueue.m */; };
 		C22E95C5196063AC001B8745 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95B6196063AC001B8745 /* FMResultSet.m */; };
 		C22E95CA196063AC001B8745 /* YFDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E95BD196063AC001B8745 /* YFDataBase.m */; };
+		C255F23B196A463900F702A9 /* SNNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C255F23A196A463900F702A9 /* SNNewsViewCell.m */; };
 		C28F687019692BBF00ACA47D /* SNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F686F19692BBF00ACA47D /* SNNavigationController.m */; };
 		C28F68771969324000ACA47D /* SNNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F68761969324000ACA47D /* SNNewsViewController.m */; };
 		C28F687A1969363400ACA47D /* SNNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F68791969363400ACA47D /* SNNewsModel.m */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C220FCAC196A450A00332EB3 /* SNNewsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsDelegate.h; sourceTree = "<group>"; };
+		C220FCAD196A450A00332EB3 /* SNNewsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsDelegate.m; sourceTree = "<group>"; };
 		C22E956F19605FE8001B8745 /* ShadowNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E957219605FE8001B8745 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C22E957419605FE8001B8745 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -75,6 +79,8 @@
 		C22E95B6196063AC001B8745 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		C22E95BC196063AC001B8745 /* YFDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFDataBase.h; sourceTree = "<group>"; };
 		C22E95BD196063AC001B8745 /* YFDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFDataBase.m; sourceTree = "<group>"; };
+		C255F239196A463900F702A9 /* SNNewsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsViewCell.h; sourceTree = "<group>"; };
+		C255F23A196A463900F702A9 /* SNNewsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsViewCell.m; sourceTree = "<group>"; };
 		C28F686E19692BBF00ACA47D /* SNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationController.h; sourceTree = "<group>"; };
 		C28F686F19692BBF00ACA47D /* SNNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNavigationController.m; sourceTree = "<group>"; };
 		C28F68751969324000ACA47D /* SNNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsViewController.h; sourceTree = "<group>"; };
@@ -305,6 +311,10 @@
 				C28F68791969363400ACA47D /* SNNewsModel.m */,
 				C28F687B1969391900ACA47D /* SNNewsMenu.h */,
 				C28F687C1969391900ACA47D /* SNNewsMenu.m */,
+				C220FCAC196A450A00332EB3 /* SNNewsDelegate.h */,
+				C220FCAD196A450A00332EB3 /* SNNewsDelegate.m */,
+				C255F239196A463900F702A9 /* SNNewsViewCell.h */,
+				C255F23A196A463900F702A9 /* SNNewsViewCell.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -407,8 +417,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C28F68771969324000ACA47D /* SNNewsViewController.m in Sources */,
+				C220FCAE196A450A00332EB3 /* SNNewsDelegate.m in Sources */,
 				C22E95C1196063AC001B8745 /* FMDatabase.m in Sources */,
 				C22E957F19605FE8001B8745 /* main.m in Sources */,
+				C255F23B196A463900F702A9 /* SNNewsViewCell.m in Sources */,
 				C28F687A1969363400ACA47D /* SNNewsModel.m in Sources */,
 				C22E95C5196063AC001B8745 /* FMResultSet.m in Sources */,
 				C28F6884196977DF00ACA47D /* SNNewsHeaderView.m in Sources */,

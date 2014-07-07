@@ -9,12 +9,23 @@
 #import "SNNewsViewController.h"
 #import "SNNewsModel.h"
 #import "SNNewsMenu.h"
+#import "SNNewsViewCell.h"
+#import "SNNewsDelegate.h"
 
 @interface SNNewsViewController ()
-
+@property (retain, nonatomic) NSMutableArray * SNNVDelegates; //!< 当前各个视图的代理.
 @end
 
 @implementation SNNewsViewController
+-(void)dealloc
+{
+    self.model = nil;
+    self.SNNVDelegates = nil;
+    
+#if ! __has_feature(objc_arc)
+    [super dealloc];
+#endif
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +35,9 @@
         
         // 不让控制器自动调整UIScrollview位置.
         self.automaticallyAdjustsScrollViewInsets = NO;
+        
+        // ???:或许应该设置一个数组,来存储代理,因为可能有多个代理.
+        self.SNNVDelegates = [NSMutableArray arrayWithCapacity: 42];
     }
     return self;
 }
@@ -63,16 +77,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 私有方法.
+- (void)addDelegateForCell: (SNNewsViewCell *) cell
+{
+    // ???:有无必要实现 cell的复用,在"预加载"和"加载"之间的复用!???
+    
+    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: cell];
+    
+    [self.SNNVDelegates addObject: delegate];
+    
+    
+    // ???:下面这个逻辑真的很鸡肋!
+    // ???:cell的复用,可能本质难点,在于 delegate的复用.
+    if (3 < self.SNNVDelegates.count) { //!< 最多只允许存储3个代理.
+        [self.SNNVDelegates removeObjectAtIndex: 0];
+    }
+}
+
 #pragma mark - SNNewsViewDataSource 协议方法
 - (UIView *)newsView:(SNNewsView *)newsView viewForTitle:(NSString *) title preLoad:(BOOL)preLoad
 {
+    // ???:
+    SNNewsViewCell * cell = [SNNewsViewCell cellWithTitle:title];
+    
+    [self addDelegateForCell: cell];
     // !!!:预加载,优先从本地读取数据,且只从本地读取数据.(除非本地数据不存在,再发起网络请求.).
     
-    UILabel * view = [[UILabel alloc] init];
-    view.backgroundColor = [UIColor yellowColor];
-    view.text = title;
-    SNAutorelease(view);
-    return view;
+    // !!!: title对应的url,应从配置文件或网络中动态获取.最好支持,动态从网络中更新.
+    cell.backgroundColor = [UIColor yellowColor];
+    return cell;
 }
 
 - (SNNewsMenu *) menuInNewsView: (SNNewsView *) newsView
