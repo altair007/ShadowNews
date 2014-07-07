@@ -11,7 +11,7 @@
 
 @class SNNewsView;
 @class SNNewsMenu;
-
+@class SNNewsPageView;
 /**
  *  新闻视图布局协议.
  */
@@ -57,9 +57,10 @@
  *  @param title    新闻板块名称.
  *  @param preLoad  YES,是预加载;NO,不是预加载.
  *
- *  @return 用于某个位置的单元格的视图.
+ *  @return 用于某个位置的页面的视图.
  */
-- (UIView *)newsView:(SNNewsView *)newsView
+// !!!: tableView,强制要求返回不会nil,否则报错崩溃,有无必要效仿?
+- (SNNewsPageView *)newsView:(SNNewsView *)newsView
         viewForTitle:(NSString *) title
              preLoad:(BOOL) preLoad;
 

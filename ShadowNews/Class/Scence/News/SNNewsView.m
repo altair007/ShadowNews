@@ -18,6 +18,7 @@ typedef enum{
 
 #import "SNNewsView.h"
 #import "SNNewsMenu.h"
+#import "SNNewsPageView.h"
 
 @interface SNNewsView ()
 #pragma mark - 私有属性.
@@ -210,7 +211,7 @@ typedef enum{
         self.SNNVInsertType = SNNVViewContanierContentInsertTypeHead;
         
         // 获取视图.
-        UIView * view = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[0] preLoad: NO];
+        SNNewsPageView * view = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[0] preLoad: NO];
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [self.SNNVViewContainer addSubview: view];
         

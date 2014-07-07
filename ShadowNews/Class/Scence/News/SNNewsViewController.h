@@ -6,7 +6,10 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-// !!!:去除所有不必要的单元格信息.
+// !!!:去除所有不必要的单元格背景颜色信息.
+// !!!:去除不必要的NSLog信息.
+// !!!:建议给ScrollView加个好看的有意义的背景色或者背景图,最好是平铺的那种.
+// !!!:当视图滑动时,此时不应该支持下拉.实测中真的会发生这种BUG?
 #import <UIKit/UIKit.h>
 #import "SNNewsView.h"
 @class  SNNewsModel;

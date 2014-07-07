@@ -9,7 +9,7 @@
 #import "SNNewsViewController.h"
 #import "SNNewsModel.h"
 #import "SNNewsMenu.h"
-#import "SNNewsViewCell.h"
+#import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
 
 @interface SNNewsViewController ()
@@ -78,27 +78,21 @@
 }
 
 #pragma mark - 私有方法.
-- (void)addDelegateForCell: (SNNewsViewCell *) cell
+- (void)addDelegateForCell: (SNNewsPageView *) cell
 {
-    // ???:有无必要实现 cell的复用,在"预加载"和"加载"之间的复用!???
-    
-    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: cell];
+    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: cell model:self.model];
     
     [self.SNNVDelegates addObject: delegate];
     
-    
-    // ???:下面这个逻辑真的很鸡肋!
-    // ???:cell的复用,可能本质难点,在于 delegate的复用.
-    if (3 < self.SNNVDelegates.count) { //!< 最多只允许存储3个代理.
+    if (3 < self.SNNVDelegates.count) { // 最多存储3个代理即可.
         [self.SNNVDelegates removeObjectAtIndex: 0];
     }
 }
 
 #pragma mark - SNNewsViewDataSource 协议方法
-- (UIView *)newsView:(SNNewsView *)newsView viewForTitle:(NSString *) title preLoad:(BOOL)preLoad
+- (SNNewsPageView *)newsView:(SNNewsView *)newsView viewForTitle:(NSString *) title preLoad:(BOOL)preLoad
 {
-    // ???:
-    SNNewsViewCell * cell = [SNNewsViewCell cellWithTitle:title];
+    SNNewsPageView * cell = [SNNewsPageView cellWithTitle:title preLoad: preLoad];
     
     [self addDelegateForCell: cell];
     // !!!:预加载,优先从本地读取数据,且只从本地读取数据.(除非本地数据不存在,再发起网络请求.).
