@@ -92,9 +92,9 @@
     [self.SNNVDelegates addObject: delegate];
     
     // ???:综合BUG出现的原因可能是,数组的顺序是固定的,左右往返滑动时,顺序错乱,会出现错误的提前释放.
-    if (3 < self.SNNVDelegates.count) { // 最多存储3个代理即可.
-        [self.SNNVDelegates removeObjectAtIndex: 0];
-    }
+//    if (3 < self.SNNVDelegates.count) { // 最多存储3个代理即可.
+//        [self.SNNVDelegates removeObjectAtIndex: 0];
+//    }
 }
 
 /**
