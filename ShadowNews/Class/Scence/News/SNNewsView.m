@@ -20,15 +20,20 @@ typedef enum{
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 
+// ???:图像应该从上往下,依次加载,不应该完全异步,用户体验太差.或者限制同时下载的图片数量
 @interface SNNewsView ()
 #pragma mark - 私有属性.
 
 @property (retain, nonatomic) UIScrollView * SNNVViewContainer; //!< 用于放置视图.
 @property (retain, nonatomic) SNNewsHeaderView * SNNVHeaderView; //!< 页眉用于导航.
+
+// ???:应该暴漏这个属性.
+// ???:这个页面,应该用"title"替换.
 @property (assign, nonatomic) NSUInteger  SNNVIndexOfCurrentPage; //!< 当前页面的位置.
 @property (assign, nonatomic) SNNVViewContanierContentInsertType SNNVInsertType; //!< 用于实时记录往容器视图插入视图的方式.
 @property (retain, nonatomic) SNNewsMenu * SNNVMenu; //!< 新闻菜单.
 @property (retain, nonatomic) NSNumber * SNNVheightOfHeaderView; //!< 页眉高度.
+@property (assign, nonatomic) BOOL SNNVSubviewsSetUp; //!< 是否已经初始化子视图.
 @end
 
 @implementation SNNewsView
@@ -64,7 +69,9 @@ typedef enum{
 
 - (void)willMoveToWindow:(UIWindow *)newWindow
 {
-    if (nil == self.window) {
+    // 仅当第一次显示视图到窗口上时,需要初始化视图.
+    if (nil == self.window &&
+        YES != self.SNNVSubviewsSetUp) {
         [self SNNVSetUpSubviews];
     }
 }
@@ -90,6 +97,10 @@ typedef enum{
  */
 - (void) SNNVSetUpSubviews;
 {
+    if (YES == self.SNNVSubviewsSetUp) { // 视图已经初始化,则直接返回.
+        return;
+    }
+    
     /* 使用"约束"进行界面布局. */
     NSNumber *  navHeight = self.SNNVheightOfNavigation; //!< 导航栏高度.
     NSNumber * headerHeight = self.SNNVheightOfHeaderView; //!< 页眉高度.
@@ -130,17 +141,17 @@ typedef enum{
     [self addConstraints: constraintsArray];
     
     /* 设置页面上初始显示的视图. */
-    NSUInteger indexOfSetUpCell = 0;
-    if ([self.dataSource respondsToSelector: @selector(indexForSetUpCellInNewsView:)]) {
-        // !!!:这个值,应该通过 NewsMenu传入!
-        indexOfSetUpCell = [self.dataSource indexForSetUpCellInNewsView: self];
+    NSUInteger indexOfSetUpCell = [self.SNNVMenu.itemsAdded indexOfObject: self.SNNVMenu.itemLastScan];
         
-        if (indexOfSetUpCell > self.SNNVMenu.itemsAdded.count) {
-            indexOfSetUpCell = 0;
-        }
+    if (NSNotFound == indexOfSetUpCell ||
+        indexOfSetUpCell > self.SNNVMenu.itemsAdded.count) {
+        indexOfSetUpCell = 0;
     }
     
     [self SNNVShowCellAtIndex: indexOfSetUpCell];
+    
+    // 设置视图初始化标记.
+    self.SNNVSubviewsSetUp = YES;
 }
 
 /**

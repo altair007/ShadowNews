@@ -23,9 +23,7 @@
  *
  *  @return 实例对象.
  */
-//!!!: 不需要传Model进来.
-+ (instancetype) delegateWithCell: (SNNewsPageView *) cell
-                            model: (SNNewsModel *) model;
++ (instancetype) delegateWithCell: (SNNewsPageView *) cell;
 
 /**
  *  便利初始化.
@@ -35,7 +33,6 @@
  *
  *  @return 实例对象.
  */
-- (instancetype) initWithCell: (SNNewsPageView *) cell
-                        model: (SNNewsModel *) model;
+- (instancetype) initWithCell: (SNNewsPageView *) cell;
 
 @end

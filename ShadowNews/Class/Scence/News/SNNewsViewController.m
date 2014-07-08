@@ -14,6 +14,7 @@
 
 @interface SNNewsViewController ()
 @property (retain, nonatomic) NSMutableArray * SNNVDelegates; //!< 当前各个视图的代理.
+@property (retain, nonatomic) NSMutableDictionary * SNNVLoadedViews; //!< 存储已加载的视图.以新闻版块名为键,以视图为值.
 @end
 
 @implementation SNNewsViewController
@@ -38,6 +39,8 @@
         
         // ???:或许应该设置一个数组,来存储代理,因为可能有多个代理.
         self.SNNVDelegates = [NSMutableArray arrayWithCapacity: 42];
+        
+        self.SNNVLoadedViews = [NSMutableDictionary dictionaryWithCapacity: 42];
     }
     return self;
 }
@@ -67,40 +70,83 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     SNRelease(rightItem);
     
-    // !!!:此处用block异步传值,是不是更合适?谁又能保证,菜单就不涉及网络请求?
     self.model = [SNNewsModel model];
 }
 
-// !!!:有一个BUG,进入详情页面后,再返回,无法正确返回到对应页面.
+// ???:有一个综合BUG:  程序一段时间后,会无缘无故崩掉.
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    if (YES == [self isViewLoaded] &&
+        nil == self.view.window) {
+        self.view = nil;
+    }
 }
 
 #pragma mark - 私有方法.
-- (void)addDelegateForCell: (SNNewsPageView *) cell
+- (void)SNNVCAddDelegateForCell: (SNNewsPageView *) cell
 {
-    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: cell model:self.model];
+    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: cell];
     
     [self.SNNVDelegates addObject: delegate];
     
+    // ???:综合BUG出现的原因可能是,数组的顺序是固定的,左右往返滑动时,顺序错乱,会出现错误的提前释放.
     if (3 < self.SNNVDelegates.count) { // 最多存储3个代理即可.
         [self.SNNVDelegates removeObjectAtIndex: 0];
     }
 }
 
+/**
+ *  为某个新闻版块添加视图.
+ *
+ *  @param view  新闻版块视图.
+ *  @param title 新闻版块名.
+ */
+// ???:感觉方法的命名有问题.
+- (void)SNNVCAddLoadedView: (UIView *) view forTitle: (NSString *) title
+{
+    [self.SNNVLoadedViews setObject: view forKey: title];
+    
+    //!!!:暂时先不进行回收.算法有点复杂,需要考虑往返.
+    // !!!:建议只存储 预加载视图.
+}
+
+/**
+ *  获取某个分区的预加载视图.
+ *
+ *  @param title 新闻版块名.
+ *
+ *  @return 新闻版块的预加载视图.
+ */
+// ???:感觉方法的命名有问题.
+- (SNNewsPageView *)SNNVCLoadedViewForTitle: (NSString *) title
+{
+    return [self.SNNVLoadedViews objectForKey: title];
+}
+
 #pragma mark - SNNewsViewDataSource 协议方法
 - (SNNewsPageView *)newsView:(SNNewsView *)newsView viewForTitle:(NSString *) title preLoad:(BOOL)preLoad
 {
-    SNNewsPageView * cell = [SNNewsPageView cellWithTitle:title preLoad: preLoad];
+    // ???:应该让谁管理预加载的视图????
+    // ???:迭代至此!让控制器管理预加载视图.
+    // ???:cellWithTitle: 的方法名有问题.
+    SNNewsPageView * pageView = [self SNNVCLoadedViewForTitle: title];
+    if (nil == pageView) {
+        pageView = [SNNewsPageView cellWithTitle:title preLoad: preLoad];
+        [self SNNVCAddLoadedView: pageView forTitle: title];
+    }
     
-    [self addDelegateForCell: cell];
+    pageView.preLoad = preLoad;
+    
+    // !!!:有必要重设代理吗?有可能是预加载的东西.
+    // !!!:建议让代理检测preLoad属性.或者重写 pageView preLoad的设置器.
+    [self SNNVCAddDelegateForCell: pageView];
     // !!!:预加载,优先从本地读取数据,且只从本地读取数据.(除非本地数据不存在,再发起网络请求.).
     
     // !!!: title对应的url,应从配置文件或网络中动态获取.最好支持,动态从网络中更新.
-    cell.backgroundColor = [UIColor grayColor];
-    return cell;
+    pageView.backgroundColor = [UIColor grayColor];
+    return pageView;
 }
 
 - (SNNewsMenu *) menuInNewsView: (SNNewsView *) newsView

@@ -51,7 +51,9 @@
         self.view.dataSource = self;
         [self.view reloadData];
     } fail:^(NSError *error) {
-        //!!!:此处可以弹窗提示网络故障.
+        // ???:优化方向:网易的"弹窗"会自动消失哦!
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle: @"提示" message: @"网络故障!无法联网获取最新资讯!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
     }];
 }
 

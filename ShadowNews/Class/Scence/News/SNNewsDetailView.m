@@ -52,6 +52,7 @@
 /**
  *  设置子视图.
  */
+// ???:不应该允许webView过度下拉!
 - (void) SNNDSetUpSubviews
 {
     // ???:ipad的导航栏,也是(44+20)?

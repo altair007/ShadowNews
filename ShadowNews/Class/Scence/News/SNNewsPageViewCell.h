@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 Shadow. All rights reserved.
 //
 
-// !!!:使用约束语法,改造下.
 #import <UIKit/UIKit.h>
 @class SNNews;
 

@@ -21,9 +21,8 @@
 @end
 @implementation SNNewsDelegate
 + (instancetype) delegateWithCell: (SNNewsPageView *) cell
-                            model: (SNNewsModel *) model;
 {
-    SNNewsDelegate * delegate = [[[self class] alloc] initWithCell: cell model:model];
+    SNNewsDelegate * delegate = [[[self class] alloc] initWithCell: cell];
     SNAutorelease(delegate);
     return delegate;
 }
@@ -40,8 +39,7 @@
 #endif
 }
 
-- (instancetype) initWithCell: (SNNewsPageView *) cell
-                        model: (SNNewsModel *) model;
+- (instancetype) initWithCell: (SNNewsPageView *) cell;
 {
     if (self = [super init]) {
         self.SNNDCell = cell;
@@ -76,9 +74,9 @@
 #pragma mark - UITableViewDelegate协议方法.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0;
+    return 70;
 }
-// !!!: 有一个BUG:点返回时,可能崩掉.先左移几次!可能和代理的不正确retai,有关.
+ //!!!: 有一个BUG:点返回时,可能崩掉.先左移几次!可能和代理的不正确retai,有关.估计和delegate有关.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * docId = [(SNNews *)self.SNNDNewsArray[indexPath.row] docId];

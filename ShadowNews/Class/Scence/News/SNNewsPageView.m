@@ -9,8 +9,7 @@
 #import "SNNewsPageView.h"
 
 @interface SNNewsPageView ()
-@property (copy, nonatomic, readwrite) NSString * title; //!< 新闻板块名称.
-@property (assign, nonatomic, readwrite) BOOL preLoad; //!< 是否是预加载.出于用户体验的考虑,新闻视图可能会预加载某些页面.对于预加载的页面,往往可以暂不发起网络请求,获取最新数据.
+@property (copy, nonatomic, readwrite) NSString * title;
 @end
 
 @implementation SNNewsPageView
