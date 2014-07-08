@@ -18,7 +18,7 @@
 @protocol SNNewsViewDelegate <NSObject>
 @optional
 /**
- *  设置新闻视图页眉的高度.默认30.0.
+ *  设置新闻视图页眉的高度.默认42.0.
  *
  *  @param newsView 轮转视图.
  *
@@ -81,7 +81,7 @@
  *
  *  @return 初始显示视图的位置.
  */
-- (NSUInteger) indexForSetupCellInNewsView:(SNNewsView *) newsView;
+- (NSUInteger) indexForSetUpCellInNewsView:(SNNewsView *) newsView;
 
 @end
 

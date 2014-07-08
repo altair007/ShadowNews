@@ -71,6 +71,7 @@
     self.model = [SNNewsModel model];
 }
 
+// !!!:有一个BUG,进入详情页面后,再返回,无法正确返回到对应页面.
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

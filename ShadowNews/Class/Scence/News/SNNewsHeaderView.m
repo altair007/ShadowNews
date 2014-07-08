@@ -13,6 +13,7 @@
 @property (retain, nonatomic) UIScrollView * SNNHScrollView; //!< 底部滚动视图.
 @property (retain, nonatomic) UISegmentedControl * SNNHSegmentedControl; //!< 用于显示菜单.
 @property (retain, nonatomic) SNNewsMenu * SNNHMenu; //!< 菜单对象.
+@property (retain, nonatomic) NSNumber * SNNHHeigt; //!< 视图高度.
 @end
 @implementation SNNewsHeaderView
 + (BOOL)requiresConstraintBasedLayout
@@ -27,6 +28,7 @@
     
     self.SNNHScrollView = nil;
     self.SNNHSegmentedControl = nil;
+    self.SNNHHeigt = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
@@ -44,7 +46,7 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    [self SNNHSetupSubviews];
+    [self SNNHSetUpSubviews];
 }
 
 - (void)layoutSubviews
@@ -70,11 +72,30 @@
 //    }
 }
 
+/**
+ *  获取页眉高度.
+ *
+ *  @return 页眉高度.
+ */
+- (NSNumber *)SNNHHeigt
+{
+    if (nil != _SNNHHeigt) {
+        return _SNNHHeigt;
+    }
+    
+    NSNumber * height = [NSNumber numberWithDouble: 42.0]; // 默认42.0.
+    if (YES == [self.delegate respondsToSelector: @selector(heightForNewsView:)]) { // 优先使用代理设置的页眉高度.
+        height = [self.delegate heightForNewsView: self];
+    }
+    self.SNNHHeigt = height;
+    
+    return _SNNHHeigt;
+}
 #pragma mark - 私有方法.
 /**
  * 初始化子视图.
  */
-- (void) SNNHSetupSubviews
+- (void) SNNHSetUpSubviews
 {
     /* 创建视图. */
     UIScrollView * scrollView = [[UIScrollView alloc] init];
@@ -100,6 +121,8 @@
     [self.SNNHScrollView addSubview: self.SNNHSegmentedControl];
     
     /*设置视图约束*/
+    NSNumber * height = self.SNNHHeigt; // 页眉高度.
+    
     NSMutableArray * constraints = [NSMutableArray arrayWithCapacity: 42];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[scrollView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(scrollView)]];
     
@@ -107,7 +130,7 @@
 
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[segmentedControl]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(segmentedControl)]];
     
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[segmentedControl]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(segmentedControl)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[segmentedControl(==height)]|" options:0 metrics:NSDictionaryOfVariableBindings(height) views: NSDictionaryOfVariableBindings(segmentedControl)]];
     
     [self addConstraints: constraints];
 }

@@ -27,6 +27,15 @@
        widthForCellAtIndex: (NSUInteger) index;
 
 /**
+ *  设置新闻视图页眉的高度.默认42.0.
+ *
+ *  @param newsView 轮转视图.
+ *
+ *  @return 返回页眉高度.
+ */
+- (NSNumber *) heightForNewsView: (SNNewsHeaderView *) newsHeaderView;
+
+/**
  *  点击页眉某个按钮的响应事件.
  *
  *  @param newsHeaderView 新闻视图页眉对象.

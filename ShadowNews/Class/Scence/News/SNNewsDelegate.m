@@ -33,7 +33,6 @@
     self.SNNDCell = nil;
     self.SNNDModel = nil;
     
-    // ???:真的能被移除吗?
     [self removeObserver: self forKeyPath:@"SNNDNewsArray" context: NULL];
     
 #if ! __has_feature(objc_arc)
@@ -47,7 +46,6 @@
     if (self = [super init]) {
         self.SNNDCell = cell;
         
-        // ???: 观察自身属性,会不会造成循环引用问题?
         [self addObserver: self forKeyPath:@"SNNDNewsArray" options:0 context:NULL];
         
         // ???:应该根据是否是"预加载",采用不同的获取数据的策略.
@@ -56,7 +54,9 @@
             self.SNNDCell.dataSource = self;
             self.SNNDNewsArray = newsArray;
         } fail:^(NSError *error) {
-            // ???:如果是网络原因,应该提示用户网络未连接.
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertView show];
+            SNRelease(alertView);
         }];
         
     }
@@ -74,6 +74,10 @@
 // ???:在tableView显示之后,只改变代理,不调用reloadData方法,会自动刷新页面吗?
 
 #pragma mark - UITableViewDelegate协议方法.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0;
+}
 // !!!: 有一个BUG:点返回时,可能崩掉.先左移几次!可能和代理的不正确retai,有关.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -81,6 +85,7 @@
     SNNewsDetailViewController * detailVC = [[SNNewsDetailViewController alloc] initWIthDocId:docId];
     [[SNNavigationController sharedInstance] pushViewController:detailVC animated: YES];
 }
+
 #pragma mark - UITableViewDataSource协议方法.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -94,7 +99,12 @@
     // ???:尝试使用另外一种可以绑定类和cell标志名的语法初始化
     
     // ???:建议使用自定义cell.
-    SNNewsPageViewCell * cell = [[SNNewsPageViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"news"];
+    SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"news"];
+    if (nil == cell) {
+            cell = [[SNNewsPageViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"news"];
+    }
+    
+    
     cell.news = news;
 
     return cell;

@@ -66,7 +66,7 @@
     NSMutableArray * constraintsArray = [NSMutableArray arrayWithCapacity: 42];
     
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-64-[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
     [self addConstraints: constraintsArray];
     
     // 初始化视图内容.

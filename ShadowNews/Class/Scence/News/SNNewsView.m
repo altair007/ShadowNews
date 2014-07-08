@@ -28,6 +28,7 @@ typedef enum{
 @property (assign, nonatomic) NSUInteger  SNNVIndexOfCurrentPage; //!< 当前页面的位置.
 @property (assign, nonatomic) SNNVViewContanierContentInsertType SNNVInsertType; //!< 用于实时记录往容器视图插入视图的方式.
 @property (retain, nonatomic) SNNewsMenu * SNNVMenu; //!< 新闻菜单.
+@property (retain, nonatomic) NSNumber * SNNVheightOfHeaderView; //!< 页眉高度.
 @end
 
 @implementation SNNewsView
@@ -43,6 +44,7 @@ typedef enum{
     
     self.SNNVViewContainer = nil;
     self.SNNVHeaderView = nil;
+    self.SNNVheightOfHeaderView = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
@@ -63,7 +65,7 @@ typedef enum{
 - (void)willMoveToWindow:(UIWindow *)newWindow
 {
     if (nil == self.window) {
-        [self SNNVSetupSubviews];
+        [self SNNVSetUpSubviews];
     }
 }
 
@@ -86,7 +88,7 @@ typedef enum{
 /**
  *  初始化子视图.
  */
-- (void) SNNVSetupSubviews;
+- (void) SNNVSetUpSubviews;
 {
     /* 使用"约束"进行界面布局. */
     NSNumber *  navHeight = self.SNNVheightOfNavigation; //!< 导航栏高度.
@@ -129,8 +131,9 @@ typedef enum{
     
     /* 设置页面上初始显示的视图. */
     NSUInteger indexOfSetUpCell = 0;
-    if ([self.dataSource respondsToSelector: @selector(indexForSetupCellInNewsView:)]) {
-        indexOfSetUpCell = [self.dataSource indexForSetupCellInNewsView: self];
+    if ([self.dataSource respondsToSelector: @selector(indexForSetUpCellInNewsView:)]) {
+        // !!!:这个值,应该通过 NewsMenu传入!
+        indexOfSetUpCell = [self.dataSource indexForSetUpCellInNewsView: self];
         
         if (indexOfSetUpCell > self.SNNVMenu.itemsAdded.count) {
             indexOfSetUpCell = 0;
@@ -147,15 +150,22 @@ typedef enum{
  */
 - (NSNumber *)SNNVheightOfHeaderView
 {
-    CGFloat height = 30.0; // 默认30.0.
+    if (nil != _SNNVheightOfHeaderView) {
+        return _SNNVheightOfHeaderView;
+    }
+    
+    CGFloat height = 42.0; // 默认42.0.
     if (YES == [self.delegate respondsToSelector: @selector(heightForHeaderInNewsView:)]) { // 优先使用代理设置的页眉高度.
         height = [self.delegate heightForHeaderInNewsView: self];
     }
     
     NSNumber * heightValue = [NSNumber numberWithDouble: height];
-    return heightValue;
+    self.SNNVheightOfHeaderView = heightValue;
+    
+    return _SNNVheightOfHeaderView;
 }
 
+// !!!:应该把下面两个方法变成属性,以免重复向代理请求数据.
 /**
  *  获取导航栏高度.
  *
@@ -339,4 +349,8 @@ didClickSegmentActionAtIndex: (NSUInteger) index
     [self SNNVShowCellAtIndex: index];
 }
 
+- (NSNumber *)heightForNewsView:(SNNewsHeaderView *)newsHeaderView
+{
+    return self.SNNVheightOfHeaderView;
+}
 @end
