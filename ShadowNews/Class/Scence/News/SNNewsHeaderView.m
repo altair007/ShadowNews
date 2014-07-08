@@ -64,12 +64,21 @@
 {
     _selectedIndex = selectedIndex;
     
+    // ???:迭代至此,可能需要改轮转的center.
     self.SNNHSegmentedControl.selectedSegmentIndex = selectedIndex;
     
-    // ???:应该可以删掉.
-//    if ([self.delegate respondsToSelector:@selector(newsHeaderView:didClickSegmentActionAtIndex:)]) {
-//        [self.delegate newsHeaderView:self didClickSegmentActionAtIndex:selectedIndex];
-//    }
+    
+    /* 导航栏中,被选中的键,应该自动居中. */
+    // !!!: 应该先让 segement动,再让scrollview动.即,时机不太多.或许需要layout什么的.needLayout.
+    CGFloat width = [self.SNNHSegmentedControl widthForSegmentAtIndex: 0];
+    
+    // ???:可以直接获取屏幕的中心点嘛?
+    CGFloat x = (self.selectedIndex + 0.5) * width - [UIScreen mainScreen].bounds.size.width/2;
+    
+    CGPoint offset = self.SNNHScrollView.contentOffset;
+    offset.x = x;
+    [self.SNNHScrollView setContentOffset: offset animated: YES];
+//    self.SNNHScrollView.contentOffset = offset;
 }
 
 /**
@@ -103,7 +112,7 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.bounces = NO;
-    scrollView.backgroundColor = [UIColor blackColor];
+    scrollView.backgroundColor = [UIColor whiteColor];
     scrollView.delegate = self;
     
     self.SNNHScrollView = scrollView;

@@ -88,8 +88,8 @@
 @interface SNNewsView : UIView <UIScrollViewDelegate, SNNewsHeaderViewDelegate, SNNewsHeaderViewDataSource>
 @property (assign, nonatomic) id<SNNewsViewDelegate> delegate; //!< 代理.
 @property (assign, nonatomic) id<SNNewsViewDataSource> dataSource; //!< 数据源.
-
-// !!!: 应该提供reloadData方法,reload时,重置某些数据相关的属性.
-// !!!: 页眉也应该提供!
+// ???:这个属性,应该用"title"替换.或者是一个SNNewsPageView对象.
+@property (assign, nonatomic, readonly) NSUInteger  indexOfCurrentPage; //!< 当前页面的位置.
+// !!!: 应该提供reloadData方法,reload时,重置某些数据相关的属性!页眉也应该提供!
 @end
 

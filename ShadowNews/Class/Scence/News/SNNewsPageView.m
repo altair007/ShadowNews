@@ -13,7 +13,7 @@
 @end
 
 @implementation SNNewsPageView
-+ (instancetype)cellWithTitle: (NSString *) title
++ (instancetype)pageWithTitle: (NSString *) title
                       preLoad: (BOOL) preLoad
 {
     SNNewsPageView * cell = [[[self class] alloc] initWithTitle: title preLoad:preLoad];
@@ -30,8 +30,6 @@
 #endif
 }
 
-// ???:观察下,表视图,触发代理的时机是 moveToWindow,还是movweToSuperView?
-// ???:中间的轮转页面,是不是在 moveToSuperView时,触发代理,更合适呢?
 - (instancetype)initWithTitle: (NSString *) title
                       preLoad: (BOOL) preLoad
 {

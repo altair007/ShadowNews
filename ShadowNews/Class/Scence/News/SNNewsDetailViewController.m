@@ -10,6 +10,7 @@
 #import "SNNewsDetailView.h"
 #import "SNNewsModel.h"
 #import "SNNewsDetail.h"
+#import "SNNavigationController.h"
 
 @interface SNNewsDetailViewController ()
 @property (retain, nonatomic) SNNewsDetail * SNNDDVCDetail; //!< 新闻详情.
@@ -45,6 +46,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    // 猜测: 可以根据 导航栏的 pop 对手势的默认支持,模拟抽屉效果.
+    
     [SNNewsModel detailModelWithDocId:self.docId success:^(id responseObject) {
         self.SNNDDVCDetail = responseObject;
         self.view.delegate = self;

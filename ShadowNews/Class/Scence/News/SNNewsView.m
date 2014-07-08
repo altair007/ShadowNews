@@ -20,16 +20,12 @@ typedef enum{
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 
-// ???:图像应该从上往下,依次加载,不应该完全异步,用户体验太差.或者限制同时下载的图片数量
 @interface SNNewsView ()
 #pragma mark - 私有属性.
 
 @property (retain, nonatomic) UIScrollView * SNNVViewContainer; //!< 用于放置视图.
 @property (retain, nonatomic) SNNewsHeaderView * SNNVHeaderView; //!< 页眉用于导航.
-
-// ???:应该暴漏这个属性.
-// ???:这个页面,应该用"title"替换.
-@property (assign, nonatomic) NSUInteger  SNNVIndexOfCurrentPage; //!< 当前页面的位置.
+@property (assign, nonatomic) NSUInteger  indexOfCurrentPage;
 @property (assign, nonatomic) SNNVViewContanierContentInsertType SNNVInsertType; //!< 用于实时记录往容器视图插入视图的方式.
 @property (retain, nonatomic) SNNewsMenu * SNNVMenu; //!< 新闻菜单.
 @property (retain, nonatomic) NSNumber * SNNVheightOfHeaderView; //!< 页眉高度.
@@ -61,7 +57,7 @@ typedef enum{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.SNNVIndexOfCurrentPage = NSUIntegerMax;
+        self.indexOfCurrentPage = NSUIntegerMax;
         self.SNNVInsertType = UIDataDetectorTypeNone;
     }
     return self;
@@ -193,11 +189,11 @@ typedef enum{
     return heightValue;
 }
 
-- (void)setSNNVIndexOfCurrentPage:(NSUInteger)SNNVIndexOfCurrentPage
+- (void)setIndexOfCurrentPage:(NSUInteger)SNNVIndexOfCurrentPage
 {
-    _SNNVIndexOfCurrentPage = SNNVIndexOfCurrentPage;
+    _indexOfCurrentPage = SNNVIndexOfCurrentPage;
     
-    if (NSUIntegerMax == self.SNNVIndexOfCurrentPage) {
+    if (NSUIntegerMax == self.indexOfCurrentPage) {
         return;
     }
     
@@ -212,8 +208,8 @@ typedef enum{
 - (void) SNNVShowCellAtIndex: (NSUInteger) index
 {
     // 更新当前视图.
-    self.SNNVIndexOfCurrentPage = index;
-    
+    self.indexOfCurrentPage = index;
+
     // 移除已有的子视图及其"约束",避免冲突.
     [self.SNNVViewContainer removeConstraints: self.SNNVViewContainer.constraints];
     [self.SNNVViewContainer.subviews enumerateObjectsUsingBlock:^(UIView * obj, NSUInteger idx, BOOL *stop) {
@@ -292,13 +288,13 @@ typedef enum{
     self.SNNVInsertType = SNNVViewContanierContentInsertTypeMiddle;
     
     // 依然优先从已经存储的视图中获取视图.
-    UIView * viewLeft = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index -1] preLoad: YES];
-    viewLeft.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.SNNVViewContainer addSubview: viewLeft];
-    
     UIView * viewMiddle = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index] preLoad: NO];
     viewMiddle.translatesAutoresizingMaskIntoConstraints = NO;
     [self.SNNVViewContainer addSubview: viewMiddle];
+    
+    UIView * viewLeft = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index -1] preLoad: YES];
+    viewLeft.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.SNNVViewContainer addSubview: viewLeft];
     
     UIView * viewRight = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index + 1] preLoad: YES];
     viewRight.translatesAutoresizingMaskIntoConstraints = NO;
@@ -327,22 +323,22 @@ typedef enum{
     /* 更新视图 */
     if (SNNVViewContanierContentInsertTypeHead == self.SNNVInsertType &&
         self.frame.size.width == scrollView.contentOffset.x) {
-        [self SNNVShowCellAtIndex: self.SNNVIndexOfCurrentPage + 1];
+        [self SNNVShowCellAtIndex: self.indexOfCurrentPage + 1];
         return;
     }
     
     if (SNNVViewContanierContentInsertTypeTail == self.SNNVInsertType &&
         0 == scrollView.contentOffset.x) {
-        [self SNNVShowCellAtIndex: self.SNNVIndexOfCurrentPage - 1];
+        [self SNNVShowCellAtIndex: self.indexOfCurrentPage - 1];
         return;
     }
     
     if (SNNVViewContanierContentInsertTypeMiddle == self.SNNVInsertType) {
         if (0 == scrollView.contentOffset.x) {
-            [self SNNVShowCellAtIndex: self.SNNVIndexOfCurrentPage - 1];
+            [self SNNVShowCellAtIndex: self.indexOfCurrentPage - 1];
         }
         if (2 * self.frame.size.width == scrollView.contentOffset.x) {
-            [self SNNVShowCellAtIndex: self.SNNVIndexOfCurrentPage + 1];
+            [self SNNVShowCellAtIndex: self.indexOfCurrentPage + 1];
         }
     }
 }

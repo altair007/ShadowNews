@@ -33,14 +33,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.SNNVDelegates = [NSMutableArray arrayWithCapacity: 42];
+        self.SNNVLoadedViews = [NSMutableDictionary dictionaryWithCapacity: 42];
         
         // 不让控制器自动调整UIScrollview位置.
         self.automaticallyAdjustsScrollViewInsets = NO;
         
-        // ???:或许应该设置一个数组,来存储代理,因为可能有多个代理.
-        self.SNNVDelegates = [NSMutableArray arrayWithCapacity: 42];
-        
-        self.SNNVLoadedViews = [NSMutableDictionary dictionaryWithCapacity: 42];
     }
     return self;
 }
@@ -57,23 +55,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    // !!!:控制器,应该可以自动向对应的model请求数据.等到数据请求完成后,再设置代理.
-    // !!!: 由控制器来决定导航栏样式.
-    // !!!: 美化一下导航栏.
     self.navigationItem.title = @"影子";
-    // !!!:此处需要加按钮事件.
-    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle: @"菜单" style:UIBarButtonItemStylePlain target:nil action: NULL];
-    self.navigationItem.leftBarButtonItem = leftItem;
-    SNRelease(leftItem);
+    UIBarButtonItem * menuItem = [[UIBarButtonItem alloc] initWithTitle: @"菜单" style:UIBarButtonItemStylePlain target:self action: @selector(SNNVCDidClickMenuButtonAction:)];
+    self.navigationItem.leftBarButtonItem = menuItem;
+    SNRelease(menuItem);
     
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithTitle: @"用户" style:UIBarButtonItemStylePlain target:nil action:NULL];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    SNRelease(rightItem);
+    UIBarButtonItem * userItem = [[UIBarButtonItem alloc] initWithTitle: @"用户" style:UIBarButtonItemStylePlain target:self action: @selector(SNNVCDidClickUserButtonAction:)];
+    self.navigationItem.rightBarButtonItem = userItem;
+    SNRelease(userItem);
     
     self.model = [SNNewsModel model];
 }
 
-// ???:有一个综合BUG:  程序一段时间后,会无缘无故崩掉.
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -91,7 +84,7 @@
     
     [self.SNNVDelegates addObject: delegate];
     
-    // ???:综合BUG出现的原因可能是,数组的顺序是固定的,左右往返滑动时,顺序错乱,会出现错误的提前释放.
+    // ???:建议只保留左右两端的代理对象或者只保留已加载视图的代理对象.
 //    if (3 < self.SNNVDelegates.count) { // 最多存储3个代理即可.
 //        [self.SNNVDelegates removeObjectAtIndex: 0];
 //    }
@@ -103,13 +96,15 @@
  *  @param view  新闻版块视图.
  *  @param title 新闻版块名.
  */
-// ???:感觉方法的命名有问题.
 - (void)SNNVCAddLoadedView: (UIView *) view forTitle: (NSString *) title
 {
     [self.SNNVLoadedViews setObject: view forKey: title];
     
     //!!!:暂时先不进行回收.算法有点复杂,需要考虑往返.
+    // ???:建议只考虑
     // !!!:建议只存储 预加载视图.
+    // !!!:建议,让视图自己去管理 "预加载" 到 "加载"的转换.
+    // !!!:建议,让视图自己去管理delegate和dataSource的retain和release.
 }
 
 /**
@@ -119,21 +114,42 @@
  *
  *  @return 新闻版块的预加载视图.
  */
-// ???:感觉方法的命名有问题.
 - (SNNewsPageView *)SNNVCLoadedViewForTitle: (NSString *) title
 {
     return [self.SNNVLoadedViews objectForKey: title];
 }
 
+/**
+ *  菜单按钮的响应方法.
+ *
+ *  @param aButton 菜单按钮.
+ */
+- (void) SNNVCDidClickMenuButtonAction: (id) aButton
+{
+    UIAlertView * alerView = [[UIAlertView alloc] initWithTitle: @"提示" message: @"菜单页面,还没写好呢!" delegate: nil cancelButtonTitle: @"确认" otherButtonTitles:nil];
+    [alerView show];
+    SNRelease(alerView);
+}
+
+/**
+ *  菜单按钮的响应方法.
+ *
+ *  @param aButton 菜单按钮.
+ */
+- (void) SNNVCDidClickUserButtonAction: (id) aButton
+{
+    UIAlertView * alerView = [[UIAlertView alloc] initWithTitle: @"提示" message: @"用户页面,还没写好呢!" delegate: nil cancelButtonTitle: @"确认" otherButtonTitles:nil];
+    [alerView show];
+    SNRelease(alerView);
+}
+
+
 #pragma mark - SNNewsViewDataSource 协议方法
 - (SNNewsPageView *)newsView:(SNNewsView *)newsView viewForTitle:(NSString *) title preLoad:(BOOL)preLoad
 {
-    // ???:应该让谁管理预加载的视图????
-    // ???:迭代至此!让控制器管理预加载视图.
-    // ???:cellWithTitle: 的方法名有问题.
     SNNewsPageView * pageView = [self SNNVCLoadedViewForTitle: title];
     if (nil == pageView) {
-        pageView = [SNNewsPageView cellWithTitle:title preLoad: preLoad];
+        pageView = [SNNewsPageView pageWithTitle:title preLoad: preLoad];
         [self SNNVCAddLoadedView: pageView forTitle: title];
     }
     
@@ -145,7 +161,7 @@
     // !!!:预加载,优先从本地读取数据,且只从本地读取数据.(除非本地数据不存在,再发起网络请求.).
     
     // !!!: title对应的url,应从配置文件或网络中动态获取.最好支持,动态从网络中更新.
-    pageView.backgroundColor = [UIColor grayColor];
+    pageView.backgroundColor = [UIColor whiteColor];
     return pageView;
 }
 

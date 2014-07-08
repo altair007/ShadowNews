@@ -53,10 +53,17 @@
     [self.SNNPVCImageView setImageWithURL:[NSURL URLWithString: self.news.imgSrc] placeholderImage:[UIImage imageNamed:@"default.png"] ];
     self.SNNPVCTitleLabel.text = news.title;
 
-    // !!!:自动截断 digest,它可能过长,盖住"跟帖数."
-    self.SNNPVCDigestLabel.text = news.digest;
+    NSString * digest = news.digest;
+    if (news.digest.length > 30) {
+        digest = [news.digest substringToIndex:30];
+    }
+    self.SNNPVCDigestLabel.text = digest;
+    
     self.SNNPVCReplyCoutLabel.text = [NSString stringWithFormat: @"%@跟帖", [NSNumber numberWithUnsignedInteger: news.replyCount]];
 }
+
+// !!!:验证一下.cell  只返回同一个cell,会发生什么.
+// !!!:轮转视图有一个bug:如果使用者只返回同一个视图,会发生预料之外的事.
 
 - (void)SNNPVCSetUpSubviews
 {
@@ -65,7 +72,7 @@
     UILabel * titleLabel = [[UILabel alloc] init];
     UILabel * digestLabel = [[UILabel alloc] init];
     UILabel * replyCoutLabel = [[UILabel alloc] init];
-    // ???:还可以设置自动换行吗?
+
     titleLabel.numberOfLines = 1;
     titleLabel.font = [UIFont boldSystemFontOfSize: 14.0];
     
@@ -74,9 +81,6 @@
     
     replyCoutLabel.font = digestLabel.font;
 
-
-    // !!!:迭代至此,看一下 系统的label的字号.此处的label应该固定字号.
-    
     [imageView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
     [digestLabel setTranslatesAutoresizingMaskIntoConstraints: NO];

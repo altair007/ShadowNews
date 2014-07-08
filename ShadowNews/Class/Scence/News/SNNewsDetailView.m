@@ -24,7 +24,6 @@
     return self;
 }
 
-// ???: moveToSuperView,是不是更合适?
 - (void)willMoveToWindow:(UIWindow *)newWindow
 {
     if (nil == self.window) {
@@ -52,12 +51,10 @@
 /**
  *  设置子视图.
  */
-// ???:不应该允许webView过度下拉!
 - (void) SNNDSetUpSubviews
 {
-    // ???:ipad的导航栏,也是(44+20)?
-    // ???:暂只进行数据展示.
     UIWebView * webView = [[UIWebView alloc] init];
+    webView.scrollView.bounces = NO;
     [webView setTranslatesAutoresizingMaskIntoConstraints: NO];
     self.SNNDWebView = webView;
     SNRelease(webView);

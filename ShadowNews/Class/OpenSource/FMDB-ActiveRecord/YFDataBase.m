@@ -754,6 +754,7 @@
     NSUInteger count = 0;
     while ([result next]) {
         count = [result unsignedLongLongIntForColumn: @"numrows"];
+//        NSNumber * number = []
     };
 
     return count;

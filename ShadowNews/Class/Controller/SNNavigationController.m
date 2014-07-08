@@ -61,9 +61,6 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        // !!!:或许需要将新闻作为默认的rootViewController.
-        // !!!:优化方向:此处应该在用户退出时记录上次访问的页面或栏目,并在应用初始化时继续翻到上次浏览的页面或栏目.
         SNNewsViewController * newsVC = [[SNNewsViewController alloc] init];
         [self pushViewController: newsVC animated:YES];
     }

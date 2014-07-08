@@ -10,7 +10,8 @@
 @class SNNewsDetail;
 @class SNNewsDetailView;
 
-// !!!:所有的视图类,都应该提供 reloadData方法.
+
+// !!!:所有的视图类,都应该提供 reloadData 方法.
 /**
  *  新闻详情视图数据协议.
  */

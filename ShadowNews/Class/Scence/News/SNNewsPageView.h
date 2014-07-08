@@ -24,7 +24,7 @@
  *
  *  @return 实例对象.
  */
-+ (instancetype)cellWithTitle: (NSString *) title
++ (instancetype)pageWithTitle: (NSString *) title
                       preLoad: (BOOL) preLoad;
 
 /**
