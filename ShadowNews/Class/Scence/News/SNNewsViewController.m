@@ -11,6 +11,8 @@
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
+#import "SNMenuViewController.h"
+#import "SNUserViewController.h"
 
 @interface SNNewsViewController ()
 
@@ -128,9 +130,10 @@
  */
 - (void) SNNVCDidClickMenuButtonAction: (id) aButton
 {
-    UIAlertView * alerView = [[UIAlertView alloc] initWithTitle: @"提示" message: @"菜单页面,还没写好呢!" delegate: nil cancelButtonTitle: @"确认" otherButtonTitles:nil];
-    [alerView show];
-    SNRelease(alerView);
+    // !!!: 一个建议: 如果把菜单页面在新闻页面之前压入的话,会有抽屉的效果.
+    SNMenuViewController * menuVC = [[SNMenuViewController alloc] init];
+    [self.navigationController pushViewController:menuVC animated:YES];
+    SNRelease(menuVC);
 }
 
 /**
@@ -140,9 +143,9 @@
  */
 - (void) SNNVCDidClickUserButtonAction: (id) aButton
 {
-    UIAlertView * alerView = [[UIAlertView alloc] initWithTitle: @"提示" message: @"用户页面,还没写好呢!" delegate: nil cancelButtonTitle: @"确认" otherButtonTitles:nil];
-    [alerView show];
-    SNRelease(alerView);
+    SNUserViewController * userVC = [[SNUserViewController alloc] init];
+    [self.navigationController pushViewController:userVC animated:YES];
+    SNRelease(userVC);
 }
 
 

@@ -56,12 +56,10 @@
 //    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     // !!!:测试
-    [self SNNDVCSetUpTitleView];
-    
-    
     
     [SNNewsModel detailModelWithDocId:self.docId success:^(id responseObject) {
         self.SNNDDVCDetail = responseObject;
+        [self SNNDVCSetUpTitleView];
         self.view.delegate = self;
         self.view.dataSource = self;
         [self.view reloadData];
@@ -85,24 +83,89 @@
 
 - (void) SNNDVCDidClickBackButtonItemAction: (id) sender
 {
-    
+    [[SNNavigationController sharedInstance] popViewControllerAnimated: YES];
 }
+
+
+/**
+ *  自定义导航栏.
+ */
+// !!!: 这个方法的命名有问题!
+- (void) SNNDVCSetUpTitleView
+{
+    // !!!: 下面这个逻辑,应该封装到view中.
+    // !!!: 使用"约束语法".改造下.
+    /* 返回按钮. */
+    UIBarButtonItem * backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contenttoolbar_hd_back"] style:UIBarButtonItemStylePlain target:self action:@selector(SNNDVCDidClickBackButtonItemAction:)];
+    backButtonItem.tintColor = [UIColor grayColor];
+    
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    SNRelease(backButtonItem);
+    
+    /* 跟帖按钮. */
+//    UIBarButtonItem * commentBackButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contentview_commentback@2x"] style:UIBarButtonItemStylePlain target:self action:@selector(SNNDCDidClickCommentBackButtonItemAciton:)];
+//    NSString * replyStr = [NSNumber numberWithUnsignedInteger:self.SNNDDVCDetail.replyCount];
+    UIBarButtonItem * commentBackButtonItem = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat: @"%@ 跟帖", [NSNumber numberWithUnsignedInteger:self.SNNDDVCDetail.replyCount]] style:UIBarButtonItemStyleBordered target:self action:@selector(SNNDCDidClickCommentBackButtonItemAciton:)];
+    
+    // !!!:图标不匹配,建议重新下一个新版沙盒,抓图标,分析数据库.
+    [commentBackButtonItem setBackgroundImage:[UIImage imageNamed:@"contentview_commentbacky@2x.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    commentBackButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = commentBackButtonItem;
+    
+    /* 底部页面 */
+    // ???:这个视图,和webView应该是平级关系.
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 500, 320, 68)];
+    view.backgroundColor = [UIColor grayColor];
+    
+    // !!!:此处应该还有一个编辑按钮.
+    UITextField * field = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 180, 48)];
+    field.placeholder = @"写跟帖";
+    field.backgroundColor = [UIColor blueColor];
+    [view addSubview: field];
+    SNRelease(field);
+    
+    // !!!:应该根据用户是否已经收藏,使用空心或实心图标.
+    // !!!:建议,可以着手准备数据库了.
+    // !!!:最棘手的事,申请几大平台的sdk权限!(扣扣空间,微信,微博等.)
+    // !!!:最最棘手的事,观察下发帖倒是是post请求,还是post请求,发帖,是本地验证,还是本地+服务器端同步验证!?
+    UIButton * favButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    favButton.frame = CGRectMake(200, 10, 50, 48);
+    [favButton setImage:[UIImage imageNamed: @"contenttoolbar_hd_fav_light.png"] forState:UIControlStateNormal];
+    [favButton addTarget: self action:@selector(SNNDVCDidClickFavButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview: favButton];
+    
+    UIButton * shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [shareButton addTarget: self action:@selector(SNNDVCDidClickShareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    shareButton.frame = CGRectMake(240, 10, 50, 48);
+    [shareButton setImage: [UIImage imageNamed: @"contenttoolbar_hd_share_light.png"] forState:UIControlStateNormal];
+    [view addSubview: shareButton];
+    
+    [self.view addSubview: view];
+    SNRelease(view);
+}
+
+- (void)SNNDVCDidClickShareButtonAction: (UIButton *) button
+{
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"分享页面还没做好呢!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)SNNDVCDidClickFavButtonAction: (UIButton *) button
+{
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"收藏功能还没实现呢!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)SNNDCDidClickCommentBackButtonItemAciton:(UIBarButtonItem *) item
+{
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"跟帖页面还没做好呢!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alertView show];
+}
+
 #pragma mark - 协议方法.
 - (SNNewsDetail *)detailInNewsDetailView:(SNNewsDetailView *)newsDetailView
 {
     return self.SNNDDVCDetail;
 }
 
-- (void) SNNDVCSetUpTitleView
-{
-    // !!!: 使用"约束语法".
-    // !!!: 猜测:底部,估计是重写了tabBar.
-    // !!!: 迭代至此.
-    UIView * titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    
-    
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    self.navigationItem.titleView.backgroundColor = [UIColor redColor];
-}
 @end
