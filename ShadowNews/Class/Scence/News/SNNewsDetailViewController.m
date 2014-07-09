@@ -144,6 +144,12 @@
     SNRelease(view);
 }
 
+// !!!: 跟帖的借口,是get请求,与docid存在对应关系.,但是需要分析,预处理一下,才可以显示.
+// !!!: 关于跟帖借口:
+/*1.发起网络请求先,做了一次判断,所以本地必然存在字段记录登陆状态.
+ */
+// !!!:第三方登陆:只提供对微博和扣扣的登陆即可,只允许第三方登陆.
+// !!!:验证下:网易的评论接口,是不是只要格式对,就可以评论,并没有严格的本地验证?还是服务端已经存储了相关会话信息,才可以评论的?(注意: 不是同一款应用哦,意思是说,伪造session了?什么时候?)
 - (void)SNNDVCDidClickShareButtonAction: (UIButton *) button
 {
     UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"分享页面还没做好呢!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
