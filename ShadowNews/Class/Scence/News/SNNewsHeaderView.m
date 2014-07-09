@@ -68,7 +68,6 @@
     [self.SNNHScrollView setContentOffset: offset animated: NO];
 }
 
-// ???:被选中的键,应该自动居中.
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
     _selectedIndex = selectedIndex;
