@@ -31,6 +31,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        // !!!:这个属性,或许可以用来实现抽屉效果.或者下拉菜单.
+//        self.modalInPopover = YES;
     }
     return self;
 }
@@ -46,7 +49,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    // 猜测: 可以根据 导航栏的 pop 对手势的默认支持,模拟抽屉效果.
+    // 猜测: 可以根据 导航栏的 pop 对手势的默认支持,模拟抽屉效果.back方法,是什么意思?
+    
+    /* 自定义导航栏. */
+//    UIBarButtonItem * leftButtonItem = [[UIBarButtonItem alloc] initWithTitle: @"返回" style:UIBarButtonItemStylePlain target:self action: @selector(SNNDVCDidClickBackButtonItemAction:)];
+//    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
+    // !!!:测试
+    [self SNNDVCSetUpTitleView];
+    
+    
     
     [SNNewsModel detailModelWithDocId:self.docId success:^(id responseObject) {
         self.SNNDDVCDetail = responseObject;
@@ -60,6 +72,8 @@
     }];
 }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -69,10 +83,26 @@
     }
 }
 
+- (void) SNNDVCDidClickBackButtonItemAction: (id) sender
+{
+    
+}
 #pragma mark - 协议方法.
 - (SNNewsDetail *)detailInNewsDetailView:(SNNewsDetailView *)newsDetailView
 {
     return self.SNNDDVCDetail;
 }
 
+- (void) SNNDVCSetUpTitleView
+{
+    // !!!: 使用"约束语法".
+    // !!!: 猜测:底部,估计是重写了tabBar.
+    // !!!: 迭代至此.
+    UIView * titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
+    
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    self.navigationItem.titleView.backgroundColor = [UIColor redColor];
+}
 @end

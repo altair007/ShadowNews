@@ -67,6 +67,7 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
     return self;
 }
 
+// !!!:一个建议: 导航栏控制器根据当前正在显示的控制器,自动更新导航栏内容.
 - (void)viewDidLoad
 {
     [super viewDidLoad];

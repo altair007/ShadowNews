@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SNNewsHeaderView.h"
 
+// !!!: 无数据时,不应该让 tableView显示"表格"样式,好挫!
+// !!!: 一个建议: 以cell为单位,进行异步请求,即先创建cell,然后异步请求结束后再自动更新cell的内容即可.(即cell是一个异步的,创建子视图和加载数据,要分离.).
 @class SNNewsView;
 @class SNNewsMenu;
 @class SNNewsPageView;

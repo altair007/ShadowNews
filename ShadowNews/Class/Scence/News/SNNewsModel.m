@@ -73,7 +73,7 @@
                                        @"情感": @"T1348650839000"};
     
     NSString * secret = [secretsOfTitles objectForKey: title];
-    NSString * urlStr = [NSString stringWithFormat: @"http://c.3g.163.com/nc/article/list/%@/%lu-%lu.html",secret,range.location, range.length];
+    NSString * urlStr = [NSString stringWithFormat: @"http://c.3g.163.com/nc/article/list/%@/%@-%@.html",secret,[NSNumber numberWithInteger:range.location], [NSNumber numberWithInteger:range.length]];
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
     [manager GET: urlStr parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {

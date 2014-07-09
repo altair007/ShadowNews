@@ -57,6 +57,18 @@
     for (NSUInteger index = 0; index < self.SNNHSegmentedControl.numberOfSegments; index++) {
         [self.SNNHSegmentedControl setWidth:[self SNNHWidthOfCellAtIndex: index] forSegmentAtIndex: index];
     }
+    
+    /* 导航栏中,被选中的键,应该自动居中. */
+    // !!!: 应该先让 segement动,再让scrollview动.即,时机不太多.或许需要layout什么的.needLayout.
+    // !!!: 重要思路:建议在changeValue里面检测.或者在滚动里面检测,即让两个ScorllView直接通信.
+    // !!!: segment实现条跟着动的效果的思路:设置一个条形背景图,让它跟着滚动视图动即可..
+    CGFloat width = [self.SNNHSegmentedControl widthForSegmentAtIndex: 0];
+    
+    CGFloat x = (self.selectedIndex + 0.5) * width - [UIScreen mainScreen].bounds.size.width/2;
+    
+    CGPoint offset = self.SNNHScrollView.contentOffset;
+    offset.x = x;
+    [self.SNNHScrollView setContentOffset: offset animated: YES];
 }
 
 // ???:被选中的键,应该自动居中.
@@ -64,21 +76,9 @@
 {
     _selectedIndex = selectedIndex;
     
-    // ???:迭代至此,可能需要改轮转的center.
     self.SNNHSegmentedControl.selectedSegmentIndex = selectedIndex;
     
-    
-    /* 导航栏中,被选中的键,应该自动居中. */
-    // !!!: 应该先让 segement动,再让scrollview动.即,时机不太多.或许需要layout什么的.needLayout.
-    CGFloat width = [self.SNNHSegmentedControl widthForSegmentAtIndex: 0];
-    
-    // ???:可以直接获取屏幕的中心点嘛?
-    CGFloat x = (self.selectedIndex + 0.5) * width - [UIScreen mainScreen].bounds.size.width/2;
-    
-    CGPoint offset = self.SNNHScrollView.contentOffset;
-    offset.x = x;
-    [self.SNNHScrollView setContentOffset: offset animated: YES];
-//    self.SNNHScrollView.contentOffset = offset;
+    [self setNeedsLayout];
 }
 
 /**
@@ -124,6 +124,11 @@
     UISegmentedControl * segmentedControl = [[UISegmentedControl alloc] initWithItems:self.SNNHMenu.itemsAdded];
     segmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
     [segmentedControl addTarget:self action:@selector(SNNHDidClickSegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+    
+    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor], NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateSelected];
+    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor], NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateNormal];
+    
+    segmentedControl.tintColor = [UIColor whiteColor];
     
     self.SNNHSegmentedControl = segmentedControl;
     SNRelease(segmentedControl);

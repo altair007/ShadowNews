@@ -13,6 +13,8 @@
 #import "SNNewsDelegate.h"
 
 @interface SNNewsViewController ()
+
+// !!!: 应该让view去管理.
 @property (retain, nonatomic) NSMutableArray * SNNVDelegates; //!< 当前各个视图的代理.
 @property (retain, nonatomic) NSMutableDictionary * SNNVLoadedViews; //!< 存储已加载的视图.以新闻版块名为键,以视图为值.
 @end
