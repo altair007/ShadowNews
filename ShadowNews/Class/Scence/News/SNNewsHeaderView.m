@@ -58,17 +58,14 @@
         [self.SNNHSegmentedControl setWidth:[self SNNHWidthOfCellAtIndex: index] forSegmentAtIndex: index];
     }
     
-    /* 导航栏中,被选中的键,应该自动居中. */
-    // !!!: 应该先让 segement动,再让scrollview动.即,时机不太多.或许需要layout什么的.needLayout.
-    // !!!: 重要思路:建议在changeValue里面检测.或者在滚动里面检测,即让两个ScorllView直接通信.
-    // !!!: segment实现条跟着动的效果的思路:设置一个条形背景图,让它跟着滚动视图动即可..
+    /* 初始化时,需要初始化页面. */
     CGFloat width = [self.SNNHSegmentedControl widthForSegmentAtIndex: 0];
     
     CGFloat x = (self.selectedIndex + 0.5) * width - [UIScreen mainScreen].bounds.size.width/2;
     
     CGPoint offset = self.SNNHScrollView.contentOffset;
     offset.x = x;
-    [self.SNNHScrollView setContentOffset: offset animated: YES];
+    [self.SNNHScrollView setContentOffset: offset animated: NO];
 }
 
 // ???:被选中的键,应该自动居中.
@@ -76,9 +73,23 @@
 {
     _selectedIndex = selectedIndex;
     
-    self.SNNHSegmentedControl.selectedSegmentIndex = selectedIndex;
+    self.SNNHSegmentedControl.selectedSegmentIndex = self.selectedIndex;
     
-    [self setNeedsLayout];
+    /* 导航栏中,被选中的键,应该自动居中. */
+    // !!!: 应该先让 segement动,再让scrollview动.即,时机不太多.或许需要layout什么的.needLayout.
+    // !!!: 重要思路:建议在changeValue里面检测.或者在滚动里面检测,即让两个ScorllView直接通信.
+    // !!!: segment实现条跟着动的效果的思路:设置一个条形背景图,让它跟着滚动视图动即可..
+    // !!!: 观察到: 红形条,其实是随着底部大视图一起滚动的.
+    CGFloat width = [self.SNNHSegmentedControl widthForSegmentAtIndex: 0];
+    
+    // !!!:此处的偏移值,计算不是非常合适.无法居中.
+    CGFloat x = (selectedIndex + 0.6) * width - [UIScreen mainScreen].bounds.size.width/2;
+    
+    CGPoint offset = self.SNNHScrollView.contentOffset;
+    offset.x = x;
+    [self.SNNHScrollView setContentOffset: offset animated: NO];
+    
+
 }
 
 /**
@@ -119,14 +130,12 @@
     SNRelease(scrollView);
     [self addSubview: self.SNNHScrollView];
     
-    
-    // ???:如何去调 segmentedControl的边框,好难看! UISegmentedControlStyle 可能和这个有关.
     UISegmentedControl * segmentedControl = [[UISegmentedControl alloc] initWithItems:self.SNNHMenu.itemsAdded];
     segmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
     [segmentedControl addTarget:self action:@selector(SNNHDidClickSegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
-    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor], NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateSelected];
-    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor], NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateNormal];
+    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor],NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateSelected];
+    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateNormal];
     
     segmentedControl.tintColor = [UIColor whiteColor];
     
@@ -181,5 +190,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+
 }
 @end

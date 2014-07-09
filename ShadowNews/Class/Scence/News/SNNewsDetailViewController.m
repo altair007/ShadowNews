@@ -124,10 +124,6 @@
     [view addSubview: field];
     SNRelease(field);
     
-    // !!!:应该根据用户是否已经收藏,使用空心或实心图标.
-    // !!!:建议,可以着手准备数据库了.
-    // !!!:最棘手的事,申请几大平台的sdk权限!(扣扣空间,微信,微博等.)
-    // !!!:最最棘手的事,观察下发帖倒是是post请求,还是post请求,发帖,是本地验证,还是本地+服务器端同步验证!?
     UIButton * favButton = [UIButton buttonWithType:UIButtonTypeSystem];
     favButton.frame = CGRectMake(200, 10, 50, 48);
     [favButton setImage:[UIImage imageNamed: @"contenttoolbar_hd_fav_light.png"] forState:UIControlStateNormal];

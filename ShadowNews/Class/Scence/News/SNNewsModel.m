@@ -37,7 +37,7 @@
               success: (SNNewsModelSuccessBlock) success
                  fail: (SNNewsModelFailBlock) fail
 {
-    // ???:每个主题都有一个唯一对应的值,应该存到数据库中.暂时放到这.
+    // ???:每个主题都有一个唯一对应的值,应该存到数据库中.暂时放到这.(沙盒数据库中有这个东西.)
     NSDictionary * secretsOfTitles = @{@"财经": @"T1348648756099",
                                        @"体育": @"T1348649079062",
                                        @"军事": @"T1348648141035",
