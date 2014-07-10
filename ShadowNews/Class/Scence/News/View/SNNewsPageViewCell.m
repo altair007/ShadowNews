@@ -29,6 +29,7 @@
     [super dealloc];
 #endif
 }
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -37,11 +38,6 @@
         [self SNNPVCSetUpSubviews];
     }
     return self;
-}
-
-- (void)updateConstraints
-{
-    [super updateConstraints];
 }
 
 - (void)setNews:(SNNews *)news
@@ -122,4 +118,5 @@
     
     [self addConstraints: constraints];
 }
+
 @end

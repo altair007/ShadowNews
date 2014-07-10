@@ -92,6 +92,7 @@
 		C2D656A8196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D6568E196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light.png */; };
 		C2D656A9196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D6568F196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png */; };
 		C2D656AA196D2A7900F24F22 /* contentview_commentbacky.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */; };
+		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +245,8 @@
 		C2D6568E196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contenttoolbar_hd_thumbnail_light.png; sourceTree = "<group>"; };
 		C2D6568F196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contenttoolbar_hd_thumbnail_light@2x.png"; sourceTree = "<group>"; };
 		C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentview_commentbacky.png; sourceTree = "<group>"; };
+		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewImageCell.h; sourceTree = "<group>"; };
+		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,6 +588,8 @@
 				C2524687196E5709000A294A /* SNNewsPageView.m */,
 				C2524688196E5709000A294A /* SNNewsPageViewCell.h */,
 				C2524689196E5709000A294A /* SNNewsPageViewCell.m */,
+				C2EE69CB196ED5880071F9E3 /* SNNewsPageViewImageCell.h */,
+				C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -762,6 +767,7 @@
 				C25246B9196E5709000A294A /* SNNewsModel.m in Sources */,
 				C25246BA196E5709000A294A /* SNNewsDetailView.m in Sources */,
 				C25246B7196E5709000A294A /* SNNewsDetail.m in Sources */,
+				C2EE69CD196ED5880071F9E3 /* SNNewsPageViewImageCell.m in Sources */,
 				C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */,
 				C25246AF196E5709000A294A /* UIImageView+AFNetworking.m in Sources */,
 				C25246C0196E5709000A294A /* SNMenuViewController.m in Sources */,

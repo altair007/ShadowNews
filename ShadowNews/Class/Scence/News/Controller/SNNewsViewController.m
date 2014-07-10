@@ -52,7 +52,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"影子";
+    self.navigationItem.title = @"魅影资讯";
     UIBarButtonItem * menuItem = [[UIBarButtonItem alloc] initWithTitle: @"菜单" style:UIBarButtonItemStylePlain target:self action: @selector(SNNVCDidClickMenuButtonAction:)];
     self.navigationItem.leftBarButtonItem = menuItem;
     SNRelease(menuItem);

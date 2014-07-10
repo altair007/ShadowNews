@@ -123,7 +123,6 @@
         NSArray * newsOriginalArray = [responseObject objectForKey: secret];
         NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
         [newsOriginalArray enumerateObjectsUsingBlock:^(NSDictionary * newsOriginal, NSUInteger idx, BOOL *stop) {
-            
             NSString * imgSrc = [newsOriginal objectForKey: @"imgsrc"];
             NSString * title = [newsOriginal objectForKey: @"title"];
             NSString * digest = [newsOriginal objectForKey: @"digest"];

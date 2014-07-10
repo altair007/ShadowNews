@@ -13,6 +13,7 @@
 #import "SNNewsPageViewCell.h"
 #import "SNNavigationController.h"
 #import "SNNewsDetailViewController.h"
+#import "SNNewsPageViewImageCell.h"
 
 @interface SNNewsDelegate ()
 @property (retain, nonatomic) SNNewsPageView * SNNDPageView; //!< 新闻视图页面.
@@ -46,6 +47,7 @@
     if (self = [super init]) {
         self.SNNDPageView = pageView;
         [pageView registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
+        [pageView registerClass:[SNNewsPageViewImageCell class] forCellReuseIdentifier: @"SNNewsPageViewImageCell"];
         
         // ???:真的有必要检测自身的SNNDNewsArray属性?
         [self addObserver: self forKeyPath:@"SNNDNewsArray" options:0 context:NULL];
@@ -75,8 +77,11 @@
     return self;
 }
 
+
+// ???:簇语法,是怎么做到的?超类,怎么可以创建并返回子类对象?这个思路,将有利于实现,cell的自定义与使用.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    // !!!: 备用!实现数据库相关操作.
     if (self.SNNDPageView == object &&
         [keyPath isEqualToString: @"preLoad"]) {
         
@@ -89,6 +94,13 @@
 #pragma mark - UITableViewDelegate协议方法.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (0 == indexPath.row) {
+        SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
+        if (nil != news.imgSrc) {
+            return 140;
+        }
+    }
+    
     return 70;
 }
 
@@ -108,11 +120,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
+    
+    // 如果第一条新闻有图片,则用大图风格单元格,单独显示.
+    if (0 == indexPath.row && nil != news.imgSrc) {
+        SNNewsPageViewImageCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewImageCell" forIndexPath: indexPath];
+        cell.news = news;
+        return cell;
+    }
+
     // !!!:优化方向:区分图片新闻与普通新闻cell.
     SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SNNewsPageViewCell" forIndexPath: indexPath];
     
     cell.news = news;
 
+    // !!!: 迭代至此:  还剩首页网络图集.
+    
     return cell;
 }
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-// !!!:重新设计news类型.
 #import <Foundation/Foundation.h>
 
+// !!!: 重新设计新闻类型.
 /**
  *  新闻对象,用于表示单条新闻概要.
  */

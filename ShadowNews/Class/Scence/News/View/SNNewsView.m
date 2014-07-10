@@ -21,11 +21,10 @@ typedef enum{
 #import "SNNewsPageView.h"
 
 @interface SNNewsView ()
+@property (retain, nonatomic, readwrite) SNNewsPageView * currentPageView;
 #pragma mark - 私有属性.
-
 @property (retain, nonatomic) UIScrollView * SNNVViewContainer; //!< 用于放置视图.
 @property (retain, nonatomic) SNNewsHeaderView * SNNVHeaderView; //!< 页眉用于导航.
-@property (assign, nonatomic) NSUInteger  indexOfCurrentPage;
 @property (assign, nonatomic) SNNVViewContanierContentInsertType SNNVInsertType; //!< 用于实时记录往容器视图插入视图的方式.
 @property (retain, nonatomic) SNNewsMenu * SNNVMenu; //!< 新闻菜单.
 @property (retain, nonatomic) NSNumber * SNNVheightOfHeaderView; //!< 页眉高度.
@@ -44,6 +43,7 @@ typedef enum{
 {
     self.delegate = nil;
     self.dataSource = nil;
+    self.currentPageView = nil;
     
     self.SNNVViewContainer = nil;
     self.SNNVHeaderView = nil;
@@ -60,7 +60,6 @@ typedef enum{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.indexOfCurrentPage = NSUIntegerMax;
         self.SNNVInsertType = UIDataDetectorTypeNone;
         self.SNNVLoadedViews = [NSMutableDictionary dictionaryWithCapacity: 42];
         self.SNNVDelegates = [NSMutableDictionary dictionaryWithCapacity: 42];
@@ -91,21 +90,30 @@ typedef enum{
     self.SNNVViewContainer.bounds = bouds;
 }
 
-- (void)setIndexOfCurrentPage:(NSUInteger)SNNVIndexOfCurrentPage
+// !!!: 这个属性的逻辑,应该移到 currentPageView 的设置器里.
+- (void) setCurrentPageView:(SNNewsPageView *)currentPageView
 {
-    _indexOfCurrentPage = SNNVIndexOfCurrentPage;
+    [currentPageView retain];
+    [_currentPageView release];
+    _currentPageView = currentPageView;
     
-    if (NSUIntegerMax == self.indexOfCurrentPage) {
+    if (nil == currentPageView) {
         return;
     }
     
-    self.SNNVHeaderView.selectedIndex = SNNVIndexOfCurrentPage;
+    // !!!: 猜想: 页眉和中心轮转图,最好也通过title连接.暂时先用index.
+    
+    // 获取当前视图的相对位置.
+    NSUInteger index = [self.SNNVMenu.itemsAdded indexOfObject: currentPageView.title];
+    
+    // 使页眉导航栏同步变化.
+    self.SNNVHeaderView.selectedIndex = index;
     
     /* 只保留当前页面及其当前位置的视图及其代理. */
     NSMutableArray * keysToRemove = [NSMutableArray arrayWithCapacity: 42];
     
     [self.SNNVLoadedViews enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (labs([self.SNNVMenu.itemsAdded indexOfObject:key] - self.indexOfCurrentPage) > 1) {
+        if (labs([self.SNNVMenu.itemsAdded indexOfObject:key] - index) > 1) {
             [keysToRemove addObject: key];
         }
     }];
@@ -225,10 +233,6 @@ typedef enum{
  */
 - (void) SNNVShowCellAtIndex: (NSUInteger) index
 {
-    // 更新当前视图.
-    // ???: 一个时机,在当前视图更新时自动更新代理.
-    self.indexOfCurrentPage = index;
-
     // 移除已有的子视图及其"约束",避免冲突.
     [self.SNNVViewContainer removeConstraints: self.SNNVViewContainer.constraints];
     
@@ -273,6 +277,10 @@ typedef enum{
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[view(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(view)]];
         
         [self.SNNVViewContainer addConstraints: constraints];
+        
+        // 更新当前视图.
+        self.currentPageView = view;
+        
         return;
     }
     
@@ -316,6 +324,10 @@ typedef enum{
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewOne(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewOne)]];
         
         [self.SNNVViewContainer addConstraints: constraints];
+        
+        // 更新当前视图.
+        self.currentPageView = viewZero;
+        
         return;
     }
     
@@ -361,6 +373,10 @@ typedef enum{
         
         [self.SNNVViewContainer addConstraints: constraints];
         [self.SNNVViewContainer setNeedsUpdateConstraints];
+        
+        // 更新当前视图.
+        self.currentPageView = viewTrail;
+        
         return;
     }
     
@@ -422,6 +438,9 @@ typedef enum{
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewRight(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewRight)]];
     
     [self.SNNVViewContainer addConstraints: constraints];
+    
+    // 更新当前视图.
+    self.currentPageView = viewMiddle;
 }
 
 - (SNNewsMenu *)SNNVMenu
@@ -436,25 +455,28 @@ typedef enum{
 # pragma mark - 协议方法
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    // 获取当前视图的相对位置.
+    NSUInteger index = [self.SNNVMenu.itemsAdded indexOfObject: self.currentPageView.title];
+    
     /* 更新视图 */
     if (SNNVViewContanierContentInsertTypeHead == self.SNNVInsertType &&
         self.frame.size.width == scrollView.contentOffset.x) {
-        [self SNNVShowCellAtIndex: self.indexOfCurrentPage + 1];
+        [self SNNVShowCellAtIndex: index + 1];
         return;
     }
     
     if (SNNVViewContanierContentInsertTypeTail == self.SNNVInsertType &&
         0 == scrollView.contentOffset.x) {
-        [self SNNVShowCellAtIndex: self.indexOfCurrentPage - 1];
+        [self SNNVShowCellAtIndex: index - 1];
         return;
     }
     
     if (SNNVViewContanierContentInsertTypeMiddle == self.SNNVInsertType) {
         if (0 == scrollView.contentOffset.x) {
-            [self SNNVShowCellAtIndex: self.indexOfCurrentPage - 1];
+            [self SNNVShowCellAtIndex: index - 1];
         }
         if (2 * self.frame.size.width == scrollView.contentOffset.x) {
-            [self SNNVShowCellAtIndex: self.indexOfCurrentPage + 1];
+            [self SNNVShowCellAtIndex: index+ 1];
         }
     }
 }

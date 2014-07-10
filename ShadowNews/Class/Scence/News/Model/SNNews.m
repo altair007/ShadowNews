@@ -43,6 +43,10 @@
                      replyCount: (NSUInteger) replyCount
                           docId: (NSString *) docId
 {
+    if (YES == [imgSrc isEqualToString: @""]) {
+        imgSrc = nil;
+    }
+    
     if (self = [super init]) {
         self.imgSrc = imgSrc;
         self.title = title;

@@ -51,10 +51,6 @@
     // 猜测: 可以根据 导航栏的 pop 对手势的默认支持,模拟抽屉效果.back方法,是什么意思?
     
     /* 自定义导航栏. */
-//    UIBarButtonItem * leftButtonItem = [[UIBarButtonItem alloc] initWithTitle: @"返回" style:UIBarButtonItemStylePlain target:self action: @selector(SNNDVCDidClickBackButtonItemAction:)];
-//    self.navigationItem.leftBarButtonItem = leftButtonItem;
-    
-    // !!!:测试
     
     [SNNewsModel detailModelWithDocId:self.docId success:^(id responseObject) {
         self.SNNDDVCDetail = responseObject;
@@ -106,7 +102,6 @@
 //    NSString * replyStr = [NSNumber numberWithUnsignedInteger:self.SNNDDVCDetail.replyCount];
     UIBarButtonItem * commentBackButtonItem = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat: @"%@ 跟帖", [NSNumber numberWithUnsignedInteger:self.SNNDDVCDetail.replyCount]] style:UIBarButtonItemStyleBordered target:self action:@selector(SNNDCDidClickCommentBackButtonItemAciton:)];
     
-    // !!!:图标不匹配,建议重新下一个新版沙盒,抓图标,分析数据库.
     [commentBackButtonItem setBackgroundImage:[UIImage imageNamed:@"contentview_commentbacky@2x.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     commentBackButtonItem.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = commentBackButtonItem;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
+// !!!: 页眉导航栏,应该优先保证左侧对齐屏幕边缘.
 #import <UIKit/UIKit.h>
 @class SNNewsHeaderView;
 @class SNNewsMenu;
