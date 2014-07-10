@@ -17,7 +17,7 @@
 @interface SNNewsViewController ()
 
 // !!!: 应该让view去管理.
-@property (retain, nonatomic) NSMutableArray * SNNVDelegates; //!< 当前各个视图的代理.
+@property (retain, nonatomic) NSMutableArray * SNNVCDelegates; //!< 当前各个视图的代理.
 @property (retain, nonatomic) NSMutableDictionary * SNNVLoadedViews; //!< 存储已加载的视图.以新闻版块名为键,以视图为值.
 @end
 
@@ -25,7 +25,7 @@
 -(void)dealloc
 {
     self.model = nil;
-    self.SNNVDelegates = nil;
+    self.SNNVCDelegates = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
@@ -37,7 +37,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.SNNVDelegates = [NSMutableArray arrayWithCapacity: 42];
+        self.SNNVCDelegates = [NSMutableArray arrayWithCapacity: 42];
         self.SNNVLoadedViews = [NSMutableDictionary dictionaryWithCapacity: 42];
         
         // 不让控制器自动调整UIScrollview位置.
@@ -82,11 +82,13 @@
 }
 
 #pragma mark - 私有方法.
+// !!!: 一个尝试: 让视图持有代理.
+// ???:迭代至此.
 - (void)SNNVCAddDelegateForCell: (SNNewsPageView *) cell
 {
     SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: cell];
-    
-    [self.SNNVDelegates addObject: delegate];
+    [delegate retain];
+//    [self.SNNVCDelegates addObject: delegate];
     
     // ???:建议只保留左右两端的代理对象或者只保留已加载视图的代理对象.
 //    if (3 < self.SNNVDelegates.count) { // 最多存储3个代理即可.

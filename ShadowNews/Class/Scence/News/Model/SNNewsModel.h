@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class SNNewsMenu;
+@class YFDataBase;
 
 /**
  *  获取数据成功时,执行此 block.
@@ -57,6 +58,14 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
  *  @param fail    获取新闻详情失败时执行的 block.
  */
 + (void) detailModelWithDocId: (NSString *) docId
-                               success: (SNNewsModelSuccessBlock) success
+                      success: (SNNewsModelSuccessBlock) success
                          fail: (SNNewsModelFailBlock) fail;
+
+/**
+ *  获取数据库实例对象.
+ *
+ *  @return 应用程序公共的数据库实例对象.
+ */
++ (YFDataBase *) db;
+
 @end

@@ -30,6 +30,8 @@ typedef enum{
 @property (retain, nonatomic) SNNewsMenu * SNNVMenu; //!< 新闻菜单.
 @property (retain, nonatomic) NSNumber * SNNVheightOfHeaderView; //!< 页眉高度.
 @property (assign, nonatomic) BOOL SNNVSubviewsSetUp; //!< 是否已经初始化子视图.
+@property (retain, nonatomic) NSMutableDictionary * SNNVLoadedViews; //!< 存储已加载的视图.以新闻版块名为键,以视图为值.
+@property (retain, nonatomic) NSMutableDictionary * SNNVDelegates; //!< 存储已经加载的视图对象的代理.
 @end
 
 @implementation SNNewsView
@@ -46,6 +48,7 @@ typedef enum{
     self.SNNVViewContainer = nil;
     self.SNNVHeaderView = nil;
     self.SNNVheightOfHeaderView = nil;
+    self.SNNVLoadedViews = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
@@ -59,6 +62,8 @@ typedef enum{
         // Initialization code
         self.indexOfCurrentPage = NSUIntegerMax;
         self.SNNVInsertType = UIDataDetectorTypeNone;
+        self.SNNVLoadedViews = [NSMutableDictionary dictionaryWithCapacity: 42];
+        self.SNNVDelegates = [NSMutableDictionary dictionaryWithCapacity: 42];
     }
     return self;
 }
@@ -88,6 +93,20 @@ typedef enum{
 
 
 #pragma mark - 私有方法
+/**
+ *  为某个新闻版块添加视图.
+ *
+ *  @param view  新闻版块视图.
+ *  @param title 新闻版块名.
+ */
+- (void)SNNVCAddLoadedView: (SNNewsView *) view forTitle: (NSString *) title
+{
+    [self.SNNVLoadedViews setObject: view forKey: title];
+    
+    // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+    [self.SNNVDelegates setObject: view.delegate  forKey: title];
+}
+
 /**
  *  初始化子视图.
  */

@@ -59,6 +59,12 @@ typedef enum{
 /**
  *  支持Active Record模式的数据库类.
  */
+
+/**
+ *  使用别名机制,简化YFDataBase的使用.
+ */
+typedef FMResultSet YFResultSet;
+
 @interface YFDataBase : FMDatabase
 #pragma mark - 方法
 

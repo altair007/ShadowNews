@@ -7,7 +7,6 @@
 //
 
 #import "SNNewsDetailViewController.h"
-#import "SNNewsDetailView.h"
 #import "SNNewsModel.h"
 #import "SNNewsDetail.h"
 #import "SNNavigationController.h"
