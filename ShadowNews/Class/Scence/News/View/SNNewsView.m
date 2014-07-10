@@ -83,29 +83,40 @@ typedef enum{
     
     /* 正确布局视图容器上视图的相对位置. */
     CGRect bouds = self.SNNVViewContainer.bounds;
+    bouds.origin.x = 0; // !!!:注意到一个现象: 当不移除子视图时,轮转视图的原偏移值会被保留.或许可以用来简化轮转视图的编写.
     if (SNNVViewContanierContentInsertTypeMiddle == self.SNNVInsertType ||
         SNNVViewContanierContentInsertTypeTail == self.SNNVInsertType) {
         bouds.origin.x = self.frame.size.width;
     }
     self.SNNVViewContainer.bounds = bouds;
-    
 }
 
+- (void)setIndexOfCurrentPage:(NSUInteger)SNNVIndexOfCurrentPage
+{
+    _indexOfCurrentPage = SNNVIndexOfCurrentPage;
+    
+    if (NSUIntegerMax == self.indexOfCurrentPage) {
+        return;
+    }
+    
+    self.SNNVHeaderView.selectedIndex = SNNVIndexOfCurrentPage;
+    
+    /* 只保留当前页面及其当前位置的视图及其代理. */
+    NSMutableArray * keysToRemove = [NSMutableArray arrayWithCapacity: 42];
+    
+    [self.SNNVLoadedViews enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if (labs([self.SNNVMenu.itemsAdded indexOfObject:key] - self.indexOfCurrentPage) > 1) {
+            [keysToRemove addObject: key];
+        }
+    }];
+    
+    [keysToRemove enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.SNNVLoadedViews removeObjectForKey: obj];
+        [self.SNNVDelegates removeObjectForKey: obj];
+    }];
+}
 
 #pragma mark - 私有方法
-/**
- *  为某个新闻版块添加视图.
- *
- *  @param view  新闻版块视图.
- *  @param title 新闻版块名.
- */
-- (void)SNNVCAddLoadedView: (SNNewsView *) view forTitle: (NSString *) title
-{
-    [self.SNNVLoadedViews setObject: view forKey: title];
-    
-    // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
-    [self.SNNVDelegates setObject: view.delegate  forKey: title];
-}
 
 /**
  *  初始化子视图.
@@ -129,7 +140,6 @@ typedef enum{
     self.SNNVHeaderView = headerView;
     [self addSubview: self.SNNVHeaderView];
     SNRelease(headerView);
-    
     
     // 设置视图容器.
     UIScrollView * viewContainer = [[UIScrollView alloc]init];
@@ -208,17 +218,6 @@ typedef enum{
     return heightValue;
 }
 
-- (void)setIndexOfCurrentPage:(NSUInteger)SNNVIndexOfCurrentPage
-{
-    _indexOfCurrentPage = SNNVIndexOfCurrentPage;
-    
-    if (NSUIntegerMax == self.indexOfCurrentPage) {
-        return;
-    }
-    
-    self.SNNVHeaderView.selectedIndex = SNNVIndexOfCurrentPage;
-}
-
 /**
  *  显示第几个位置的视图.
  *
@@ -227,10 +226,14 @@ typedef enum{
 - (void) SNNVShowCellAtIndex: (NSUInteger) index
 {
     // 更新当前视图.
+    // ???: 一个时机,在当前视图更新时自动更新代理.
     self.indexOfCurrentPage = index;
 
     // 移除已有的子视图及其"约束",避免冲突.
     [self.SNNVViewContainer removeConstraints: self.SNNVViewContainer.constraints];
+    
+    // ???:没必要移除已有的子视图吧?
+    // !!!:可以通过精细化消除约束,来取代对子视图的完全移除操作?
     [self.SNNVViewContainer.subviews enumerateObjectsUsingBlock:^(UIView * obj, NSUInteger idx, BOOL *stop) {
         [obj removeFromSuperview];
     }];
@@ -242,13 +245,28 @@ typedef enum{
     // 用于存储新的约束.
     NSMutableArray * constraints = [NSMutableArray arrayWithCapacity: 42];
     
+    // !!!: 总感觉:根据title获取视图的逻辑,可以封装下,用的太频繁了.
+    
     /* 考虑一种特殊情况:整个轮转视图,只有一个页面.*/
     if (1 == self.SNNVMenu.itemsAdded.count) {
+        NSString * title = self.SNNVMenu.itemsAdded[0];
+        
         self.SNNVInsertType = SNNVViewContanierContentInsertTypeHead;
         
         // 获取视图.
-        SNNewsPageView * view = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[0] preLoad: NO];
-        view.translatesAutoresizingMaskIntoConstraints = NO;
+        SNNewsPageView * view = [self.SNNVLoadedViews objectForKey: title];
+        view.preLoad = YES;
+        if (nil == view) {
+            view = [self.dataSource newsView: self viewForTitle: title preLoad: NO];
+            [self.SNNVLoadedViews setObject: view forKey: title];
+            
+            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+            [self.SNNVDelegates setObject: view.delegate forKey: title];
+            
+            view.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+        
+        // ???:这样写,似乎和约束语法,存在潜在约束,或许需要精细化操作.
         [self.SNNVViewContainer addSubview: view];
         
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[view(==widthOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(view)]];
@@ -263,12 +281,34 @@ typedef enum{
         self.SNNVInsertType = SNNVViewContanierContentInsertTypeHead;
         
         // 优先从已经存储的视图中获取.
-        UIView * viewZero = [self.dataSource newsView:self viewForTitle:self.SNNVMenu.itemsAdded[0] preLoad: NO];
-        viewZero.translatesAutoresizingMaskIntoConstraints = NO;
+        NSString * titleZero = self.SNNVMenu.itemsAdded[0];
+        SNNewsPageView * viewZero = [self.SNNVLoadedViews objectForKey: titleZero];
+        viewZero.preLoad = YES;
+        if (nil == viewZero) {
+            viewZero = [self.dataSource newsView: self viewForTitle: titleZero preLoad: NO];
+            [self.SNNVLoadedViews setObject: viewZero forKey: titleZero];
+            
+            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+            [self.SNNVDelegates setObject: viewZero.delegate forKey: titleZero];
+            
+            viewZero.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+        
+        // !!!: 类似的添加子视图的操作,应该在第一次添加时,添加一次就可以了把?如果"约束"操作,足够细致的话?
         [self.SNNVViewContainer addSubview: viewZero];
         
-        UIView * viewOne = [self.dataSource newsView:self viewForTitle:self.SNNVMenu.itemsAdded[1] preLoad: YES];
-        viewOne.translatesAutoresizingMaskIntoConstraints = NO;
+        NSString * titleOne = self.SNNVMenu.itemsAdded[1];
+        SNNewsPageView * viewOne = [self.SNNVLoadedViews objectForKey: titleOne];
+        viewOne.preLoad = YES;
+        if (nil == viewOne) {
+            viewOne = [self.dataSource newsView: self viewForTitle: titleOne preLoad: NO];
+            [self.SNNVLoadedViews setObject: viewOne forKey: titleOne];
+            
+            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+            [self.SNNVDelegates setObject: viewOne.delegate forKey: titleOne];
+            viewOne.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+        
         [self.SNNVViewContainer addSubview: viewOne];
         
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[viewZero(==widthOfViewContainer)][viewOne(==viewZero)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(viewZero, viewOne)]];
@@ -284,12 +324,35 @@ typedef enum{
         self.SNNVInsertType = SNNVViewContanierContentInsertTypeTail;
         
         // 优先从已经存储的视图中获取视图.
-        UIView * viewTrail = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index] preLoad: NO];
-        viewTrail.translatesAutoresizingMaskIntoConstraints = NO;
+        NSString * titleTrail = self.SNNVMenu.itemsAdded[index];
+        SNNewsPageView * viewTrail = [self.SNNVLoadedViews objectForKey: titleTrail];
+        viewTrail.preLoad = YES;
+        if (nil == viewTrail) {
+            viewTrail = [self.dataSource newsView: self viewForTitle: titleTrail preLoad: NO];
+            [self.SNNVLoadedViews setObject: viewTrail forKey: titleTrail];
+            
+            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+            [self.SNNVDelegates setObject: viewTrail.delegate forKey: titleTrail];
+            
+            viewTrail.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+        
         [self.SNNVViewContainer addSubview: viewTrail];
         
-        UIView * viewLast = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index - 1] preLoad: YES];
-        viewLast.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        
+        NSString * titleLast = self.SNNVMenu.itemsAdded[index - 1];
+        SNNewsPageView * viewLast = [self.SNNVLoadedViews objectForKey: titleLast];
+        viewLast.preLoad = YES;
+        if (nil == viewLast) {
+            viewLast = [self.dataSource newsView: self viewForTitle: titleLast preLoad: NO];
+            [self.SNNVLoadedViews setObject: viewLast forKey: titleLast];
+            
+            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+            [self.SNNVDelegates setObject: viewLast.delegate forKey: titleLast];
+            viewLast.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+        
         [self.SNNVViewContainer addSubview: viewLast];
         
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[viewLast(==widthOfViewContainer)][viewTrail(==viewLast)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(viewLast, viewTrail)]];
@@ -307,18 +370,52 @@ typedef enum{
     self.SNNVInsertType = SNNVViewContanierContentInsertTypeMiddle;
     
     // 依然优先从已经存储的视图中获取视图.
-    UIView * viewMiddle = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index] preLoad: NO];
-    viewMiddle.translatesAutoresizingMaskIntoConstraints = NO;
+    // 中间的视图.
+    NSString * titleMiddle= self.SNNVMenu.itemsAdded[index];
+    SNNewsPageView * viewMiddle = [self.SNNVLoadedViews objectForKey: titleMiddle];
+    viewMiddle.preLoad = YES;
+    if (nil == viewMiddle) {
+        viewMiddle = [self.dataSource newsView: self viewForTitle: titleMiddle preLoad: NO];
+        [self.SNNVLoadedViews setObject: viewMiddle forKey: titleMiddle];
+        
+        // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+        [self.SNNVDelegates setObject: viewMiddle.delegate forKey: titleMiddle];
+        viewMiddle.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    
     [self.SNNVViewContainer addSubview: viewMiddle];
     
-    UIView * viewLeft = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index -1] preLoad: YES];
-    viewLeft.translatesAutoresizingMaskIntoConstraints = NO;
+    // 左侧视图.
+    NSString * titleLeft = self.SNNVMenu.itemsAdded[index - 1];
+    SNNewsPageView * viewLeft = [self.SNNVLoadedViews objectForKey: titleLeft];
+    viewLeft.preLoad = YES;
+    if (nil == viewLeft) {
+        viewLeft = [self.dataSource newsView: self viewForTitle: titleLeft preLoad: NO];
+        [self.SNNVLoadedViews setObject: viewLeft forKey: titleLeft];
+        
+        // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+        [self.SNNVDelegates setObject: viewLeft.delegate forKey: titleLeft];
+        viewLeft.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    
     [self.SNNVViewContainer addSubview: viewLeft];
     
-    UIView * viewRight = [self.dataSource newsView: self viewForTitle: self.SNNVMenu.itemsAdded[index + 1] preLoad: YES];
-    viewRight.translatesAutoresizingMaskIntoConstraints = NO;
+    // 右侧视图.
+    NSString * titleRight = self.SNNVMenu.itemsAdded[index + 1];
+    SNNewsPageView * viewRight = [self.SNNVLoadedViews objectForKey: titleRight];
+    viewRight.preLoad = YES;
+    if (nil == viewRight) {
+        viewRight = [self.dataSource newsView: self viewForTitle: titleRight preLoad: NO];
+        [self.SNNVLoadedViews setObject: viewRight forKey: titleRight];
+        
+        // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
+        [self.SNNVDelegates setObject: viewRight.delegate forKey: titleRight];
+        
+        viewRight.translatesAutoresizingMaskIntoConstraints = NO;
+    }
     [self.SNNVViewContainer addSubview: viewRight];
     
+    // 设置约束.
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[viewLeft(==viewRight)][viewMiddle(==viewRight)][viewRight(==widthOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(viewLeft, viewMiddle, viewRight)]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewLeft(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewLeft)]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewMiddle(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewMiddle)]];

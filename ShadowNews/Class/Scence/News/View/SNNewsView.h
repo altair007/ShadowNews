@@ -87,6 +87,7 @@
 
 @end
 
+// !!!: 应该调整一下高度,使刚好出现整数条新闻.
 @interface SNNewsView : UIView <UIScrollViewDelegate, SNNewsHeaderViewDelegate, SNNewsHeaderViewDataSource>
 @property (assign, nonatomic) id<SNNewsViewDelegate> delegate; //!< 代理.
 @property (assign, nonatomic) id<SNNewsViewDataSource> dataSource; //!< 数据源.

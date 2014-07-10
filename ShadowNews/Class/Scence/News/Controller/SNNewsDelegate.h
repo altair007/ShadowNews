@@ -33,6 +33,6 @@
  *
  *  @return 实例对象.
  */
-- (instancetype) initWithCell: (SNNewsPageView *) cell;
+- (instancetype) initWithPageView: (SNNewsPageView *) cell;
 
 @end

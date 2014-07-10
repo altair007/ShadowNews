@@ -15,45 +15,54 @@
 #import "SNNewsDetailViewController.h"
 
 @interface SNNewsDelegate ()
-@property (retain, nonatomic) SNNewsPageView * SNNDPage; //!< 新闻视图页面.
+@property (retain, nonatomic) SNNewsPageView * SNNDPageView; //!< 新闻视图页面.
 @property (retain, nonatomic) SNNewsModel * SNNDModel; //!< 新闻视图数据模型.
 @property (retain, nonatomic) NSArray * SNNDNewsArray; //!< 存储新闻的数组.
 @end
 @implementation SNNewsDelegate
 + (instancetype) delegateWithCell: (SNNewsPageView *) cell
 {
-    SNNewsDelegate * delegate = [[[self class] alloc] initWithCell: cell];
+    SNNewsDelegate * delegate = [[[self class] alloc] initWithPageView: cell];
     SNAutorelease(delegate);
     return delegate;
 }
 
 - (void)dealloc
 {
-    self.SNNDPage = nil;
-    self.SNNDModel = nil;
     
     [self removeObserver: self forKeyPath:@"SNNDNewsArray" context: NULL];
+    [self.SNNDPageView removeObserver: self forKeyPath:@"preLoad" context: NULL];
+    
+    self.SNNDPageView = nil;
+    self.SNNDModel = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
 #endif
 }
 
-- (instancetype) initWithCell: (SNNewsPageView *) cell;
+- (instancetype) initWithPageView: (SNNewsPageView *) pageView;
 {
     if (self = [super init]) {
-        self.SNNDPage = cell;
-        [cell registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
+        self.SNNDPageView = pageView;
+        [pageView registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
         
+        // ???:真的有必要检测自身的SNNDNewsArray属性?
         [self addObserver: self forKeyPath:@"SNNDNewsArray" options:0 context:NULL];
         
+        // !!!: 应该设置用户用户刷新的时间,比如五分钟内同一页面只允许刷新一次等.
+        /* 当视图由预加载状态变为加载状态时,可能需要额外请求数据. */
+        [self.SNNDPageView addObserver:self forKeyPath:@"preLoad" options:NSKeyValueObservingOptionNew context:NULL];
+//        self.SNNDPage.delegate = self;
+//        self.SNNDPage.dataSource = self;
+        // !!!: 无论是什么请求有,都先用本地数据获取数据,进行初始化.
+        // !!!: 可能有一个潜在的BUG,本地数据不存在,第一次使用,可能会崩溃.
+        // !!!: 具体方案是:是"预加载" 则不执行下一步: 异步联网请求.
         // ???:应该根据是否是"预加载",采用不同的获取数据的策略.
-        [SNNewsModel newsForTitle: self.SNNDPage.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
-            self.SNNDPage.delegate = self;
-            self.SNNDPage.dataSource = self;
+        [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
             self.SNNDNewsArray = newsArray;
         } fail:^(NSError *error) {
-            if (YES != self.SNNDPage.preLoad) {
+            if (YES != self.SNNDPageView.preLoad) {
                 // ???:优化方向:网易的"弹窗"会自动消失哦!
                 UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alertView show];
@@ -68,7 +77,13 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [self.SNNDPage reloadData];
+    if (self.SNNDPageView == object &&
+        [keyPath isEqualToString: @"preLoad"]) {
+        
+    }
+    
+    // ???:总感觉,这个对代理自身的观察者,有些鸡肋.
+    [self.SNNDPageView reloadData];
 }
 
 #pragma mark - UITableViewDelegate协议方法.

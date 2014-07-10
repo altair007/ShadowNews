@@ -56,8 +56,8 @@
 		C25246BC196E5709000A294A /* SNNewsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524687196E5709000A294A /* SNNewsPageView.m */; };
 		C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524689196E5709000A294A /* SNNewsPageViewCell.m */; };
 		C25246BE196E5709000A294A /* SNNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C252468B196E5709000A294A /* SNNewsView.m */; };
-		C25246BF196E5709000A294A /* SNUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C252468D196E5709000A294A /* SNUserViewController.m */; };
 		C25246C0196E5709000A294A /* SNMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524690196E5709000A294A /* SNMenuViewController.m */; };
+		C25246CB196E59F5000A294A /* SNUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25246CA196E59F5000A294A /* SNUserViewController.m */; };
 		C29CF860196ABDA8004AE8C8 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CF85F196ABDA8004AE8C8 /* default.png */; };
 		C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */; };
 		C2A6C29919691C080006E26E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2A6C29819691C080006E26E /* Images.xcassets */; };
@@ -198,8 +198,6 @@
 		C2524689196E5709000A294A /* SNNewsPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewCell.m; sourceTree = "<group>"; };
 		C252468A196E5709000A294A /* SNNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsView.h; sourceTree = "<group>"; };
 		C252468B196E5709000A294A /* SNNewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsView.m; sourceTree = "<group>"; };
-		C252468C196E5709000A294A /* SNUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNUserViewController.h; sourceTree = "<group>"; };
-		C252468D196E5709000A294A /* SNUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNUserViewController.m; sourceTree = "<group>"; };
 		C252468F196E5709000A294A /* SNMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMenuViewController.h; sourceTree = "<group>"; };
 		C2524690196E5709000A294A /* SNMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMenuViewController.m; sourceTree = "<group>"; };
 		C25246C1196E592A000A294A /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -210,6 +208,8 @@
 		C25246C6196E595B000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		C25246C7196E598B000A294A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C25246C8196E598B000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C25246C9196E59F5000A294A /* SNUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNUserViewController.h; sourceTree = "<group>"; };
+		C25246CA196E59F5000A294A /* SNUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNUserViewController.m; sourceTree = "<group>"; };
 		C29CF85F196ABDA8004AE8C8 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C2A6C29819691C080006E26E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -522,8 +522,6 @@
 			children = (
 				C252466F196E5709000A294A /* LocalPage */,
 				C2524670196E5709000A294A /* News */,
-				C252468C196E5709000A294A /* SNUserViewController.h */,
-				C252468D196E5709000A294A /* SNUserViewController.m */,
 				C252468E196E5709000A294A /* Temp */,
 			);
 			path = Scence;
@@ -549,12 +547,12 @@
 		C2524671196E5709000A294A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2524676196E5709000A294A /* SNNewsViewController.h */,
+				C2524677196E5709000A294A /* SNNewsViewController.m */,
 				C2524672196E5709000A294A /* SNNewsDelegate.h */,
 				C2524673196E5709000A294A /* SNNewsDelegate.m */,
 				C2524674196E5709000A294A /* SNNewsDetailViewController.h */,
 				C2524675196E5709000A294A /* SNNewsDetailViewController.m */,
-				C2524676196E5709000A294A /* SNNewsViewController.h */,
-				C2524677196E5709000A294A /* SNNewsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -562,14 +560,14 @@
 		C2524678196E5709000A294A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C252467F196E5709000A294A /* SNNewsModel.h */,
+				C2524680196E5709000A294A /* SNNewsModel.m */,
 				C2524679196E5709000A294A /* SNNews.h */,
 				C252467A196E5709000A294A /* SNNews.m */,
 				C252467B196E5709000A294A /* SNNewsDetail.h */,
 				C252467C196E5709000A294A /* SNNewsDetail.m */,
 				C252467D196E5709000A294A /* SNNewsMenu.h */,
 				C252467E196E5709000A294A /* SNNewsMenu.m */,
-				C252467F196E5709000A294A /* SNNewsModel.h */,
-				C2524680196E5709000A294A /* SNNewsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -577,6 +575,8 @@
 		C2524681196E5709000A294A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C252468A196E5709000A294A /* SNNewsView.h */,
+				C252468B196E5709000A294A /* SNNewsView.m */,
 				C2524682196E5709000A294A /* SNNewsDetailView.h */,
 				C2524683196E5709000A294A /* SNNewsDetailView.m */,
 				C2524684196E5709000A294A /* SNNewsHeaderView.h */,
@@ -585,8 +585,6 @@
 				C2524687196E5709000A294A /* SNNewsPageView.m */,
 				C2524688196E5709000A294A /* SNNewsPageViewCell.h */,
 				C2524689196E5709000A294A /* SNNewsPageViewCell.m */,
-				C252468A196E5709000A294A /* SNNewsView.h */,
-				C252468B196E5709000A294A /* SNNewsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -594,6 +592,8 @@
 		C252468E196E5709000A294A /* Temp */ = {
 			isa = PBXGroup;
 			children = (
+				C25246C9196E59F5000A294A /* SNUserViewController.h */,
+				C25246CA196E59F5000A294A /* SNUserViewController.m */,
 				C252468F196E5709000A294A /* SNMenuViewController.h */,
 				C2524690196E5709000A294A /* SNMenuViewController.m */,
 			);
@@ -733,6 +733,7 @@
 				C25246B5196E5709000A294A /* SNNewsViewController.m in Sources */,
 				C252469E196E5709000A294A /* Base64.m in Sources */,
 				C2524693196E5709000A294A /* AFHTTPRequestOperation.m in Sources */,
+				C25246CB196E59F5000A294A /* SNUserViewController.m in Sources */,
 				C25246A1196E5709000A294A /* FMDatabase.m in Sources */,
 				C2524692196E5709000A294A /* SNNavigationController.m in Sources */,
 				C25246B0196E5709000A294A /* UIProgressView+AFNetworking.m in Sources */,
@@ -745,7 +746,6 @@
 				C25246AE196E5709000A294A /* UIButton+AFNetworking.m in Sources */,
 				C25246AC196E5709000A294A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				C2524696196E5709000A294A /* AFNetworkReachabilityManager.m in Sources */,
-				C25246BF196E5709000A294A /* SNUserViewController.m in Sources */,
 				C25246B2196E5709000A294A /* UIWebView+AFNetworking.m in Sources */,
 				C25246A5196E5709000A294A /* FMResultSet.m in Sources */,
 				C25246B8196E5709000A294A /* SNNewsMenu.m in Sources */,
