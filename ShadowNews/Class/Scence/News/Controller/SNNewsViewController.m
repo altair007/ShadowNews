@@ -62,10 +62,6 @@
     SNRelease(userItem);
     
     self.model = [SNNewsModel model];
-    
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
-    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning

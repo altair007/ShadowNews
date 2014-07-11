@@ -21,6 +21,7 @@ typedef enum{
 #import "SNNewsPageView.h"
 
 @interface SNNewsView ()
+// !!!: 清除各视图中不必要的视图相关的属性,即不在初始化视图意外的地方使用的属性.
 @property (retain, nonatomic, readwrite) SNNewsPageView * currentPageView;
 #pragma mark - 私有属性.
 @property (retain, nonatomic) UIScrollView * SNNVViewContainer; //!< 用于放置视图.
@@ -79,7 +80,7 @@ typedef enum{
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
     /* 正确布局视图容器上视图的相对位置. */
     CGRect bouds = self.SNNVViewContainer.bounds;
     bouds.origin.x = 0; // !!!:注意到一个现象: 当不移除子视图时,轮转视图的原偏移值会被保留.或许可以用来简化轮转视图的编写.

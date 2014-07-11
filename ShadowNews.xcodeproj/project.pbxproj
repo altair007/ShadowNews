@@ -18,6 +18,9 @@
 		C22E959619605FE8001B8745 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C22E959419605FE8001B8745 /* InfoPlist.strings */; };
 		C22E959819605FE8001B8745 /* ShadowNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E959719605FE8001B8745 /* ShadowNewsTests.m */; };
 		C22E95A219606399001B8745 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C22E95A119606399001B8745 /* README.md */; };
+		C23615191970280E00A01EB1 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = C23615181970280D00A01EB1 /* content.css */; };
+		C236151B19702C0800A01EB1 /* content_template.html in Resources */ = {isa = PBXBuildFile; fileRef = C236151A19702C0800A01EB1 /* content_template.html */; };
+		C236151D19702C5500A01EB1 /* content.js in Sources */ = {isa = PBXBuildFile; fileRef = C236151C19702C5500A01EB1 /* content.js */; };
 		C2524625196E55A1000A294A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E957E19605FE8001B8745 /* main.m */; };
 		C2524691196E5709000A294A /* SNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524629196E5709000A294A /* SNAppDelegate.m */; };
 		C2524692196E5709000A294A /* SNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C252462C196E5709000A294A /* SNNavigationController.m */; };
@@ -123,6 +126,9 @@
 		C22E959519605FE8001B8745 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C22E959719605FE8001B8745 /* ShadowNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowNewsTests.m; sourceTree = "<group>"; };
 		C22E95A119606399001B8745 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		C23615181970280D00A01EB1 /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = content.css; sourceTree = "<group>"; };
+		C236151A19702C0800A01EB1 /* content_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content_template.html; sourceTree = "<group>"; };
+		C236151C19702C5500A01EB1 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		C2524628196E5709000A294A /* SNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNAppDelegate.h; sourceTree = "<group>"; };
 		C2524629196E5709000A294A /* SNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNAppDelegate.m; sourceTree = "<group>"; };
 		C252462B196E5709000A294A /* SNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationController.h; sourceTree = "<group>"; };
@@ -581,6 +587,9 @@
 		C2524681196E5709000A294A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C236151C19702C5500A01EB1 /* content.js */,
+				C236151A19702C0800A01EB1 /* content_template.html */,
+				C23615181970280D00A01EB1 /* content.css */,
 				C252468A196E5709000A294A /* SNNewsView.h */,
 				C252468B196E5709000A294A /* SNNewsView.m */,
 				C2524682196E5709000A294A /* SNNewsDetailView.h */,
@@ -695,9 +704,11 @@
 				C2D65676196D209F00F24F22 /* contentview_commentback@2x.png in Resources */,
 				C2D65698196D2A7900F24F22 /* contenttoolbar_hd_comment.png in Resources */,
 				C2D656A7196D2A7900F24F22 /* contenttoolbar_hd_share@2x.png in Resources */,
+				C23615191970280E00A01EB1 /* content.css in Resources */,
 				C2D6569D196D2A7900F24F22 /* contenttoolbar_hd_fav_light@2x.png in Resources */,
 				C2D656A2196D2A7900F24F22 /* contenttoolbar_hd_fav.png in Resources */,
 				C22E957D19605FE8001B8745 /* InfoPlist.strings in Resources */,
+				C236151B19702C0800A01EB1 /* content_template.html in Resources */,
 				C2D6566E196D1C1F00F24F22 /* contenttoolbar_hd_back.png in Resources */,
 				C2D6569B196D2A7900F24F22 /* contenttoolbar_hd_download_light@2x.png in Resources */,
 				C2D656AA196D2A7900F24F22 /* contentview_commentbacky.png in Resources */,
@@ -751,6 +762,7 @@
 				C25246BB196E5709000A294A /* SNNewsHeaderView.m in Sources */,
 				C25246AD196E5709000A294A /* UIAlertView+AFNetworking.m in Sources */,
 				C25246AB196E5709000A294A /* AFNetworkActivityIndicatorManager.m in Sources */,
+				C236151D19702C5500A01EB1 /* content.js in Sources */,
 				C2524694196E5709000A294A /* AFHTTPRequestOperationManager.m in Sources */,
 				C25246BE196E5709000A294A /* SNNewsView.m in Sources */,
 				C25246B3196E5709000A294A /* SNNewsDelegate.m in Sources */,

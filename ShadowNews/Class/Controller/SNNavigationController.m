@@ -61,8 +61,14 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        // ???:直接让 新闻入栈,不太好吧?
         SNNewsViewController * newsVC = [[SNNewsViewController alloc] init];
         [self pushViewController: newsVC animated:YES];
+        
+        // 隐藏默认的导航栏.
+        // !!!:一个建议:学习下 控制器间跳转的知识.这样就不必依赖于 系统导航栏的默认行为---鸡肋的存在.
+        self.navigationBarHidden = YES;
     }
     return self;
 }
