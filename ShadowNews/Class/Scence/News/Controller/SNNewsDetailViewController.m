@@ -33,6 +33,7 @@
         
         // !!!:这个属性,或许可以用来实现抽屉效果.或者下拉菜单.
 //        self.modalInPopover = YES;
+        self.automaticallyAdjustsScrollViewInsets = NO;
     }
     return self;
 }
@@ -91,12 +92,20 @@
     // !!!: 下面这个逻辑,应该封装到view中.
     // !!!: 使用"约束语法".改造下.
     /* 返回按钮. */
-    UIBarButtonItem * backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contenttoolbar_hd_back"] style:UIBarButtonItemStylePlain target:self action:@selector(SNNDVCDidClickBackButtonItemAction:)];
-    backButtonItem.tintColor = [UIColor grayColor];
-    
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-    SNRelease(backButtonItem);
-    
+//    self.navigationItem.hidesBackButton = YES;
+//    UIView * titleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 3200, 44)];
+//    titleView.backgroundColor = [UIColor redColor];
+//    UIBarButtonItem * backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contenttoolbar_hd_back"] style:UIBarButtonItemStylePlain target:self action:@selector(SNNDVCDidClickBackButtonItemAction:)];
+//    backButtonItem.tintColor = [UIColor grayColor];
+//    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithCustomView: titleView];
+////    self.navigationItem.leftBarButtonItem = item;
+////    [titleView addSubview: backButtonItem];
+////    self.navigationItem.leftBarButtonItem = backButtonItem;
+//    SNRelease(backButtonItem);
+//    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
+//    [self.navigationController setNavigationBarHidden: YES animated: YES];
+//    self.navigationItem.titleView = titleView
+    ;
     /* 跟帖按钮. */
 //    UIBarButtonItem * commentBackButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contentview_commentback@2x"] style:UIBarButtonItemStylePlain target:self action:@selector(SNNDCDidClickCommentBackButtonItemAciton:)];
 //    NSString * replyStr = [NSNumber numberWithUnsignedInteger:self.SNNDDVCDetail.replyCount];
@@ -104,34 +113,37 @@
     
     [commentBackButtonItem setBackgroundImage:[UIImage imageNamed:@"contentview_commentbacky@2x.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     commentBackButtonItem.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = commentBackButtonItem;
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+//    self.navigationItem.rightBarButtonItem = commentBackButtonItem;
     
     /* 底部页面 */
     // ???:这个视图,和webView应该是平级关系.
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 500, 320, 68)];
-    view.backgroundColor = [UIColor grayColor];
-    
-    // !!!:此处应该还有一个编辑按钮.
-    UITextField * field = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 180, 48)];
-    field.placeholder = @"写跟帖";
-    field.backgroundColor = [UIColor blueColor];
-    [view addSubview: field];
-    SNRelease(field);
-    
-    UIButton * favButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    favButton.frame = CGRectMake(200, 10, 50, 48);
-    [favButton setImage:[UIImage imageNamed: @"contenttoolbar_hd_fav_light.png"] forState:UIControlStateNormal];
-    [favButton addTarget: self action:@selector(SNNDVCDidClickFavButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview: favButton];
-    
-    UIButton * shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [shareButton addTarget: self action:@selector(SNNDVCDidClickShareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    shareButton.frame = CGRectMake(240, 10, 50, 48);
-    [shareButton setImage: [UIImage imageNamed: @"contenttoolbar_hd_share_light.png"] forState:UIControlStateNormal];
-    [view addSubview: shareButton];
-    
-    [self.view addSubview: view];
-    SNRelease(view);
+//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 500, 320, 68)];
+//    view.backgroundColor = [UIColor grayColor];
+//    
+//    // !!!:此处应该还有一个编辑按钮.
+//    UITextField * field = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 180, 48)];
+//    field.placeholder = @"写跟帖";
+//    field.backgroundColor = [UIColor blueColor];
+//    [view addSubview: field];
+//    SNRelease(field);
+//    
+//    UIButton * favButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    favButton.frame = CGRectMake(200, 10, 50, 48);
+//    [favButton setImage:[UIImage imageNamed: @"contenttoolbar_hd_fav_light.png"] forState:UIControlStateNormal];
+//    [favButton addTarget: self action:@selector(SNNDVCDidClickFavButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [view addSubview: favButton];
+//    
+//    UIButton * shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [shareButton addTarget: self action:@selector(SNNDVCDidClickShareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    shareButton.frame = CGRectMake(240, 10, 50, 48);
+//    [shareButton setImage: [UIImage imageNamed: @"contenttoolbar_hd_share_light.png"] forState:UIControlStateNormal];
+//    [view addSubview: shareButton];
+//    
+//    [self.view addSubview: view];
+//    SNRelease(view);
 }
 
 // !!!: 跟帖的借口,是get请求,与docid存在对应关系.,但是需要分析,预处理一下,才可以显示.

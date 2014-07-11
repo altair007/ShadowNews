@@ -9,9 +9,13 @@
 #import "SNNewsDetailView.h"
 #import "SNNewsDetail.h"
 
+// ???:点击超链接,跳转到ios应用界面,怎么实现的?
 @interface SNNewsDetailView ()
-@property (retain, nonatomic) SNNewsDetail * SNNDDetail; //!< 新闻详情.
-@property (retain, nonatomic) UIWebView * SNNDWebView; //!< 用于显示新闻主体信息.
+@property (retain, nonatomic) SNNewsDetail * SNNDVDetail; //!< 新闻详情.
+@property (retain, nonatomic) UIWebView * SNNDVWebView; //!< 用于显示新闻主体信息.
+@property (retain, nonatomic) UITextField * SNNDVReplyTF; //!< 跟帖编辑框.
+@property (retain, nonatomic) UIButton * SNNDVShareButton; //!< 分享按钮.
+@property (retain, nonatomic) UIButton * SNNDVFavorButton; //!< 收藏按钮.
 @end
 @implementation SNNewsDetailView
 
@@ -34,18 +38,18 @@
 - (void)reloadData
 {
     // 重置和数据相关的属性.
-    self.SNNDDetail = nil;
+    self.SNNDVDetail = nil;
     
-    [self.SNNDWebView loadHTMLString: self.SNNDDetail.body baseURL:nil];
+    [self.SNNDVWebView loadHTMLString: self.SNNDVDetail.body baseURL:nil];
 }
 
-- (SNNewsDetail *)SNNDDetail
+- (SNNewsDetail *)SNNDVDetail
 {
-    if (nil == _SNNDDetail) {
-        self.SNNDDetail = [self.dataSource detailInNewsDetailView: self];
+    if (nil == _SNNDVDetail) {
+        self.SNNDVDetail = [self.dataSource detailInNewsDetailView: self];
     }
     
-    return _SNNDDetail;
+    return _SNNDVDetail;
 }
 
 /**
@@ -53,18 +57,30 @@
  */
 - (void) SNNDSetUpSubviews
 {
+    [self setTranslatesAutoresizingMaskIntoConstraints: YES];
+    // !!!: 临时测试UIView
+    // TODO: 迭代至此,不建议重写导航栏.
+    UIView * view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor redColor];
+    [view setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [self addSubview: view];
+    
+    /* 设置视图. */
     UIWebView * webView = [[UIWebView alloc] init];
     webView.scrollView.bounces = NO;
     [webView setTranslatesAutoresizingMaskIntoConstraints: NO];
-    self.SNNDWebView = webView;
+    self.SNNDVWebView = webView;
     SNRelease(webView);
-    [self addSubview: self.SNNDWebView];
-    
+    [self addSubview: self.SNNDVWebView];
+    self.SNNDVWebView.backgroundColor = [UIColor redColor];
     // 设置视图约束,布局视图.
     NSMutableArray * constraintsArray = [NSMutableArray arrayWithCapacity: 42];
     
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-64-[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
+    // !!!: 临时测试.
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[view]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(view)]];
+    
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[webView(==300)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(64)-[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(view, webView)]];
     [self addConstraints: constraintsArray];
     
     // 初始化视图内容.

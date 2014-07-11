@@ -38,6 +38,7 @@
 @interface SNNewsDetailView : UIView
 @property (assign, nonatomic) id<SNNewsDetailViewDelegate> delegate; //!< 行为代理.
 @property (assign, nonatomic) id<SNNewsDetailViewDataSource> dataSource; //!< 数据代理.
+@property (retain, nonatomic, readonly) UIView * contentView;
 
 /**
  *   重新加载数据.
