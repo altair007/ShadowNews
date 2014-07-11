@@ -38,7 +38,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        
+        [self SNNPVCSetUpSubviews];
     }
     return self;
 }
@@ -62,39 +62,70 @@
  */
 - (void)SNNPVCSetUpSubviews
 {
-    // TODO: 迭代至此:初始化子视图.
-//    UIImageView * imageView = [[UIImageView alloc] init];
-//    
-//    UILabel * titleLabel = [[UILabel alloc] init];
-//    titleLabel.font = [UIFont boldSystemFontOfSize: 12.0];
-//    titleLabel.backgroundColor = [UIColor whiteColor];
-//    titleLabel.alpha = 0.6;
-//    
-//    [imageView setTranslatesAutoresizingMaskIntoConstraints: NO];
-//    [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
-//    
-//    self.SNNNPICImageView= imageView;
-//    self.SNNPVICTitleLabel = titleLabel;
-//    
-//    SNRelease(imageView);
-//    SNRelease(titleLabel);
-//    
-//    [self.contentView addSubview: self.SNNNPICImageView];
-//    [self.SNNNPICImageView addSubview: self.SNNPVICTitleLabel];
-//    
-//    // 设置约束.
-//    NSMutableArray * constraints = [NSMutableArray arrayWithCapacity: 42];
-//    
-//    /* 横向约束. */
-//    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[imageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(imageView)]];
-//    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel)]];
-//    
-//    /* 竖向约束. */
-//    // !!!: 小写的V也会有效吗?
-//    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(imageView)]];
-//    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(==20)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel)]];
-//    
-//    [self addConstraints: constraints];
+    /* 创建视图. */
+    UIView * placeHolderViewOfContent = [[UIView alloc] init];
+    [placeHolderViewOfContent setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [self.contentView addSubview: placeHolderViewOfContent];
+    SNRelease(placeHolderViewOfContent);
+    
+    UIView * placeHolderViewOfImages = [[UIView alloc] init];
+    [placeHolderViewOfImages setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [placeHolderViewOfContent addSubview: placeHolderViewOfImages];
+    SNRelease(placeHolderViewOfImages);
+    
+    UILabel * titleLabel = [[UILabel alloc] init];
+    [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
+    titleLabel.font = [UIFont boldSystemFontOfSize: 14.0];
+    [placeHolderViewOfContent addSubview: titleLabel];
+    self.SNNPVPCTitleLabel = titleLabel;
+    SNRelease(titleLabel);
+    
+    UILabel * replyCountLabel = [[UILabel alloc] init];
+    [replyCountLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
+    replyCountLabel.font = [UIFont systemFontOfSize: 12.0];
+    [titleLabel addSubview: replyCountLabel];
+    self.SNNPVPCReplyCountLable = replyCountLabel;
+    SNRelease(replyCountLabel);
+    replyCountLabel.textAlignment = NSTextAlignmentRight;
+    
+    UIImageView * leftImageView = [[UIImageView alloc] init];
+    [leftImageView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [placeHolderViewOfImages addSubview: leftImageView];
+    SNRelease(leftImageView);
+    self.SNNPVPCImageViewLeft = leftImageView;
+    
+    UIImageView * middleImageView = [[UIImageView alloc] init];
+    [middleImageView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [placeHolderViewOfImages addSubview: middleImageView];
+    SNRelease(middleImageView);
+    self.SNNPVPCImageViewMiddle = middleImageView;
+    
+    UIImageView * rightImageView = [[UIImageView alloc] init];
+    [rightImageView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [placeHolderViewOfImages addSubview: rightImageView];
+    SNRelease(rightImageView);
+    self.SNNPVPCImageViewRight = rightImageView;
+    
+    /* 设置约束. */
+    NSMutableArray * constraints = [NSMutableArray arrayWithCapacity: 42];
+    
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[placeHolderViewOfContent]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(placeHolderViewOfContent)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[placeHolderViewOfContent]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(placeHolderViewOfContent)]];
+    
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[titleLabel(==20)]-(>=0)-[placeHolderViewOfImages]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel, placeHolderViewOfImages)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[placeHolderViewOfImages]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(placeHolderViewOfImages)]];
+    
+    // ???:lable如何设置文字居左显示.
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"[replyCountLabel(==60)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(replyCountLabel)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[replyCountLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(replyCountLabel)]];
+    
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[leftImageView]-[middleImageView(==leftImageView)]-[rightImageView(==leftImageView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(leftImageView, middleImageView, rightImageView)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[leftImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(leftImageView)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[middleImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(middleImageView)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[rightImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(rightImageView)]];
+    
+    [self addConstraints: constraints];
 }
 
 @end

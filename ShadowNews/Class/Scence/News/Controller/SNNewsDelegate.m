@@ -14,7 +14,7 @@
 #import "SNNavigationController.h"
 #import "SNNewsDetailViewController.h"
 #import "SNNewsPageViewImageCell.h"
-
+#import "SNNewsPageViewPhotosetCell.h"
 @interface SNNewsDelegate ()
 @property (retain, nonatomic) SNNewsPageView * SNNDPageView; //!< 新闻视图页面.
 @property (retain, nonatomic) SNNewsModel * SNNDModel; //!< 新闻视图数据模型.
@@ -48,6 +48,7 @@
         self.SNNDPageView = pageView;
         [pageView registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
         [pageView registerClass:[SNNewsPageViewImageCell class] forCellReuseIdentifier: @"SNNewsPageViewImageCell"];
+        [pageView registerClass: [SNNewsPageViewPhotosetCell class] forCellReuseIdentifier: @"SNNewsPageViewPhotosetCell"];
         
         // ???:真的有必要检测自身的SNNDNewsArray属性?
         [self addObserver: self forKeyPath:@"SNNDNewsArray" options:0 context:NULL];
@@ -96,12 +97,12 @@
 {
     if (0 == indexPath.row) {
         SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
-        if (0 != news.imgs.count) {
-            return 140;
+        if (nil != news.imgs) {
+            return 180;
         }
     }
     
-    return 70;
+    return 80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,12 +125,19 @@
     SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
     
     // 如果第一条新闻有图片,则用大图风格单元格,单独显示.
-    if (0 == indexPath.row && 0 != news.imgs.count) {
+    if (0 == indexPath.row && nil != news.imgs) {
         SNNewsPageViewImageCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewImageCell" forIndexPath: indexPath];
         cell.news = news;
         return cell;
     }
 
+    // 如果是图片集,单独处理.
+    if (SNNewsSkipTypePhotoSet == news.skipType) {
+        SNNewsPageViewPhotosetCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewPhotosetCell" forIndexPath: indexPath];
+        cell.news = news;
+        return cell;
+    }
+    
     // !!!:优化方向:区分图片新闻与普通新闻cell.
     SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SNNewsPageViewCell" forIndexPath: indexPath];
     

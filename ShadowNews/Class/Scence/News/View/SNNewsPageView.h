@@ -39,4 +39,5 @@
 - (instancetype)initWithTitle: (NSString *) title
                       preLoad: (BOOL) preLoad;
 
+// !!!: 自定义复用方法deque的一个策略:自动使用类名作为标识符.自动注册,自动寻找.
 @end

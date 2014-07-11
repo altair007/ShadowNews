@@ -58,9 +58,7 @@
     self.SNNPVCReplyCoutLabel.text = [NSString stringWithFormat: @"%@跟帖", [NSNumber numberWithUnsignedInteger: news.replyCount]];
 }
 
-// !!!:验证一下.cell  只返回同一个cell,会发生什么.
-// !!!:轮转视图有一个bug:如果使用者只返回同一个视图,会发生预料之外的事.
-
+// !!!: 统一下各cell的布局.
 - (void)SNNPVCSetUpSubviews
 {
     // ???:需要考虑另一种情况,可能有的视图无图片啊!
@@ -76,6 +74,7 @@
     digestLabel.font = [UIFont systemFontOfSize: 12.0];
     
     replyCoutLabel.font = digestLabel.font;
+    replyCoutLabel.textAlignment = NSTextAlignmentRight;
 
     [imageView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
@@ -105,7 +104,7 @@
     
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[imageView]-[digestLabel]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(imageView, digestLabel)]];
     
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"[replyCoutLabel]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(replyCoutLabel)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"[replyCoutLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(replyCoutLabel)]];
     
     /* 竖向约束. */
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[titleLabel(==20)]" options:0 metrics: nil views:NSDictionaryOfVariableBindings(titleLabel)]];
