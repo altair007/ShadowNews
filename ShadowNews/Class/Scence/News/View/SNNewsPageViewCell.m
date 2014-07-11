@@ -46,7 +46,7 @@
     [_news release];
     _news = news;
     
-    [self.SNNPVCImageView setImageWithURL:[NSURL URLWithString: self.news.imgSrc] placeholderImage:[UIImage imageNamed:@"default.png"] ];
+    [self.SNNPVCImageView setImageWithURL:[NSURL URLWithString: self.news.imgs[0]] placeholderImage:[UIImage imageNamed:@"default.png"] ];
     self.SNNPVCTitleLabel.text = news.title;
 
     NSString * digest = news.digest;

@@ -7,52 +7,94 @@
 //
 
 #import "SNNews.h"
-
 @interface SNNews ()
-@property (copy, nonatomic, readwrite) NSString * imgSrc;
+@property (retain, nonatomic, readwrite) NSArray * imgs;
 @property (copy, nonatomic, readwrite) NSString * title;
 @property (copy, nonatomic, readwrite) NSString * digest;
 @property (assign, nonatomic, readwrite) NSUInteger replyCount;
 @property (copy, nonatomic, readwrite) NSString * docId;
+@property (assign, nonatomic, readwrite) SNNewsSkipType skipType;
+@property (copy, nonatomic, readwrite) NSString * photosetID;
 @end
 
 @implementation SNNews
 - (void)dealloc
 {
-    self.imgSrc = nil;
+    self.imgs = nil;
     self.title = nil;
     self.digest = nil;
     self.docId = nil;
+    self.photosetID = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
 #endif
 }
 
-+ (instancetype) newsWithImgSrc:(NSString *)imgSrc title:(NSString *)title publishTime:(NSString *)pulishTime replyCount:(NSUInteger)replyCount docId:(NSString *)docId
++ (instancetype) newsWithDocId: (NSString *) docId
+                        tittle: (NSString *) title
+                        digest: (NSString *) digest
+                    replyCount: (NSUInteger) replyCount
+                          imgs: (NSArray *) imgs
 {
-    SNNews * news = [[[self class] alloc] initWithImgSrc: imgSrc title: title publishTime: pulishTime replyCount: replyCount docId: docId];
-    SNAutorelease(news)
+    SNNews * news = [[[SNNews class] alloc] initWithDocId:docId tittle:title digest: digest replyCount: replyCount imgs: imgs];
+    SNAutorelease(news);
     return news;
 }
 
-
-- (instancetype) initWithImgSrc: (NSString *) imgSrc
-                          title: (NSString *) title
-                    publishTime: (NSString *) pulishTime
-                     replyCount: (NSUInteger) replyCount
-                          docId: (NSString *) docId
++ (instancetype) newsWithPhotosetId: (NSString *) photosetId
+                             tittle: (NSString *) title
+                             digest: (NSString *) digest
+                         replyCount: (NSUInteger) replyCount
+                               imgs: (NSArray *) imgs
 {
-    if (YES == [imgSrc isEqualToString: @""]) {
-        imgSrc = nil;
+    SNNews * news = [[[SNNews class] alloc] initWithPhotosetId: photosetId tittle: title digest: digest replyCount: replyCount imgs: imgs];
+    SNAutorelease(news);
+    return news;
+}
+
+- (instancetype) initWithTittle: (NSString *) title
+                         digest: (NSString *) digest
+                     replyCount: (NSUInteger) replyCount
+                           imgs: (NSArray *) imgs
+                       skipType: (SNNewsSkipType) skipType
+                          docId: (NSString *) docId
+                     photosetId: (NSString *) photosetId
+{
+    if (self = [super init]) {
+        self.title = title;
+        self.digest = digest;
+        self.replyCount = replyCount;
+        self.imgs = imgs;
+        self.skipType = skipType;
+        self.docId = docId;
+        self.photosetID = photosetId;
     }
     
-    if (self = [super init]) {
-        self.imgSrc = imgSrc;
-        self.title = title;
-        self.digest = pulishTime;
-        self.replyCount = replyCount;
-        self.docId = docId;
+    return self;
+}
+
+- (instancetype) initWithDocId: (NSString *) docId
+                        tittle: (NSString *) title
+                        digest: (NSString *) digest
+                    replyCount: (NSUInteger) replyCount
+                          imgs: (NSArray *) imgs
+{
+    if (self = [self initWithTittle: title digest: digest replyCount:replyCount imgs: imgs skipType: SNNewsSkipTypeDoc docId:docId photosetId: nil]) {
+        // 暂不需要额外的初始外操作.
+    }
+    
+    return self;
+}
+
+- (instancetype) initWithPhotosetId: (NSString *) photosetId
+                             tittle: (NSString *) title
+                             digest: (NSString *) digest
+                         replyCount: (NSUInteger) replyCount
+                               imgs: (NSArray *) imgs
+{
+    if (self = [self initWithTittle:title digest:digest replyCount:replyCount imgs: imgs skipType: SNNewsSkipTypePhotoSet docId:nil photosetId: photosetId]) {
+        // 暂不需要额外的初始化操作.
     }
     
     return self;

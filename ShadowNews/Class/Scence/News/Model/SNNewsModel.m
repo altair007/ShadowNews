@@ -123,15 +123,42 @@
         NSArray * newsOriginalArray = [responseObject objectForKey: secret];
         NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
         [newsOriginalArray enumerateObjectsUsingBlock:^(NSDictionary * newsOriginal, NSUInteger idx, BOOL *stop) {
+        
+            NSMutableArray * imgs = [NSMutableArray arrayWithCapacity: 42];
             NSString * imgSrc = [newsOriginal objectForKey: @"imgsrc"];
+            NSArray * imgExtra = [newsOriginal objectForKey:@"imgextra"];
+            
+            if (YES != [imgSrc isEqualToString: @""]) {
+                [imgs addObject: imgSrc];
+            }
+            
+            if (nil != imgExtra) {
+                [imgExtra enumerateObjectsUsingBlock:^(NSDictionary * obj, NSUInteger idx, BOOL *stop) {
+                    [imgs addObject: [obj objectForKey: @"imgsrc"]];
+                }];
+            }
+            
+            if (0 == imgs.count) {
+                imgs = nil;
+            }
+            
             NSString * title = [newsOriginal objectForKey: @"title"];
             NSString * digest = [newsOriginal objectForKey: @"digest"];
             NSUInteger replyCount = [(NSNumber *)[newsOriginal objectForKey: @"replyCount"] unsignedIntegerValue];
             NSString * docId = [newsOriginal objectForKey: @"docid"];
-            [newsArray addObject:[SNNews newsWithImgSrc:imgSrc title:title publishTime:digest replyCount:replyCount docId:docId]];
+            NSString * photosetId = [newsOriginal objectForKey: @"photosetID"];
+            SNNews * news = nil;
+            if (nil != photosetId) {
+                news = [SNNews newsWithPhotosetId: photosetId tittle:title digest: digest replyCount: replyCount imgs: imgs];
+            }
+            
+            if (nil == news) {
+                news = [SNNews newsWithDocId: docId tittle: title digest: digest replyCount: replyCount imgs: imgs];
+            }
+            
+            [newsArray addObject: news];
         }];
         success(newsArray);
-        
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
     }];

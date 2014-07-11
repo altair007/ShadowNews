@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C200096D196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */; };
 		C22E957319605FE8001B8745 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957219605FE8001B8745 /* Foundation.framework */; };
 		C22E957519605FE8001B8745 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957419605FE8001B8745 /* CoreGraphics.framework */; };
 		C22E957719605FE8001B8745 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957619605FE8001B8745 /* UIKit.framework */; };
@@ -106,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C200096B196F9DEC0023200F /* SNNewsPageViewPhotosetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewPhotosetCell.h; sourceTree = "<group>"; };
+		C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewPhotosetCell.m; sourceTree = "<group>"; };
 		C22E956F19605FE8001B8745 /* ShadowNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E957219605FE8001B8745 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C22E957419605FE8001B8745 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -590,6 +593,8 @@
 				C2524689196E5709000A294A /* SNNewsPageViewCell.m */,
 				C2EE69CB196ED5880071F9E3 /* SNNewsPageViewImageCell.h */,
 				C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */,
+				C200096B196F9DEC0023200F /* SNNewsPageViewPhotosetCell.h */,
+				C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -738,6 +743,7 @@
 				C25246B5196E5709000A294A /* SNNewsViewController.m in Sources */,
 				C252469E196E5709000A294A /* Base64.m in Sources */,
 				C2524693196E5709000A294A /* AFHTTPRequestOperation.m in Sources */,
+				C200096D196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m in Sources */,
 				C25246CB196E59F5000A294A /* SNUserViewController.m in Sources */,
 				C25246A1196E5709000A294A /* FMDatabase.m in Sources */,
 				C2524692196E5709000A294A /* SNNavigationController.m in Sources */,

@@ -87,7 +87,6 @@
     CGPoint offset = self.SNNHScrollView.contentOffset;
     offset.x = x;
     [self.SNNHScrollView setContentOffset: offset animated: NO];
-    
 
 }
 
@@ -116,6 +115,8 @@
  */
 - (void) SNNHSetUpSubviews
 {
+    // !!!: 页眉视图有一个暗暗的背景色或者背景图.
+    
     /* 创建视图. */
     UIScrollView * scrollView = [[UIScrollView alloc] init];
     scrollView.translatesAutoresizingMaskIntoConstraints = NO;

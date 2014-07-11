@@ -10,6 +10,7 @@
 @class SNNewsMenu;
 @class YFDataBase;
 
+// !!!: AFNetworking好像可以自动缓存请求的信息,包括图片.这样的话,如何清除缓存?
 /**
  *  获取数据成功时,执行此 block.
  *

@@ -42,7 +42,9 @@
     [_news release];
     _news = news;
     
-    [self.SNNNPICImageView setImageWithURL:[NSURL URLWithString: self.news.imgSrc] placeholderImage:[UIImage imageNamed:@"default.png"] ];
+    [self.SNNNPICImageView setImageWithURL:[NSURL URLWithString: self.news.imgs[0]] placeholderImage:[UIImage imageNamed:@"default.png"] ];
+    
+    // !!!: 用来实现文本不贴着边缘!好鸡肋,换个实现方式吧!
     self.SNNPVICTitleLabel.text = [NSString stringWithFormat: @"      %@", news.title];
 }
 
@@ -78,10 +80,10 @@
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel)]];
     
     /* 竖向约束. */
-    // !!!: 小写的V也会有效吗?
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(imageView)]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(==20)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel)]];
     
     [self addConstraints: constraints];
 }
+
 @end

@@ -96,7 +96,7 @@
 {
     if (0 == indexPath.row) {
         SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
-        if (nil != news.imgSrc) {
+        if (0 != news.imgs.count) {
             return 140;
         }
     }
@@ -119,10 +119,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // !!!: 视图封装的很失败!其实只需要代理返回一个"新闻对象"就可以了.即使是代理,也应该最小化暴漏信息.
+    
     SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
     
     // 如果第一条新闻有图片,则用大图风格单元格,单独显示.
-    if (0 == indexPath.row && nil != news.imgSrc) {
+    if (0 == indexPath.row && 0 != news.imgs.count) {
         SNNewsPageViewImageCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewImageCell" forIndexPath: indexPath];
         cell.news = news;
         return cell;
