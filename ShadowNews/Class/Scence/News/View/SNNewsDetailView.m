@@ -42,14 +42,7 @@
     // 重置和数据相关的属性.
     self.SNNDVDetail = [self.dataSource detailInNewsDetailView: self];
     
-    /* 组装数据. */
-    // !!!:建议把它作为SNNDVDetail的一个方法.
-    NSMutableString * htmlStr = [NSMutableString stringWithCapacity: 42];
-    [htmlStr appendFormat:@"<h4>%@</h4>", self.SNNDVDetail.title];
-    
-    [htmlStr appendFormat:@"%@", self.SNNDVDetail.body];
-    [self.SNNDVWebView loadHTMLString: htmlStr baseURL:nil];
-//    [self.SNNDVWebView loadHTMLString: self.SNNDVDetail.body baseURL:nil];
+    [self.SNNDVWebView loadHTMLString: self.SNNDVDetail.htmlStr baseURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
 }
 
 // !!!: 使用属性,很鸡肋的方法.而且和reloadData中原来的    self.SNNDVDetail = nil; 容易一起误解.

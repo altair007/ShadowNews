@@ -69,4 +69,11 @@
                   templateType: (NSString *) templateType
                           body: (NSString *) body;
 
+/**
+ *  将新闻详情信息转换为html格式的字符串.
+ *
+ *  @return html格式的字符串.
+ */
+- (NSString *) htmlStr;
+
 @end

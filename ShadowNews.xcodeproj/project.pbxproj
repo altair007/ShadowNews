@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		C200096D196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */; };
+		C20E3F00197112E300AD747F /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E3EF3197112E300AD747F /* ICUTemplateMatcher.m */; };
+		C20E3F01197112E300AD747F /* MGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E3EF5197112E300AD747F /* MGTemplateEngine.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C20E3F02197112E300AD747F /* MGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E3EF9197112E300AD747F /* MGTemplateStandardFilters.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C20E3F03197112E300AD747F /* MGTemplateStandardMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E3EFB197112E300AD747F /* MGTemplateStandardMarkers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C20E3F04197112E300AD747F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C20E3EFC197112E300AD747F /* README.txt */; };
+		C20E3F05197112E300AD747F /* Writing Filters.txt in Resources */ = {isa = PBXBuildFile; fileRef = C20E3EFD197112E300AD747F /* Writing Filters.txt */; };
+		C20E3F06197112E300AD747F /* Writing Markers.txt in Resources */ = {isa = PBXBuildFile; fileRef = C20E3EFE197112E300AD747F /* Writing Markers.txt */; };
+		C20E3F07197112E300AD747F /* Writing Matchers.txt in Resources */ = {isa = PBXBuildFile; fileRef = C20E3EFF197112E300AD747F /* Writing Matchers.txt */; };
+		C20E3F0D197112FB00AD747F /* NSArray_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E3F0A197112FB00AD747F /* NSArray_DeepMutableCopy.m */; };
+		C20E3F0E197112FB00AD747F /* NSDictionary_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E3F0C197112FB00AD747F /* NSDictionary_DeepMutableCopy.m */; };
+		C20E3F12197113DD00AD747F /* content_template.html in Resources */ = {isa = PBXBuildFile; fileRef = C20E3F0F197113DD00AD747F /* content_template.html */; };
+		C20E3F13197113DD00AD747F /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = C20E3F10197113DD00AD747F /* content.css */; };
+		C20E3F14197113DD00AD747F /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = C20E3F11197113DD00AD747F /* content.js */; };
 		C22E957319605FE8001B8745 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957219605FE8001B8745 /* Foundation.framework */; };
 		C22E957519605FE8001B8745 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957419605FE8001B8745 /* CoreGraphics.framework */; };
 		C22E957719605FE8001B8745 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E957619605FE8001B8745 /* UIKit.framework */; };
@@ -18,9 +31,6 @@
 		C22E959619605FE8001B8745 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C22E959419605FE8001B8745 /* InfoPlist.strings */; };
 		C22E959819605FE8001B8745 /* ShadowNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E959719605FE8001B8745 /* ShadowNewsTests.m */; };
 		C22E95A219606399001B8745 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C22E95A119606399001B8745 /* README.md */; };
-		C23615191970280E00A01EB1 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = C23615181970280D00A01EB1 /* content.css */; };
-		C236151B19702C0800A01EB1 /* content_template.html in Resources */ = {isa = PBXBuildFile; fileRef = C236151A19702C0800A01EB1 /* content_template.html */; };
-		C236151D19702C5500A01EB1 /* content.js in Sources */ = {isa = PBXBuildFile; fileRef = C236151C19702C5500A01EB1 /* content.js */; };
 		C2524625196E55A1000A294A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E957E19605FE8001B8745 /* main.m */; };
 		C2524691196E5709000A294A /* SNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524629196E5709000A294A /* SNAppDelegate.m */; };
 		C2524692196E5709000A294A /* SNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C252462C196E5709000A294A /* SNNavigationController.m */; };
@@ -112,6 +122,28 @@
 /* Begin PBXFileReference section */
 		C200096B196F9DEC0023200F /* SNNewsPageViewPhotosetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewPhotosetCell.h; sourceTree = "<group>"; };
 		C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewPhotosetCell.m; sourceTree = "<group>"; };
+		C20E3EF2197112E300AD747F /* ICUTemplateMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUTemplateMatcher.h; sourceTree = "<group>"; };
+		C20E3EF3197112E300AD747F /* ICUTemplateMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUTemplateMatcher.m; sourceTree = "<group>"; };
+		C20E3EF4197112E300AD747F /* MGTemplateEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateEngine.h; sourceTree = "<group>"; };
+		C20E3EF5197112E300AD747F /* MGTemplateEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTemplateEngine.m; sourceTree = "<group>"; };
+		C20E3EF6197112E300AD747F /* MGTemplateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateFilter.h; sourceTree = "<group>"; };
+		C20E3EF7197112E300AD747F /* MGTemplateMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateMarker.h; sourceTree = "<group>"; };
+		C20E3EF8197112E300AD747F /* MGTemplateStandardFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateStandardFilters.h; sourceTree = "<group>"; };
+		C20E3EF9197112E300AD747F /* MGTemplateStandardFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTemplateStandardFilters.m; sourceTree = "<group>"; };
+		C20E3EFA197112E300AD747F /* MGTemplateStandardMarkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateStandardMarkers.h; sourceTree = "<group>"; };
+		C20E3EFB197112E300AD747F /* MGTemplateStandardMarkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTemplateStandardMarkers.m; sourceTree = "<group>"; };
+		C20E3EFC197112E300AD747F /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		C20E3EFD197112E300AD747F /* Writing Filters.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Writing Filters.txt"; sourceTree = "<group>"; };
+		C20E3EFE197112E300AD747F /* Writing Markers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Writing Markers.txt"; sourceTree = "<group>"; };
+		C20E3EFF197112E300AD747F /* Writing Matchers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Writing Matchers.txt"; sourceTree = "<group>"; };
+		C20E3F08197112FB00AD747F /* DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeepMutableCopy.h; sourceTree = "<group>"; };
+		C20E3F09197112FB00AD747F /* NSArray_DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_DeepMutableCopy.h; sourceTree = "<group>"; };
+		C20E3F0A197112FB00AD747F /* NSArray_DeepMutableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_DeepMutableCopy.m; sourceTree = "<group>"; };
+		C20E3F0B197112FB00AD747F /* NSDictionary_DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_DeepMutableCopy.h; sourceTree = "<group>"; };
+		C20E3F0C197112FB00AD747F /* NSDictionary_DeepMutableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_DeepMutableCopy.m; sourceTree = "<group>"; };
+		C20E3F0F197113DD00AD747F /* content_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content_template.html; sourceTree = "<group>"; };
+		C20E3F10197113DD00AD747F /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = content.css; sourceTree = "<group>"; };
+		C20E3F11197113DD00AD747F /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		C22E956F19605FE8001B8745 /* ShadowNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E957219605FE8001B8745 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C22E957419605FE8001B8745 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,9 +158,6 @@
 		C22E959519605FE8001B8745 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C22E959719605FE8001B8745 /* ShadowNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowNewsTests.m; sourceTree = "<group>"; };
 		C22E95A119606399001B8745 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
-		C23615181970280D00A01EB1 /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = content.css; sourceTree = "<group>"; };
-		C236151A19702C0800A01EB1 /* content_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content_template.html; sourceTree = "<group>"; };
-		C236151C19702C5500A01EB1 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		C2524628196E5709000A294A /* SNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNAppDelegate.h; sourceTree = "<group>"; };
 		C2524629196E5709000A294A /* SNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNAppDelegate.m; sourceTree = "<group>"; };
 		C252462B196E5709000A294A /* SNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationController.h; sourceTree = "<group>"; };
@@ -283,6 +312,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C20E3EF1197112E300AD747F /* MGTemplateEngine */ = {
+			isa = PBXGroup;
+			children = (
+				C20E3F08197112FB00AD747F /* DeepMutableCopy.h */,
+				C20E3F09197112FB00AD747F /* NSArray_DeepMutableCopy.h */,
+				C20E3F0A197112FB00AD747F /* NSArray_DeepMutableCopy.m */,
+				C20E3F0B197112FB00AD747F /* NSDictionary_DeepMutableCopy.h */,
+				C20E3F0C197112FB00AD747F /* NSDictionary_DeepMutableCopy.m */,
+				C20E3EF2197112E300AD747F /* ICUTemplateMatcher.h */,
+				C20E3EF3197112E300AD747F /* ICUTemplateMatcher.m */,
+				C20E3EF4197112E300AD747F /* MGTemplateEngine.h */,
+				C20E3EF5197112E300AD747F /* MGTemplateEngine.m */,
+				C20E3EF6197112E300AD747F /* MGTemplateFilter.h */,
+				C20E3EF7197112E300AD747F /* MGTemplateMarker.h */,
+				C20E3EF8197112E300AD747F /* MGTemplateStandardFilters.h */,
+				C20E3EF9197112E300AD747F /* MGTemplateStandardFilters.m */,
+				C20E3EFA197112E300AD747F /* MGTemplateStandardMarkers.h */,
+				C20E3EFB197112E300AD747F /* MGTemplateStandardMarkers.m */,
+				C20E3EFC197112E300AD747F /* README.txt */,
+				C20E3EFD197112E300AD747F /* Writing Filters.txt */,
+				C20E3EFE197112E300AD747F /* Writing Markers.txt */,
+				C20E3EFF197112E300AD747F /* Writing Matchers.txt */,
+			);
+			path = MGTemplateEngine;
+			sourceTree = "<group>";
+		};
 		C22E956619605FE8001B8745 = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +481,7 @@
 		C252462D196E5709000A294A /* OpenSource */ = {
 			isa = PBXGroup;
 			children = (
+				C20E3EF1197112E300AD747F /* MGTemplateEngine */,
 				C252462E196E5709000A294A /* AFNetworking */,
 				C2524644196E5709000A294A /* Base64 */,
 				C2524649196E5709000A294A /* fmdb */,
@@ -587,9 +643,9 @@
 		C2524681196E5709000A294A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C236151C19702C5500A01EB1 /* content.js */,
-				C236151A19702C0800A01EB1 /* content_template.html */,
-				C23615181970280D00A01EB1 /* content.css */,
+				C20E3F0F197113DD00AD747F /* content_template.html */,
+				C20E3F10197113DD00AD747F /* content.css */,
+				C20E3F11197113DD00AD747F /* content.js */,
 				C252468A196E5709000A294A /* SNNewsView.h */,
 				C252468B196E5709000A294A /* SNNewsView.m */,
 				C2524682196E5709000A294A /* SNNewsDetailView.h */,
@@ -695,22 +751,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20E3F14197113DD00AD747F /* content.js in Resources */,
 				C2D6569F196D2A7900F24F22 /* contenttoolbar_hd_fav_selected_light@2x.png in Resources */,
 				C2A6C29919691C080006E26E /* Images.xcassets in Resources */,
 				C2D65675196D209F00F24F22 /* contentview_commentback_selected@2x.png in Resources */,
+				C20E3F13197113DD00AD747F /* content.css in Resources */,
 				C2D65691196D2A7900F24F22 /* contenttoolbar_hd_back_light.png in Resources */,
 				C22E95A219606399001B8745 /* README.md in Resources */,
 				C2D65696196D2A7900F24F22 /* contenttoolbar_hd_comment_light.png in Resources */,
 				C2D65676196D209F00F24F22 /* contentview_commentback@2x.png in Resources */,
 				C2D65698196D2A7900F24F22 /* contenttoolbar_hd_comment.png in Resources */,
 				C2D656A7196D2A7900F24F22 /* contenttoolbar_hd_share@2x.png in Resources */,
-				C23615191970280E00A01EB1 /* content.css in Resources */,
 				C2D6569D196D2A7900F24F22 /* contenttoolbar_hd_fav_light@2x.png in Resources */,
 				C2D656A2196D2A7900F24F22 /* contenttoolbar_hd_fav.png in Resources */,
 				C22E957D19605FE8001B8745 /* InfoPlist.strings in Resources */,
-				C236151B19702C0800A01EB1 /* content_template.html in Resources */,
 				C2D6566E196D1C1F00F24F22 /* contenttoolbar_hd_back.png in Resources */,
 				C2D6569B196D2A7900F24F22 /* contenttoolbar_hd_download_light@2x.png in Resources */,
+				C20E3F12197113DD00AD747F /* content_template.html in Resources */,
+				C20E3F04197112E300AD747F /* README.txt in Resources */,
+				C20E3F07197112E300AD747F /* Writing Matchers.txt in Resources */,
 				C2D656AA196D2A7900F24F22 /* contentview_commentbacky.png in Resources */,
 				C2D6569A196D2A7900F24F22 /* contenttoolbar_hd_download_light.png in Resources */,
 				C2D65695196D2A7900F24F22 /* contenttoolbar_hd_close@2x.png in Resources */,
@@ -728,9 +787,11 @@
 				C2D65699196D2A7900F24F22 /* contenttoolbar_hd_comment@2x.png in Resources */,
 				C2D65697196D2A7900F24F22 /* contenttoolbar_hd_comment_light@2x.png in Resources */,
 				C2D65693196D2A7900F24F22 /* contenttoolbar_hd_back@2x.png in Resources */,
+				C20E3F06197112E300AD747F /* Writing Markers.txt in Resources */,
 				C2D6569C196D2A7900F24F22 /* contenttoolbar_hd_fav_light.png in Resources */,
 				C2D65694196D2A7900F24F22 /* contenttoolbar_hd_close.png in Resources */,
 				C2D656A3196D2A7900F24F22 /* contenttoolbar_hd_fav@2x.png in Resources */,
+				C20E3F05197112E300AD747F /* Writing Filters.txt in Resources */,
 				C2D656A1196D2A7900F24F22 /* contenttoolbar_hd_fav_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,28 +820,33 @@
 				C25246A1196E5709000A294A /* FMDatabase.m in Sources */,
 				C2524692196E5709000A294A /* SNNavigationController.m in Sources */,
 				C25246B0196E5709000A294A /* UIProgressView+AFNetworking.m in Sources */,
+				C20E3F00197112E300AD747F /* ICUTemplateMatcher.m in Sources */,
 				C25246BB196E5709000A294A /* SNNewsHeaderView.m in Sources */,
 				C25246AD196E5709000A294A /* UIAlertView+AFNetworking.m in Sources */,
 				C25246AB196E5709000A294A /* AFNetworkActivityIndicatorManager.m in Sources */,
-				C236151D19702C5500A01EB1 /* content.js in Sources */,
+				C20E3F01197112E300AD747F /* MGTemplateEngine.m in Sources */,
+				C20E3F02197112E300AD747F /* MGTemplateStandardFilters.m in Sources */,
 				C2524694196E5709000A294A /* AFHTTPRequestOperationManager.m in Sources */,
 				C25246BE196E5709000A294A /* SNNewsView.m in Sources */,
 				C25246B3196E5709000A294A /* SNNewsDelegate.m in Sources */,
 				C25246AE196E5709000A294A /* UIButton+AFNetworking.m in Sources */,
 				C25246AC196E5709000A294A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				C2524696196E5709000A294A /* AFNetworkReachabilityManager.m in Sources */,
+				C20E3F0E197112FB00AD747F /* NSDictionary_DeepMutableCopy.m in Sources */,
 				C25246B2196E5709000A294A /* UIWebView+AFNetworking.m in Sources */,
 				C25246A5196E5709000A294A /* FMResultSet.m in Sources */,
 				C25246B8196E5709000A294A /* SNNewsMenu.m in Sources */,
 				C252469A196E5709000A294A /* AFURLResponseSerialization.m in Sources */,
 				C2524698196E5709000A294A /* AFURLConnectionOperation.m in Sources */,
 				C2524697196E5709000A294A /* AFSecurityPolicy.m in Sources */,
+				C20E3F03197112E300AD747F /* MGTemplateStandardMarkers.m in Sources */,
 				C2524695196E5709000A294A /* AFHTTPSessionManager.m in Sources */,
 				C25246B4196E5709000A294A /* SNNewsDetailViewController.m in Sources */,
 				C2524699196E5709000A294A /* AFURLRequestSerialization.m in Sources */,
 				C25246AA196E5709000A294A /* YFDataBase.m in Sources */,
 				C252469B196E5709000A294A /* AFURLSessionManager.m in Sources */,
 				C2524625196E55A1000A294A /* main.m in Sources */,
+				C20E3F0D197112FB00AD747F /* NSArray_DeepMutableCopy.m in Sources */,
 				C25246B1196E5709000A294A /* UIRefreshControl+AFNetworking.m in Sources */,
 				C25246B9196E5709000A294A /* SNNewsModel.m in Sources */,
 				C25246BA196E5709000A294A /* SNNewsDetailView.m in Sources */,
