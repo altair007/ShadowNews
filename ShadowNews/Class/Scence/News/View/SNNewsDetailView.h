@@ -69,7 +69,7 @@
 @end
 
 // !!!: 建议,此类可以设置成单例,实现复用.(或者把其设置成控制器的一个属性,持有它!即把控制器设置成一个单例!)
-@interface SNNewsDetailView : UIView
+@interface SNNewsDetailView : UIView <UIWebViewDelegate>
 @property (assign, nonatomic) id<SNNewsDetailViewDelegate> delegate; //!< 行为代理.
 @property (assign, nonatomic) id<SNNewsDetailViewDataSource> dataSource; //!< 数据代理.
 

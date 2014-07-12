@@ -13,10 +13,6 @@
 @interface SNNewsDetailView ()
 @property (retain, nonatomic) SNNewsDetail * SNNDVDetail; //!< 新闻详情.
 @property (retain, nonatomic) UIWebView * SNNDVWebView; //!< 用于显示新闻主体信息.
-
-//???: 这三个属性,应该是不完全需要的!
-//@property (retain, nonatomic) UITextField * SNNDVReplyTF; //!< 跟帖编辑框.
-//@property (retain, nonatomic) UIButton * SNNDVShareButton; //!< 分享按钮.
 @property (retain, nonatomic) UIButton * SNNDVFavorButton; //!< 收藏按钮.
 @end
 @implementation SNNewsDetailView
@@ -96,6 +92,11 @@
     SNRelease(webView);
     self.SNNDVWebView = webView;
     
+    
+    // ???: 暂时先用自身做代理.
+    // !!!: 迭代至此!
+    webView.delegate = self;
+    
     UIView * bottomView = [[UIView alloc] init];
     [bottomView setTranslatesAutoresizingMaskIntoConstraints: NO];
     bottomView.backgroundColor = [UIColor grayColor];
@@ -146,5 +147,23 @@
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[favorButton]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(favorButton)]];
     
     [self addConstraints: constraintsArray];
+}
+
+#pragma mark - 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+{
+    
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
 }
 @end
