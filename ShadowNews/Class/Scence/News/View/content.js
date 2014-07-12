@@ -113,28 +113,6 @@ function sub_topic(element){
 }
 
 function onLoad(){
-    /*
-    //处理推荐栏目
-    var topics_section = document.getElementById('topics_section');
-    if(topics_section){
-        var topicLinks = topics_section.getElementsByTagName('li');
-        
-        for(var i = 0; i < topicLinks.length; i++){
-            topicLinks[i].addEventListener('touchstart', function(event){
-                                            var touch = event.touches[0];
-                                            //如果点击区域在最右边的100，就不走hover
-                                            if(touch.pageX<320-100){
-                                                this.id = "hover";
-                                            }
-                                        }, false);
-            topicLinks[i].addEventListener('touchend', function(){
-                                        for(var j = 0; j < topicLinks.length; j++){
-                                            topicLinks[j].id = ""
-                                        }}, false);
-        }
-    }
-     */
-    
     //相关新闻
     var relative_section = document.getElementById('relative_section');
     if(relative_section){

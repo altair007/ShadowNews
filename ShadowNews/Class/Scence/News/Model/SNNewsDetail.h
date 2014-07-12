@@ -14,66 +14,33 @@
  *   新闻详情.
  */
 @interface SNNewsDetail : NSObject
-@property (copy, nonatomic, readonly) NSString * title; //!< 文章标题.
-@property (copy, nonatomic, readonly) NSString * source; //!< 来源.
-@property (copy, nonatomic, readonly) NSString * publishTime; //!< 发表时间.
-@property (assign, nonatomic, readonly) NSUInteger replyCount; //!< 跟帖数.
-@property (copy, nonatomic, readonly) NSString * sourceUrl; //!< 文章原文地址.
-@property (copy, nonatomic, readonly) NSString * templateType; //!< 模板类型.
-@property (copy, nonatomic, readonly) NSString * body; //!< 新闻主要内容.
-@property (copy, nonatomic, readonly) NSString * docId; //!< 新闻唯一标识符.
+@property (copy, nonatomic, readonly) NSString * docId; //!< 文章唯一标识符.
+@property (assign, nonatomic, readonly) NSUInteger replyCount; //!< 回帖数.
+@property (copy, nonatomic, readonly) NSString * htmlStr; //!< 新闻详情.
 
 /**
  *  便利构造器.
  *
- *  @param docId        新闻唯一标识符.
- *  @param title        文章标题.
- *  @param source       来源.
- *  @param publishTime  发表时间.
- *  @param replyCount   跟帖数.
- *  @param sourceUrl    文章原文地址.
- *  @param templateType 模板类型.
- *  @param body         新闻主要内容.
+ *  @param docId      唯一文章标识符.
+ *  @param replyCount 回帖数.
+ *  @param htmlStr    新闻详情.
  *
  *  @return 实例对象.
  */
 + (instancetype) detailWithDocId: (NSString *) docId
-                           title: (NSString *) title
-                          source: (NSString *) source
-                     publishTime: (NSString *) publishTime
                       replyCount: (NSUInteger) replyCount
-                       sourceUrl: (NSString *) sourceUrl
-                    templateType: (NSString *) templateType
-                            body: (NSString *) body;
+                         htmlStr: (NSString *) htmlStr;
 
 /**
  *  便利初始化.
  *
- *  @param docId        新闻唯一标识符.
- *  @param title        文章标题.
- *  @param source       来源.
- *  @param publishTime  发表时间.
- *  @param replyCount   跟帖数.
- *  @param sourceUrl    文章原文地址.
- *  @param templateType 模板类型.
- *  @param body         新闻主要内容.
+ *  @param docId      唯一文章标识符.
+ *  @param replyCount 回帖数.
+ *  @param htmlStr    新闻详情.
  *
  *  @return 实例对象.
  */
 - (instancetype) initWithDocId: (NSString *) docId
-                         title: (NSString *) title
-                        source: (NSString *) source
-                   publishTime: (NSString *) publishTime
                     replyCount: (NSUInteger) replyCount
-                     sourceUrl: (NSString *) sourceUrl
-                  templateType: (NSString *) templateType
-                          body: (NSString *) body;
-
-/**
- *  将新闻详情信息转换为html格式的字符串.
- *
- *  @return html格式的字符串.
- */
-- (NSString *) htmlStr;
-
+                       htmlStr: (NSString *) htmlStr;
 @end

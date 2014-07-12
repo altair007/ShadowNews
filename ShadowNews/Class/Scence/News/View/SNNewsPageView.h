@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// !!!: 如果能实现这个类的复用,也会非常帅.画面会异常流畅.
 // !!!: 使用 "类簇"模式,设计其他新闻页面.http://www.cocoachina.com/applenews/devnews/2014/0109/7681.html
 /**
  *   新闻视图的单个页面.

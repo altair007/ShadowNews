@@ -603,8 +603,8 @@ but current block was started by \"%@\" marker",
 			// Check to see if there are open blocks left over.
 			NSUInteger openBlocks = [_openBlocksStack count];
 			if (openBlocks > 0) {
-				NSString *errMsg = [NSString stringWithFormat:@"Finished processing template, but %ld %@ left open (%@).", 
-									openBlocks,
+				NSString *errMsg = [NSString stringWithFormat:@"Finished processing template, but %@ %@ left open (%@).",
+									[NSNumber numberWithUnsignedInteger:openBlocks],
 									(openBlocks == 1) ? @"block was" : @"blocks were", 
 									[[_openBlocksStack valueForKeyPath:BLOCK_NAME_KEY] componentsJoinedByString:@", "]];
 				[self reportError:errMsg code:6 continuing:YES];

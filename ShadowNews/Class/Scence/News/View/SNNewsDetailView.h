@@ -10,6 +10,7 @@
 @class SNNewsDetail;
 @class SNNewsDetailView;
 
+// !!!: 如果能实现这个类对像的复用,会非常帅!
 
 // !!!:所有的视图类,都应该提供 reloadData 方法.
 /**

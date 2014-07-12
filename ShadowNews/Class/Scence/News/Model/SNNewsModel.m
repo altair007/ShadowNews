@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
+#import "MGTemplateEngine.h"
+#import "ICUTemplateMatcher.h"
 #import "SNNewsModel.h"
 #import "SNNewsMenu.h"
 #import "AFNetworking.h"
@@ -172,21 +174,49 @@
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
+    
     [manager GET: urlStr parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary * detailNews = [responseObject objectForKey: docId];
-        NSString * title = [detailNews objectForKey: @"title"];
-        NSString * source = [detailNews objectForKey: @"source"];
-        NSString * publishTime = [detailNews objectForKey: @"ptime"];
-        NSUInteger replyCount = [[detailNews objectForKey: @"replyCount"] unsignedIntegerValue];
-        NSString * sourceUrl = [detailNews objectForKey: @"source_url"];
-        NSString * templateType= [detailNews objectForKey: @"template"];
-        NSString * body = [detailNews objectForKey: @"body"];
+        // 用你所选择的匹配器设置模板引擎。
+        MGTemplateEngine *engine = [MGTemplateEngine templateEngine];
+        [engine setMatcher:[ICUTemplateMatcher matcherWithTemplateEngine:engine]];
         
-        success([SNNewsDetail detailWithDocId: docId title: title source: source publishTime: publishTime replyCount: replyCount sourceUrl: sourceUrl templateType: templateType body: body]);
+        // 获取模板地址.
+        NSString *templatePath = [[NSBundle mainBundle] pathForResource:@"content_template" ofType:@"html"];
+        
+        // 去除空结果.
+        NSMutableDictionary * variables = [NSMutableDictionary dictionaryWithCapacity: 42];
+        [(NSDictionary *)[responseObject objectForKey: docId] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if ([obj isKindOfClass:[NSString class]] && [(NSString *)obj isEqualToString: @""]) {
+                return;
+            }
+            [variables setObject: obj forKey: key];
+        }];
+        
+        
+        
+        // ???:有一个技术问题： js文件，能否被正确加载？好像没有被执行.
+        
+        // !!!: 此处应该是从数据库中获取字体。（对应设置页面的"字体设置".
+        [variables setObject: @"'Times New Roman',Georgia,Serif" forKey: @"normalFont"];
+        
+        // !!!: 主题应该是从数据库中获取,对应"日间/夜间"模式的切换.
+        [variables setObject: @"night" forKey: @"theme"];
+        
+        // !!!: 字体大小应该是从数据中获取,可选:font_small font_normal font_large font_largex font_largexx font_largexxx.  对应设置页面的"正文字号".
+        [variables setObject: @"font_normal" forKey: @"fontClass"];
+        
+        // 处理模板,并输出结果.
+        NSString * htmlStr = [engine processTemplateInFileAtPath:templatePath withVariables:variables];
+        
+        NSString * docId = [variables objectForKey: @"docid"];
+        NSUInteger replyCoutn = [[variables objectForKey: @"replyCount"] integerValue];
+        
+        SNNewsDetail * detail = [SNNewsDetail detailWithDocId: docId replyCount: replyCoutn htmlStr: htmlStr];
+        success(detail);
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
     }];
-
+ 
 }
 
 - (instancetype) init
