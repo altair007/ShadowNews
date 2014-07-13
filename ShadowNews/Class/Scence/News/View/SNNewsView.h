@@ -18,6 +18,16 @@
  *  新闻视图布局协议.
  */
 @protocol SNNewsViewDelegate <NSObject>
+
+@required
+/**
+ *  响应点击设置按钮的事件.
+ *
+ *  @param newsView 新闻视图.
+ *  @param button   设置按钮.
+ */
+- (void) newsView: (SNNewsView *) newsView  didClickSettingButtonButtonAction:(UIButton *) button;
+
 @optional
 /**
  *  设置新闻视图页眉的高度.默认42.0.
@@ -39,6 +49,7 @@
  *  @return 返回页眉高度.
  */
 - (CGFloat) heightForNavigationInNewsView: (SNNewsView *) newsView;
+
 
 @optional
 

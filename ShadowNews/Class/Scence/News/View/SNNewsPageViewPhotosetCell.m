@@ -52,6 +52,8 @@
     // !!!:在设置器中,设置值并不总是合适.期待代理传值.
     self.SNNPVPCTitleLabel.text  = news.title;
     self.SNNPVPCReplyCountLable.text = [NSString stringWithFormat: @"%@跟帖",[NSNumber numberWithUnsignedInteger: news.replyCount]];
+    
+    // !!!:有一定几率崩溃.估计是判断条件不对.
     [self.SNNPVPCImageViewLeft setImageWithURL:[NSURL URLWithString: self.news.imgs[0]] placeholderImage:[UIImage imageNamed:@"default.png"]];
     [self.SNNPVPCImageViewMiddle setImageWithURL:[NSURL URLWithString: self.news.imgs[1]] placeholderImage:[UIImage imageNamed:@"default.png"]];
     [self.SNNPVPCImageViewRight setImageWithURL:[NSURL URLWithString: self.news.imgs[2]] placeholderImage:[UIImage imageNamed:@"default.png"]];
@@ -62,6 +64,8 @@
  */
 - (void)SNNPVCSetUpSubviews
 {
+    self.backgroundColor = self.superview.backgroundColor;
+    
     /* 创建视图. */
     UIView * placeHolderViewOfContent = [[UIView alloc] init];
     [placeHolderViewOfContent setTranslatesAutoresizingMaskIntoConstraints: NO];
@@ -77,6 +81,11 @@
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
     titleLabel.font = [UIFont boldSystemFontOfSize: 14.0];
     [placeHolderViewOfContent addSubview: titleLabel];
+    
+    // !!!:这个值,需要根据"日间/夜间"模式,进行调整.
+    // !!!:建议:和"日间/夜间"有关的或者和背景色有关的,统一在layoutSubView里.(好像不太现实,没必要暴露那么多属性.)
+    titleLabel.textColor = [UIColor grayColor];
+    
     self.SNNPVPCTitleLabel = titleLabel;
     SNRelease(titleLabel);
     

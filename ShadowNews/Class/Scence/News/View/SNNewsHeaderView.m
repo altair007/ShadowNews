@@ -44,7 +44,7 @@
     return self;
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
+- (void) didMoveToSuperview
 {
     [self SNNHSetUpSubviews];
 }
@@ -115,15 +115,12 @@
  */
 - (void) SNNHSetUpSubviews
 {
-    // !!!: 页眉视图有一个暗暗的背景色或者背景图.
-    
     /* 创建视图. */
     UIScrollView * scrollView = [[UIScrollView alloc] init];
     scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.bounces = NO;
-    scrollView.backgroundColor = [UIColor whiteColor];
     scrollView.delegate = self;
     
     self.SNNHScrollView = scrollView;
@@ -134,10 +131,13 @@
     segmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
     [segmentedControl addTarget:self action:@selector(SNNHDidClickSegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
-    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor],NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateSelected];
+    
+    // !!!: "日间模式"应该变为另一个颜色.或者根据父视图的颜色,反向调整即可.
+    [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateSelected];
+    
     [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],NSFontAttributeName: [UIFont systemFontOfSize: 16.0]} forState: UIControlStateNormal];
     
-    segmentedControl.tintColor = [UIColor whiteColor];
+    segmentedControl.tintColor = self.superview.backgroundColor;
     
     self.SNNHSegmentedControl = segmentedControl;
     SNRelease(segmentedControl);

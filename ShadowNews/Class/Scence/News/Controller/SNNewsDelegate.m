@@ -131,8 +131,8 @@
         return cell;
     }
 
-    // 如果是图片集,单独处理.
-    if (SNNewsSkipTypePhotoSet == news.skipType) {
+    // 如果是图片集,且照片数为3,单独处理.
+    if (3 == news.imgs.count) {
         SNNewsPageViewPhotosetCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewPhotosetCell" forIndexPath: indexPath];
         cell.news = news;
         return cell;

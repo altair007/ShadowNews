@@ -40,4 +40,12 @@
     
     return self;
 }
+
+- (void)didMoveToSuperview
+{
+    // !!!: 应该把这些逻辑放到初始化或者一个单独的方法里吧?
+    // !!!: 根据模式,动态判断.
+    self.separatorColor = [UIColor blackColor];
+    self.backgroundColor = self.superview.backgroundColor;
+}
 @end

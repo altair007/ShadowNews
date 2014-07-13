@@ -53,6 +53,8 @@
  */
 - (void)SNNPVCSetUpSubviews
 {
+    self.backgroundColor = self.superview.backgroundColor;
+    
     UIImageView * imageView = [[UIImageView alloc] init];
     
     UILabel * titleLabel = [[UILabel alloc] init];

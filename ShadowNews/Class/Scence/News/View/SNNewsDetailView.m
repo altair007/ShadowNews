@@ -68,7 +68,9 @@
     UIView * navigationContentView = [[UIView alloc] init];
     [navigationContentView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [navigationView addSubview: navigationContentView];
-    navigationView.backgroundColor = [UIColor whiteColor];
+    
+    // !!!: 这个颜色,可以根据主题改变.详情页面应该再加个属性.
+    navigationContentView.backgroundColor = [UIColor blackColor];
     SNRelease(navigationContentView);
     
     // !!!:看一下其他按钮样式的效果.

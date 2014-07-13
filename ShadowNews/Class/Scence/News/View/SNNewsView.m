@@ -89,6 +89,9 @@ typedef enum{
         bouds.origin.x = self.frame.size.width;
     }
     self.SNNVViewContainer.bounds = bouds;
+    
+    /* 夜间模式/日间模式. */
+    self.currentPageView.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
 }
 
 // !!!: 这个属性的逻辑,应该移到 currentPageView 的设置器里.
@@ -136,9 +139,40 @@ typedef enum{
         return;
     }
     
+    // !!!: 这个背景色,应该根据主题设置,动态改变.
+    self.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
+    
     /* 使用"约束"进行界面布局. */
+    // !!!:使用自定义导航栏的话,许多属性和代理方法,就不是必须的了.请删除.
     NSNumber *  navHeight = self.SNNVheightOfNavigation; //!< 导航栏高度.
     NSNumber * headerHeight = self.SNNVheightOfHeaderView; //!< 页眉高度.
+    
+    /* 创建视图. */
+    
+    // 自定义导航栏.
+    UIView * navigationView = [[UIView alloc] init];
+    [navigationView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [self addSubview: navigationView];
+    SNRelease(navigationView);
+    
+    UIView * navigationContentView = [[UIView alloc] init];
+    [navigationContentView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [navigationView addSubview: navigationContentView];
+    navigationContentView.backgroundColor = [UIColor blackColor];
+    SNRelease(navigationContentView);
+
+    UILabel * titleLabel = [[UILabel alloc] init];
+    [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
+    titleLabel.text = @"魅影资讯";
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [navigationContentView addSubview: titleLabel];
+    
+    UIButton * settingButton = [UIButton buttonWithType: UIButtonTypeSystem];
+    [settingButton setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [settingButton setTitle: @"设置" forState: UIControlStateNormal];
+    [settingButton addTarget: self.delegate action: @selector(newsView:didClickSettingButtonButtonAction:) forControlEvents: UIControlEventTouchUpInside];
+    [titleLabel addSubview: settingButton];
     
     /* 设置页眉. */
     SNNewsHeaderView * headerView = [[SNNewsHeaderView alloc] init];
@@ -158,19 +192,29 @@ typedef enum{
     viewContainer.bounces = NO;
     viewContainer.translatesAutoresizingMaskIntoConstraints = NO;
     viewContainer.delegate = self;
-    
+    viewContainer.backgroundColor = self.backgroundColor;
     self.SNNVViewContainer = viewContainer;
-    SNRelease(viewContainer);
     [self addSubview: self.SNNVViewContainer];
+    SNRelease(viewContainer);
     
     // 设置视图间的约束.
     NSMutableArray * constraintsArray = [NSMutableArray arrayWithCapacity: 42];
+    
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[navigationView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView)]];
+    
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[navigationContentView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationContentView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-20-[navigationContentView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationContentView)]];
+    
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[titleLabel]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(titleLabel)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"[settingButton(==35)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(settingButton)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[settingButton(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(settingButton)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[titleLabel(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(titleLabel)]];
     
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[headerView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(headerView)]];
     
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[viewContainer]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(viewContainer)]];
     
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-navHeight-[headerView(==headerHeight)][viewContainer]|" options:0 metrics: NSDictionaryOfVariableBindings(navHeight, headerHeight) views: NSDictionaryOfVariableBindings(headerView,viewContainer)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][headerView(==headerHeight)][viewContainer]|" options:0 metrics: NSDictionaryOfVariableBindings(navHeight, headerHeight) views: NSDictionaryOfVariableBindings(navigationView,headerView,viewContainer)]];
 
     [self addConstraints: constraintsArray];
     

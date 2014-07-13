@@ -121,5 +121,8 @@
 }
 
 #pragma mark - SNNewsViewDelegate 协议方法.
-
+- (void) newsView: (SNNewsView *) newsView  didClickSettingButtonButtonAction:(UIButton *) button
+{
+    // TODO:跳转到设置页面.
+}
 @end

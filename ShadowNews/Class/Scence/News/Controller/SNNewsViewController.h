@@ -11,6 +11,7 @@
 #import "SNNewsView.h"
 @class  SNNewsModel;
 
+// !!!:建议主控制器持有一个属性,表示"模式"的属性:夜间模式或者白天.
 /**
  *  新闻页面控制器.
  */

@@ -35,6 +35,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+        // !!!: 下面这个逻辑,应该在didMoveToSuperview中,对应的,应该提供一个代理方法,而不是直接通过news属性传值.
         [self SNNPVCSetUpSubviews];
     }
     return self;
@@ -62,6 +64,8 @@
 - (void)SNNPVCSetUpSubviews
 {
     // ???:需要考虑另一种情况,可能有的视图无图片啊!
+    self.backgroundColor = self.superview.backgroundColor;
+    
     UIImageView * imageView = [[UIImageView alloc] init];
     UILabel * titleLabel = [[UILabel alloc] init];
     UILabel * digestLabel = [[UILabel alloc] init];
@@ -69,6 +73,10 @@
 
     titleLabel.numberOfLines = 1;
     titleLabel.font = [UIFont boldSystemFontOfSize: 14.0];
+    
+    // !!!:这个值,需要根据"日间/夜间"模式,进行调整.
+    // !!!:建议:和"日间/夜间"有关的或者和背景色有关的,统一在layoutSubView里.(好像不太现实,没必要暴露那么多属性.)
+    titleLabel.textColor = [UIColor grayColor];
     
     digestLabel.numberOfLines = 2;
     digestLabel.font = [UIFont systemFontOfSize: 12.0];
@@ -118,4 +126,16 @@
     [self addConstraints: constraints];
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:YES];
+    
+    // !!!:选中时,有一个闪屏BUG.
+    // Configure the view for the selected state
+    if (YES == selected) {
+        // !!!:根据"日间/夜间"模式设置背景色.
+        self.contentView.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
+        self.SNNPVCTitleLabel.textColor = [UIColor blackColor];
+    }
+}
 @end
