@@ -66,7 +66,6 @@
 // !!!: 统一下各cell的布局.
 - (void)SNNPVCSetUpSubviews
 {
-    // ???:需要考虑另一种情况,可能有的视图无图片啊!
     UIImageView * imageView = [[UIImageView alloc] init];
     UILabel * titleLabel = [[UILabel alloc] init];
     UILabel * digestLabel = [[UILabel alloc] init];

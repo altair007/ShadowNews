@@ -10,6 +10,7 @@
 @class SNNewsMenu;
 @class YFDataBase;
 
+// !!!: 感觉这个类的行为好特殊,一大推类方法,闹哪样?!
 // !!!: AFNetworking好像可以自动缓存请求的信息,包括图片.这样的话,如何清除缓存?
 /**
  *  获取数据成功时,执行此 block.
@@ -68,5 +69,14 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
  *  @return 应用程序公共的数据库实例对象.
  */
 + (YFDataBase *) db;
+
+/**
+ *  获取本地存储的某一新闻板块的全部新闻.
+ *
+ *  @param title 新闻板块名称.
+ *
+ *  @return 存储新闻对象的数组.
+ */
++ (NSArray *) localNewsForTitle: (NSString *) title;
 
 @end

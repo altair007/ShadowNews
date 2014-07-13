@@ -659,12 +659,12 @@
 				C2524687196E5709000A294A /* SNNewsPageView.m */,
 				C2524688196E5709000A294A /* SNNewsPageViewCell.h */,
 				C2524689196E5709000A294A /* SNNewsPageViewCell.m */,
+				C2406CCB19729A1300FA729D /* SNNewsPageViewTextCell.h */,
+				C2406CCC19729A1300FA729D /* SNNewsPageViewTextCell.m */,
 				C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */,
 				C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */,
 				C200096B196F9DEC0023200F /* SNNewsPageViewPhotosetCell.h */,
 				C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */,
-				C2406CCB19729A1300FA729D /* SNNewsPageViewTextCell.h */,
-				C2406CCC19729A1300FA729D /* SNNewsPageViewTextCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

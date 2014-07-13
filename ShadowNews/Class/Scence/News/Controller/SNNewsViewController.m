@@ -106,7 +106,7 @@
 {
     SNNewsPageView * pageView = [SNNewsPageView pageWithTitle:title preLoad: preLoad];
     pageView.preLoad = preLoad;
-    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithCell: pageView];
+    SNNewsDelegate * delegate = [SNNewsDelegate delegateWithPageView: pageView];
     pageView.delegate = delegate;
     pageView.dataSource = delegate;
     

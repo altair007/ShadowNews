@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SNNews;
 
-// !!!: 迭代至此.
 /**
  *  纯文本单元格.
  */
 @interface SNNewsPageViewTextCell : UITableViewCell
-
+@property(nonatomic,retain) SNNews * news; //!< 单条概要新闻.
 @end

@@ -15,15 +15,17 @@
 #import "SNNewsDetailViewController.h"
 #import "SNNewsPageViewBigImageCell.h"
 #import "SNNewsPageViewPhotosetCell.h"
+#import "SNNewsPageViewTextCell.h"
+
 @interface SNNewsDelegate ()
 @property (retain, nonatomic) SNNewsPageView * SNNDPageView; //!< 新闻视图页面.
 @property (retain, nonatomic) SNNewsModel * SNNDModel; //!< 新闻视图数据模型.
 @property (retain, nonatomic) NSArray * SNNDNewsArray; //!< 存储新闻的数组.
 @end
 @implementation SNNewsDelegate
-+ (instancetype) delegateWithCell: (SNNewsPageView *) cell
++ (instancetype) delegateWithPageView: (SNNewsPageView *) pageView
 {
-    SNNewsDelegate * delegate = [[[self class] alloc] initWithPageView: cell];
+    SNNewsDelegate * delegate = [[[self class] alloc] initWithPageView: pageView];
     SNAutorelease(delegate);
     return delegate;
 }
@@ -32,6 +34,8 @@
 {
     
     [self removeObserver: self forKeyPath:@"SNNDNewsArray" context: NULL];
+    
+    // ???: 真的有必要监测?
     [self.SNNDPageView removeObserver: self forKeyPath:@"preLoad" context: NULL];
     
     self.SNNDPageView = nil;
@@ -49,6 +53,7 @@
         [pageView registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
         [pageView registerClass:[SNNewsPageViewBigImageCell class] forCellReuseIdentifier: @"SNNewsPageViewBigImageCell"];
         [pageView registerClass: [SNNewsPageViewPhotosetCell class] forCellReuseIdentifier: @"SNNewsPageViewPhotosetCell"];
+        [pageView registerClass: [SNNewsPageViewTextCell class] forCellReuseIdentifier: @"SNNewsPageViewTextCell"];
         
         // ???:真的有必要检测自身的SNNDNewsArray属性?
         [self addObserver: self forKeyPath:@"SNNDNewsArray" options:0 context:NULL];
@@ -64,6 +69,9 @@
         // ???:应该根据是否是"预加载",采用不同的获取数据的策略.
         [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
             self.SNNDNewsArray = newsArray;
+            // !!!!: 把数据存到数据库.
+            // TODO: 迭代至此.
+            
         } fail:^(NSError *error) {
             if (YES != self.SNNDPageView.preLoad) {
                 // ???:优化方向:网易的"弹窗"会自动消失哦!
@@ -78,20 +86,30 @@
     return self;
 }
 
-
-// ???:簇语法,是怎么做到的?超类,怎么可以创建并返回子类对象?这个思路,将有利于实现,cell的自定义与使用.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     // !!!: 备用!实现数据库相关操作.
     if (self.SNNDPageView == object &&
         [keyPath isEqualToString: @"preLoad"]) {
-        
+        return;
     }
     
     // ???:总感觉,这个对代理自身的观察者,有些鸡肋.
     [self.SNNDPageView reloadData];
 }
 
+- (NSArray *)SNNDNewsArray
+{
+    if (nil == _SNNDNewsArray) { // 从数据库获取最新数据.
+        // ???:暂时不考虑,上拉加载,下拉刷新的情况.
+        // !!!:一个思路:给代理添加一个值,用它来确定请求多少条数据.暂时只获取20条,且数据库中数据暂时不清空.或者此处持有SNNewsArray.其他处可以修改它的值,检测某个量.
+        // !!!: 一个建议: 数据库中只保留 20 条数据.
+        // !!!: 一个简单的策略: 每次都从数据库中完全读取数据,让它们去关心数据库容量和优化的问题吧.(不过,逻辑上有些混乱.).
+       self.SNNDNewsArray = [SNNewsModel localNewsForTitle: self.SNNDPageView.title];
+    }
+    
+    return _SNNDNewsArray;
+}
 #pragma mark - UITableViewDelegate协议方法.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -126,7 +144,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // !!!: 视图封装的很失败!其实只需要代理返回一个"新闻对象"就可以了.即使是代理,也应该最小化暴漏信息.
-    
+ 
+    // !!!: 优化一下.逻辑组合.本质上只是cell的"标识符"不同而已.
     SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
     
     // 如果第一条新闻有图片,则用大图风格单元格,单独显示.
@@ -143,12 +162,17 @@
         return cell;
     }
     
-    // !!!:优化方向:区分图片新闻与普通新闻cell.
+    if (0 == news.imgs.count) { // 纯文本新闻.
+        // !!!: 封装时,可以借助此方法NSStringFromClass,让cell自己产生"标识符".
+        SNNewsPageViewTextCell * cell = [tableView dequeueReusableCellWithIdentifier: NSStringFromClass([SNNewsPageViewTextCell class]) forIndexPath: indexPath];
+        cell.news = news;
+        return cell;
+    }
+    
+    
     SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SNNewsPageViewCell" forIndexPath: indexPath];
     
     cell.news = news;
-
-    // !!!: 迭代至此:  还剩首页网络图集.
     
     return cell;
 }

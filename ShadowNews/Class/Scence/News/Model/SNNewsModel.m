@@ -32,6 +32,7 @@
 + (YFDataBase *)db
 {
     // !!!:一个更优雅的实现策略: 把这个类制成单例,把db作为此单例的一个属性.
+    // !!!: 如果静态分析报警,可以把它设为类静态变量,然后在dealloc中假释放一次.这样就需要把此类变为单例或者重写它的realse等方法了.
     static YFDataBase * db = nil; //!< 唯一数据库实例对象.
     if (nil == db) { // 仅在第一次使用时创建并初始化数据库.
         /* 创建并打开数据库. */
@@ -84,7 +85,11 @@
             [db insert:@"SNTOPIC" batch: topicData];
         }
         
-
+        /* 创建存储新闻信息的表. */
+        if (0 == [db countAllResults:@"SNNEWS"]) {
+            NSString * newsSql = @"CREATE TABLE IF NOT EXISTS SNNEWS (IMGS TEXT DEFAULT NULL, TITLE TEXT,DIGEST TEXT DEFAULT NULL,REPLY_COUNT integer,DOC_ID TEXT  DEFAULT NULL Primary Key,SKIP_TYPE integer,PHOTOSET_ID TEXT DEFAULT NULL)";
+            [db executeUpdate: newsSql];
+        }
         
         // 关闭数据库连接.
         [db close];
@@ -125,10 +130,6 @@
         NSArray * newsOriginalArray = [responseObject objectForKey: secret];
         NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
         [newsOriginalArray enumerateObjectsUsingBlock:^(NSDictionary * newsOriginal, NSUInteger idx, BOOL *stop) {
-        
-            // !!!: 加个逻辑: 如果第一个位置没有图片,则继续遍历,把有图片的放到第一位置.
-            
-            
             NSMutableArray * imgs = [NSMutableArray arrayWithCapacity: 42];
             NSString * imgSrc = [newsOriginal objectForKey: @"imgsrc"];
             NSArray * imgExtra = [newsOriginal objectForKey:@"imgextra"];
@@ -163,6 +164,20 @@
             
             [newsArray addObject: news];
         }];
+        
+        
+        // 尽量保证第一条数据是有图新闻.
+        if (0 == [newsArray[0] imgs].count) {
+            [newsArray enumerateObjectsUsingBlock:^(SNNews * news, NSUInteger idx, BOOL *stop) {
+                if (0 != news.imgs.count) {
+                    [newsArray exchangeObjectAtIndex: 0 withObjectAtIndex: idx];
+                    * stop = YES;
+                }
+            }];
+        }
+        
+        // !!!: 迭代至此:根据是否是预加载,使用不同的加载数据的方式.
+        
         success(newsArray);
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
@@ -229,4 +244,46 @@
     return self;
 }
 
++ (NSArray *) localNewsForTitle: (NSString *) title
+{
+    NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
+    
+    YFDataBase * db =  [[self class] db];
+    [db open];
+    
+    YFResultSet * result = [db getWhere: @"SNNEWS" where: @{@"TOPIC": title}];
+    NSLog(@"%@", db.lastErrorMessage);
+    while ([result next]) {
+        NSArray * imgsTemp = [[result stringForColumn: @"IMGS"] componentsSeparatedByString: @","];
+        NSMutableArray * imgs = [NSMutableArray arrayWithCapacity: 42];
+        [imgsTemp enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
+            if (YES != [obj isEqualToString: @""]) {
+                [imgs addObject: obj];
+            }
+        }];
+        
+        if (0 == imgs.count) {
+            imgs = nil;
+        }
+        
+        NSString * title = [result stringForColumn: @"TITLE"];
+        NSString * digest = [result stringForColumn: @"DIGEST"];
+        NSUInteger replyCount = [result unsignedLongLongIntForColumn: @"REPLY_COUNT"];
+        NSString * docId = [result stringForColumn: @"DOC_ID"];
+        NSString * photosetId = [result stringForColumn: @"PHOTOSET_ID"];
+        
+        SNNews * news = nil;
+        if (nil != photosetId) {
+            news = [SNNews newsWithPhotosetId: photosetId tittle:title digest: digest replyCount: replyCount imgs: imgs];
+        }
+        
+        if (nil == news) {
+            news = [SNNews newsWithDocId: docId tittle: title digest: digest replyCount: replyCount imgs: imgs];
+        }
+        
+        [newsArray addObject: news];
+    }
+    [db close];
+    return newsArray;
+}
 @end

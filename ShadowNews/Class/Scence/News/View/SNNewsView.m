@@ -84,10 +84,7 @@ typedef enum{
     /* 正确布局视图容器上视图的相对位置. */
     CGRect bouds = self.SNNVViewContainer.bounds;
     bouds.origin.x = 0; // !!!:注意到一个现象: 当不移除子视图时,轮转视图的原偏移值会被保留.或许可以用来简化轮转视图的编写.
-    if (SNNVViewContanierContentInsertTypeMiddle == self.SNNVInsertType ||
-        SNNVViewContanierContentInsertTypeTail == self.SNNVInsertType) {
-        bouds.origin.x = self.frame.size.width;
-    }
+    bouds.origin.x = self.frame.size.width;
     self.SNNVViewContainer.bounds = bouds;
 }
 
@@ -114,7 +111,10 @@ typedef enum{
     NSMutableArray * keysToRemove = [NSMutableArray arrayWithCapacity: 42];
     
     [self.SNNVLoadedViews enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (labs([self.SNNVMenu.itemsAdded indexOfObject:key] - index) > 1) {
+        // 获取正在被遍历的视图的位置.
+        NSUInteger indexTemp = [self.SNNVMenu.itemsAdded indexOfObject: key];
+        
+        if (labs(indexTemp - index) > 1 && indexTemp + index != self.SNNVMenu.itemsAdded.count -1) { // 说明不是临近视图位置.这里提供了对轮转的支持.
             [keysToRemove addObject: key];
         }
     }];
@@ -304,137 +304,7 @@ typedef enum{
     NSMutableArray * constraints = [NSMutableArray arrayWithCapacity: 42];
     
     // !!!: 总感觉:根据title获取视图的逻辑,可以封装下,用的太频繁了.
-    
-    /* 考虑一种特殊情况:整个轮转视图,只有一个页面.*/
-    if (1 == self.SNNVMenu.itemsAdded.count) {
-        NSString * title = self.SNNVMenu.itemsAdded[0];
-        
-        self.SNNVInsertType = SNNVViewContanierContentInsertTypeHead;
-        
-        // 获取视图.
-        SNNewsPageView * view = [self.SNNVLoadedViews objectForKey: title];
-        view.preLoad = YES;
-        if (nil == view) {
-            view = [self.dataSource newsView: self viewForTitle: title preLoad: NO];
-            [self.SNNVLoadedViews setObject: view forKey: title];
-            
-            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
-            [self.SNNVDelegates setObject: view.delegate forKey: title];
-            
-            view.translatesAutoresizingMaskIntoConstraints = NO;
-        }
-        
-        // ???:这样写,似乎和约束语法,存在潜在约束,或许需要精细化操作.
-        [self.SNNVViewContainer addSubview: view];
-        
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[view(==widthOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(view)]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[view(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(view)]];
-        
-        [self.SNNVViewContainer addConstraints: constraints];
-        
-        // 更新当前视图.
-        self.currentPageView = view;
-        
-        return;
-    }
-    
-    /* 考虑位置为0的情况,此时仅需要设置位置0和1的视图. */
-    if (0 == index) {
-        self.SNNVInsertType = SNNVViewContanierContentInsertTypeHead;
-        
-        // 优先从已经存储的视图中获取.
-        NSString * titleZero = self.SNNVMenu.itemsAdded[0];
-        SNNewsPageView * viewZero = [self.SNNVLoadedViews objectForKey: titleZero];
-        viewZero.preLoad = YES;
-        if (nil == viewZero) {
-            viewZero = [self.dataSource newsView: self viewForTitle: titleZero preLoad: NO];
-            [self.SNNVLoadedViews setObject: viewZero forKey: titleZero];
-            
-            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
-            [self.SNNVDelegates setObject: viewZero.delegate forKey: titleZero];
-            
-            viewZero.translatesAutoresizingMaskIntoConstraints = NO;
-        }
-        
-        // !!!: 类似的添加子视图的操作,应该在第一次添加时,添加一次就可以了把?如果"约束"操作,足够细致的话?
-        [self.SNNVViewContainer addSubview: viewZero];
-        
-        NSString * titleOne = self.SNNVMenu.itemsAdded[1];
-        SNNewsPageView * viewOne = [self.SNNVLoadedViews objectForKey: titleOne];
-        viewOne.preLoad = YES;
-        if (nil == viewOne) {
-            viewOne = [self.dataSource newsView: self viewForTitle: titleOne preLoad: NO];
-            [self.SNNVLoadedViews setObject: viewOne forKey: titleOne];
-            
-            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
-            [self.SNNVDelegates setObject: viewOne.delegate forKey: titleOne];
-            viewOne.translatesAutoresizingMaskIntoConstraints = NO;
-        }
-        
-        [self.SNNVViewContainer addSubview: viewOne];
-        
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[viewZero(==widthOfViewContainer)][viewOne(==viewZero)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(viewZero, viewOne)]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewZero(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewZero)]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewOne(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewOne)]];
-        
-        [self.SNNVViewContainer addConstraints: constraints];
-        
-        // 更新当前视图.
-        self.currentPageView = viewZero;
-        
-        return;
-    }
-    
-    /* 考虑视图为最后一个视图的情况:此时仅需要设置最后两张图片. */
-    if (index == self.SNNVMenu.itemsAdded.count - 1) {
-        self.SNNVInsertType = SNNVViewContanierContentInsertTypeTail;
-        
-        // 优先从已经存储的视图中获取视图.
-        NSString * titleTrail = self.SNNVMenu.itemsAdded[index];
-        SNNewsPageView * viewTrail = [self.SNNVLoadedViews objectForKey: titleTrail];
-        viewTrail.preLoad = YES;
-        if (nil == viewTrail) {
-            viewTrail = [self.dataSource newsView: self viewForTitle: titleTrail preLoad: NO];
-            [self.SNNVLoadedViews setObject: viewTrail forKey: titleTrail];
-            
-            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
-            [self.SNNVDelegates setObject: viewTrail.delegate forKey: titleTrail];
-            
-            viewTrail.translatesAutoresizingMaskIntoConstraints = NO;
-        }
-        
-        [self.SNNVViewContainer addSubview: viewTrail];
-        
-        
-        
-        NSString * titleLast = self.SNNVMenu.itemsAdded[index - 1];
-        SNNewsPageView * viewLast = [self.SNNVLoadedViews objectForKey: titleLast];
-        viewLast.preLoad = YES;
-        if (nil == viewLast) {
-            viewLast = [self.dataSource newsView: self viewForTitle: titleLast preLoad: NO];
-            [self.SNNVLoadedViews setObject: viewLast forKey: titleLast];
-            
-            // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
-            [self.SNNVDelegates setObject: viewLast.delegate forKey: titleLast];
-            viewLast.translatesAutoresizingMaskIntoConstraints = NO;
-        }
-        
-        [self.SNNVViewContainer addSubview: viewLast];
-        
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[viewLast(==widthOfViewContainer)][viewTrail(==viewLast)]|" options:0 metrics:NSDictionaryOfVariableBindings(widthOfViewContainer) views: NSDictionaryOfVariableBindings(viewLast, viewTrail)]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewLast(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewLast)]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[viewTrail(==heightOfViewContainer)]|" options:0 metrics:NSDictionaryOfVariableBindings(heightOfViewContainer) views: NSDictionaryOfVariableBindings(viewTrail)]];
-        
-        [self.SNNVViewContainer addConstraints: constraints];
-        [self.SNNVViewContainer setNeedsUpdateConstraints];
-        
-        // 更新当前视图.
-        self.currentPageView = viewTrail;
-        
-        return;
-    }
-    
-    
+
     /* 下面就是最平常的情况:需要设置自己及其左右邻近位置的视图. */
     
     self.SNNVInsertType = SNNVViewContanierContentInsertTypeMiddle;
@@ -456,7 +326,9 @@ typedef enum{
     [self.SNNVViewContainer addSubview: viewMiddle];
     
     // 左侧视图.
-    NSString * titleLeft = self.SNNVMenu.itemsAdded[index - 1];
+    NSUInteger indexLeft = (index - 1 + self.SNNVMenu.itemsAdded.count) % self.SNNVMenu.itemsAdded.count;
+    
+    NSString * titleLeft = self.SNNVMenu.itemsAdded[indexLeft];
     SNNewsPageView * viewLeft = [self.SNNVLoadedViews objectForKey: titleLeft];
     viewLeft.preLoad = YES;
     if (nil == viewLeft) {
@@ -471,7 +343,8 @@ typedef enum{
     [self.SNNVViewContainer addSubview: viewLeft];
     
     // 右侧视图.
-    NSString * titleRight = self.SNNVMenu.itemsAdded[index + 1];
+    NSUInteger indexRight = (index + 1) % self.SNNVMenu.itemsAdded.count;
+    NSString * titleRight = self.SNNVMenu.itemsAdded[indexRight];
     SNNewsPageView * viewRight = [self.SNNVLoadedViews objectForKey: titleRight];
     viewRight.preLoad = YES;
     if (nil == viewRight) {
@@ -513,25 +386,11 @@ typedef enum{
     NSUInteger index = [self.SNNVMenu.itemsAdded indexOfObject: self.currentPageView.title];
     
     /* 更新视图 */
-    if (SNNVViewContanierContentInsertTypeHead == self.SNNVInsertType &&
-        self.frame.size.width == scrollView.contentOffset.x) {
-        [self SNNVShowCellAtIndex: index + 1];
-        return;
+    if (0 == scrollView.contentOffset.x) {
+        [self SNNVShowCellAtIndex: (index - 1 + self.SNNVMenu.itemsAdded.count) % self.SNNVMenu.itemsAdded.count];
     }
-    
-    if (SNNVViewContanierContentInsertTypeTail == self.SNNVInsertType &&
-        0 == scrollView.contentOffset.x) {
-        [self SNNVShowCellAtIndex: index - 1];
-        return;
-    }
-    
-    if (SNNVViewContanierContentInsertTypeMiddle == self.SNNVInsertType) {
-        if (0 == scrollView.contentOffset.x) {
-            [self SNNVShowCellAtIndex: index - 1];
-        }
-        if (2 * self.frame.size.width == scrollView.contentOffset.x) {
-            [self SNNVShowCellAtIndex: index+ 1];
-        }
+    if (2 * self.frame.size.width == scrollView.contentOffset.x) {
+        [self SNNVShowCellAtIndex: (index + 1) % self.SNNVMenu.itemsAdded.count];
     }
 }
 
