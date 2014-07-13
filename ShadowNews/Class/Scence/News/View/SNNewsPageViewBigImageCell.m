@@ -6,16 +6,16 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-#import "SNNewsPageViewImageCell.h"
+#import "SNNewsPageViewBigImageCell.h"
 #import "SNNews.h"
 #import "UIKit+AFNetworking.h"
 
-@interface SNNewsPageViewImageCell ()
+@interface SNNewsPageViewBigImageCell ()
 @property (retain, nonatomic) UIImageView * SNNNPICImageView; //!< 图片视图.
 @property (retain, nonatomic) UILabel * SNNPVICTitleLabel; //!< 标题文本框.
 @end
 
-@implementation SNNewsPageViewImageCell
+@implementation SNNewsPageViewBigImageCell
 - (void)dealloc
 {
     self.SNNNPICImageView = nil;
@@ -53,7 +53,7 @@
  */
 - (void)SNNPVCSetUpSubviews
 {
-    self.backgroundColor = self.superview.backgroundColor;
+//    self.backgroundColor = self.superview.backgroundColor;
     
     UIImageView * imageView = [[UIImageView alloc] init];
     

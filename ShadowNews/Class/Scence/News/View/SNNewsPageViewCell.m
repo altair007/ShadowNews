@@ -48,7 +48,6 @@
     [_news release];
     _news = news;
     
-    [self.SNNPVCImageView setImageWithURL:[NSURL URLWithString: self.news.imgs[0]] placeholderImage:[UIImage imageNamed:@"default.png"] ];
     self.SNNPVCTitleLabel.text = news.title;
 
     NSString * digest = news.digest;
@@ -58,14 +57,16 @@
     self.SNNPVCDigestLabel.text = digest;
     
     self.SNNPVCReplyCoutLabel.text = [NSString stringWithFormat: @"%@跟帖", [NSNumber numberWithUnsignedInteger: news.replyCount]];
+    
+    [self.SNNPVCImageView setImageWithURL:[NSURL URLWithString: self.news.imgs[0]] placeholderImage:[UIImage imageNamed:@"default.png"] ];
+    
+    
 }
 
 // !!!: 统一下各cell的布局.
 - (void)SNNPVCSetUpSubviews
 {
     // ???:需要考虑另一种情况,可能有的视图无图片啊!
-    self.backgroundColor = self.superview.backgroundColor;
-    
     UIImageView * imageView = [[UIImageView alloc] init];
     UILabel * titleLabel = [[UILabel alloc] init];
     UILabel * digestLabel = [[UILabel alloc] init];
@@ -76,7 +77,7 @@
     
     // !!!:这个值,需要根据"日间/夜间"模式,进行调整.
     // !!!:建议:和"日间/夜间"有关的或者和背景色有关的,统一在layoutSubView里.(好像不太现实,没必要暴露那么多属性.)
-    titleLabel.textColor = [UIColor grayColor];
+//    titleLabel.textColor = [UIColor grayColor];
     
     digestLabel.numberOfLines = 2;
     digestLabel.font = [UIFont systemFontOfSize: 12.0];
@@ -128,14 +129,15 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:YES];
-    
     // !!!:选中时,有一个闪屏BUG.
+    [super setSelected: selected animated: animated];
     // Configure the view for the selected state
-    if (YES == selected) {
-        // !!!:根据"日间/夜间"模式设置背景色.
-        self.contentView.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
-        self.SNNPVCTitleLabel.textColor = [UIColor blackColor];
-    }
+    
+//    // !!!: 夜间模式的另一中实现思路: 加图层罩.
+//    if (YES == selected) {
+//        // !!!:根据"日间/夜间"模式设置背景色.
+//        self.contentView.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
+//        self.SNNPVCTitleLabel.textColor = [UIColor blackColor];
+//    }
 }
 @end

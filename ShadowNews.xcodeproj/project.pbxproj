@@ -31,6 +31,7 @@
 		C22E959619605FE8001B8745 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C22E959419605FE8001B8745 /* InfoPlist.strings */; };
 		C22E959819605FE8001B8745 /* ShadowNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E959719605FE8001B8745 /* ShadowNewsTests.m */; };
 		C22E95A219606399001B8745 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C22E95A119606399001B8745 /* README.md */; };
+		C2406CCD19729A1300FA729D /* SNNewsPageViewTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2406CCC19729A1300FA729D /* SNNewsPageViewTextCell.m */; };
 		C2524625196E55A1000A294A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E957E19605FE8001B8745 /* main.m */; };
 		C2524691196E5709000A294A /* SNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524629196E5709000A294A /* SNAppDelegate.m */; };
 		C2524692196E5709000A294A /* SNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C252462C196E5709000A294A /* SNNavigationController.m */; };
@@ -106,7 +107,7 @@
 		C2D656A8196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D6568E196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light.png */; };
 		C2D656A9196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D6568F196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png */; };
 		C2D656AA196D2A7900F24F22 /* contentview_commentbacky.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */; };
-		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */; };
+		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,8 @@
 		C22E959519605FE8001B8745 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C22E959719605FE8001B8745 /* ShadowNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowNewsTests.m; sourceTree = "<group>"; };
 		C22E95A119606399001B8745 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		C2406CCB19729A1300FA729D /* SNNewsPageViewTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewTextCell.h; sourceTree = "<group>"; };
+		C2406CCC19729A1300FA729D /* SNNewsPageViewTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewTextCell.m; sourceTree = "<group>"; };
 		C2524628196E5709000A294A /* SNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNAppDelegate.h; sourceTree = "<group>"; };
 		C2524629196E5709000A294A /* SNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNAppDelegate.m; sourceTree = "<group>"; };
 		C252462B196E5709000A294A /* SNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationController.h; sourceTree = "<group>"; };
@@ -283,8 +286,8 @@
 		C2D6568E196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contenttoolbar_hd_thumbnail_light.png; sourceTree = "<group>"; };
 		C2D6568F196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contenttoolbar_hd_thumbnail_light@2x.png"; sourceTree = "<group>"; };
 		C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentview_commentbacky.png; sourceTree = "<group>"; };
-		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewImageCell.h; sourceTree = "<group>"; };
-		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewImageCell.m; sourceTree = "<group>"; };
+		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewBigImageCell.h; sourceTree = "<group>"; };
+		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewBigImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,10 +659,12 @@
 				C2524687196E5709000A294A /* SNNewsPageView.m */,
 				C2524688196E5709000A294A /* SNNewsPageViewCell.h */,
 				C2524689196E5709000A294A /* SNNewsPageViewCell.m */,
-				C2EE69CB196ED5880071F9E3 /* SNNewsPageViewImageCell.h */,
-				C2EE69CC196ED5880071F9E3 /* SNNewsPageViewImageCell.m */,
+				C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */,
+				C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */,
 				C200096B196F9DEC0023200F /* SNNewsPageViewPhotosetCell.h */,
 				C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */,
+				C2406CCB19729A1300FA729D /* SNNewsPageViewTextCell.h */,
+				C2406CCC19729A1300FA729D /* SNNewsPageViewTextCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,8 +856,9 @@
 				C25246B9196E5709000A294A /* SNNewsModel.m in Sources */,
 				C25246BA196E5709000A294A /* SNNewsDetailView.m in Sources */,
 				C25246B7196E5709000A294A /* SNNewsDetail.m in Sources */,
-				C2EE69CD196ED5880071F9E3 /* SNNewsPageViewImageCell.m in Sources */,
+				C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */,
 				C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */,
+				C2406CCD19729A1300FA729D /* SNNewsPageViewTextCell.m in Sources */,
 				C25246AF196E5709000A294A /* UIImageView+AFNetworking.m in Sources */,
 				C25246C0196E5709000A294A /* SNMenuViewController.m in Sources */,
 				C25246A3196E5709000A294A /* FMDatabasePool.m in Sources */,

@@ -13,7 +13,7 @@
 #import "SNNewsPageViewCell.h"
 #import "SNNavigationController.h"
 #import "SNNewsDetailViewController.h"
-#import "SNNewsPageViewImageCell.h"
+#import "SNNewsPageViewBigImageCell.h"
 #import "SNNewsPageViewPhotosetCell.h"
 @interface SNNewsDelegate ()
 @property (retain, nonatomic) SNNewsPageView * SNNDPageView; //!< 新闻视图页面.
@@ -47,7 +47,7 @@
     if (self = [super init]) {
         self.SNNDPageView = pageView;
         [pageView registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
-        [pageView registerClass:[SNNewsPageViewImageCell class] forCellReuseIdentifier: @"SNNewsPageViewImageCell"];
+        [pageView registerClass:[SNNewsPageViewBigImageCell class] forCellReuseIdentifier: @"SNNewsPageViewBigImageCell"];
         [pageView registerClass: [SNNewsPageViewPhotosetCell class] forCellReuseIdentifier: @"SNNewsPageViewPhotosetCell"];
         
         // ???:真的有必要检测自身的SNNDNewsArray属性?
@@ -95,14 +95,19 @@
 #pragma mark - UITableViewDelegate协议方法.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
+    
     if (0 == indexPath.row) {
-        SNNews * news = [self.SNNDNewsArray objectAtIndex: indexPath.row];
         if (nil != news.imgs) {
-            return 180;
+            return 156;
         }
     }
     
-    return 80;
+    if (3 == news.imgs.count) { // 图集,高度适当变高.
+        return 78+20;
+    }
+    
+    return 78;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +131,7 @@
     
     // 如果第一条新闻有图片,则用大图风格单元格,单独显示.
     if (0 == indexPath.row && nil != news.imgs) {
-        SNNewsPageViewImageCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewImageCell" forIndexPath: indexPath];
+        SNNewsPageViewBigImageCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNewsPageViewBigImageCell" forIndexPath: indexPath];
         cell.news = news;
         return cell;
     }

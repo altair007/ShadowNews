@@ -12,6 +12,6 @@
 /**
  *  页面大图风格单元格,常用来显示第一条新闻.
  */
-@interface SNNewsPageViewImageCell : UITableViewCell
+@interface SNNewsPageViewBigImageCell : UITableViewCell
 @property(nonatomic,retain) SNNews * news; //!< 单条新闻.
 @end

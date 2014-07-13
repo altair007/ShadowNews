@@ -89,9 +89,6 @@ typedef enum{
         bouds.origin.x = self.frame.size.width;
     }
     self.SNNVViewContainer.bounds = bouds;
-    
-    /* 夜间模式/日间模式. */
-    self.currentPageView.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
 }
 
 // !!!: 这个属性的逻辑,应该移到 currentPageView 的设置器里.
@@ -138,10 +135,6 @@ typedef enum{
     if (YES == self.SNNVSubviewsSetUp) { // 视图已经初始化,则直接返回.
         return;
     }
-    
-    // !!!: 这个背景色,应该根据主题设置,动态改变.
-    self.backgroundColor = [UIColor colorWithRed: 0x1F/255.0 green: 0x20/255.0 blue: 0x23/255.0 alpha:1.0];
-    
     /* 使用"约束"进行界面布局. */
     // !!!:使用自定义导航栏的话,许多属性和代理方法,就不是必须的了.请删除.
     NSNumber *  navHeight = self.SNNVheightOfNavigation; //!< 导航栏高度.
@@ -164,6 +157,7 @@ typedef enum{
     UILabel * titleLabel = [[UILabel alloc] init];
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints: NO];
     titleLabel.text = @"魅影资讯";
+    titleLabel.font = [UIFont systemFontOfSize: 20.0];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [navigationContentView addSubview: titleLabel];
@@ -172,6 +166,8 @@ typedef enum{
     [settingButton setTranslatesAutoresizingMaskIntoConstraints: NO];
     [settingButton setTitle: @"设置" forState: UIControlStateNormal];
     [settingButton addTarget: self.delegate action: @selector(newsView:didClickSettingButtonButtonAction:) forControlEvents: UIControlEventTouchUpInside];
+    settingButton.titleLabel.textColor = [UIColor whiteColor];
+    [settingButton setTintColor:[UIColor whiteColor]];
     [titleLabel addSubview: settingButton];
     
     /* 设置页眉. */
@@ -197,6 +193,16 @@ typedef enum{
     [self addSubview: self.SNNVViewContainer];
     SNRelease(viewContainer);
     
+    
+    // !!!: 视图遮罩层,用于实现夜间模式/日间模式的切换.
+    UIView * maskView = [[UIView alloc] init];
+    [maskView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    maskView.backgroundColor = [UIColor blackColor]; //???:用黑色,合适吗?
+    maskView.alpha = 0.0;
+    maskView.userInteractionEnabled = NO;
+    [self insertSubview: maskView atIndex: self.subviews.count];
+    SNRelease(maskView);
+    
     // 设置视图间的约束.
     NSMutableArray * constraintsArray = [NSMutableArray arrayWithCapacity: 42];
     
@@ -216,6 +222,9 @@ typedef enum{
     
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][headerView(==headerHeight)][viewContainer]|" options:0 metrics: NSDictionaryOfVariableBindings(navHeight, headerHeight) views: NSDictionaryOfVariableBindings(navigationView,headerView,viewContainer)]];
 
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[maskView]|" options:0 metrics: nil views: NSDictionaryOfVariableBindings(maskView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[maskView]|" options:0 metrics: nil views: NSDictionaryOfVariableBindings(maskView)]];
+    
     [self addConstraints: constraintsArray];
     
     /* 设置页面上初始显示的视图. */

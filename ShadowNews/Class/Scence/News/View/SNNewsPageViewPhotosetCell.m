@@ -82,10 +82,6 @@
     titleLabel.font = [UIFont boldSystemFontOfSize: 14.0];
     [placeHolderViewOfContent addSubview: titleLabel];
     
-    // !!!:这个值,需要根据"日间/夜间"模式,进行调整.
-    // !!!:建议:和"日间/夜间"有关的或者和背景色有关的,统一在layoutSubView里.(好像不太现实,没必要暴露那么多属性.)
-    titleLabel.textColor = [UIColor grayColor];
-    
     self.SNNPVPCTitleLabel = titleLabel;
     SNRelease(titleLabel);
     
@@ -125,7 +121,6 @@
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[titleLabel(==20)]-(>=0)-[placeHolderViewOfImages]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(titleLabel, placeHolderViewOfImages)]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|[placeHolderViewOfImages]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(placeHolderViewOfImages)]];
     
-    // ???:lable如何设置文字居左显示.
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"[replyCountLabel(==60)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(replyCountLabel)]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[replyCountLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(replyCountLabel)]];
     

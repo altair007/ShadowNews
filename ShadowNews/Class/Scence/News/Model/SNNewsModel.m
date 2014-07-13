@@ -126,6 +126,9 @@
         NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
         [newsOriginalArray enumerateObjectsUsingBlock:^(NSDictionary * newsOriginal, NSUInteger idx, BOOL *stop) {
         
+            // !!!: 加个逻辑: 如果第一个位置没有图片,则继续遍历,把有图片的放到第一位置.
+            
+            
             NSMutableArray * imgs = [NSMutableArray arrayWithCapacity: 42];
             NSString * imgSrc = [newsOriginal objectForKey: @"imgsrc"];
             NSArray * imgExtra = [newsOriginal objectForKey:@"imgextra"];
@@ -198,7 +201,7 @@
         [variables setObject: @"'Times New Roman',Georgia,Serif" forKey: @"normalFont"];
         
         // !!!: 主题应该是从数据库中获取,对应"日间/夜间"模式的切换.
-        [variables setObject: @"night" forKey: @"theme"];
+        [variables setObject: @"" forKey: @"theme"];
         
         // !!!: 字体大小应该是从数据中获取,可选:font_small font_normal font_large font_largex font_largexx font_largexxx.  对应设置页面的"正文字号".
         [variables setObject: @"font_normal" forKey: @"fontClass"];
