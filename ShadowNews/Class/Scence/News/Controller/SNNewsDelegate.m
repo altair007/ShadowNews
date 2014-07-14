@@ -61,17 +61,33 @@
         // !!!: 应该设置用户用户刷新的时间,比如五分钟内同一页面只允许刷新一次等.
         /* 当视图由预加载状态变为加载状态时,可能需要额外请求数据. */
         [self.SNNDPageView addObserver:self forKeyPath:@"preLoad" options:NSKeyValueObservingOptionNew context:NULL];
-//        self.SNNDPage.delegate = self;
-//        self.SNNDPage.dataSource = self;
         // !!!: 无论是什么请求有,都先用本地数据获取数据,进行初始化.
         // !!!: 可能有一个潜在的BUG,本地数据不存在,第一次使用,可能会崩溃.
         // !!!: 具体方案是:是"预加载" 则不执行下一步: 异步联网请求.
         // ???:应该根据是否是"预加载",采用不同的获取数据的策略.
+        if (YES != self.SNNDPageView.preLoad) {
+            [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
+                self.SNNDNewsArray = newsArray;
+            } fail:^(NSError *error) {
+                if (YES != self.SNNDPageView.preLoad) {
+                    // ???:优化方向:网易的"弹窗"会自动消失哦!
+                    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [alertView show];
+                    SNRelease(alertView);
+                }
+            }];
+        }
+    }
+    
+    return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (self.SNNDPageView == object &&
+        [keyPath isEqualToString: @"preLoad"]) {
         [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
             self.SNNDNewsArray = newsArray;
-            // !!!!: 把数据存到数据库.
-            // TODO: 迭代至此.
-            
         } fail:^(NSError *error) {
             if (YES != self.SNNDPageView.preLoad) {
                 // ???:优化方向:网易的"弹窗"会自动消失哦!
@@ -80,17 +96,6 @@
                 SNRelease(alertView);
             }
         }];
-        
-    }
-    
-    return self;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    // !!!: 备用!实现数据库相关操作.
-    if (self.SNNDPageView == object &&
-        [keyPath isEqualToString: @"preLoad"]) {
         return;
     }
     

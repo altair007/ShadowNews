@@ -506,6 +506,8 @@ typedef FMResultSet YFResultSet;
 /**
  *  编译批量插入的查询语句并执行查询.
  *
+ *  注意: 你必须保证所有的用于插入数据的字典具有相同数量和相同名称的键.  
+ *
  *  @param table 用于检索数据的表.
  *  @param batch 数组,存储用于一个或多个用于插入数据的字典.
  *

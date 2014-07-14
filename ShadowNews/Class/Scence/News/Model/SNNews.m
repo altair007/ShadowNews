@@ -80,7 +80,7 @@
                     replyCount: (NSUInteger) replyCount
                           imgs: (NSArray *) imgs
 {
-    if (self = [self initWithTittle: title digest: digest replyCount:replyCount imgs: imgs skipType: SNNewsSkipTypeDoc docId:docId photosetId: nil]) {
+    if (self = [self initWithTittle: title digest: digest replyCount:replyCount imgs: imgs skipType: SNNewsSkipTypeDoc docId:docId photosetId: @""]) {
         // 暂不需要额外的初始外操作.
     }
     
@@ -93,7 +93,7 @@
                          replyCount: (NSUInteger) replyCount
                                imgs: (NSArray *) imgs
 {
-    if (self = [self initWithTittle:title digest:digest replyCount:replyCount imgs: imgs skipType: SNNewsSkipTypePhotoSet docId:nil photosetId: photosetId]) {
+    if (self = [self initWithTittle:title digest:digest replyCount:replyCount imgs: imgs skipType: SNNewsSkipTypePhotoSet docId:@"" photosetId: photosetId]) {
         // 暂不需要额外的初始化操作.
     }
     

@@ -87,7 +87,7 @@
         
         /* 创建存储新闻信息的表. */
         if (0 == [db countAllResults:@"SNNEWS"]) {
-            NSString * newsSql = @"CREATE TABLE IF NOT EXISTS SNNEWS (IMGS TEXT DEFAULT NULL, TITLE TEXT,DIGEST TEXT DEFAULT NULL,REPLY_COUNT integer,DOC_ID TEXT  DEFAULT NULL Primary Key,SKIP_TYPE integer,PHOTOSET_ID TEXT DEFAULT NULL)";
+            NSString * newsSql = @"CREATE TABLE IF NOT EXISTS SNNEWS (IMGS TEXT DEFAULT NULL, TITLE TEXT,DIGEST TEXT DEFAULT NULL,REPLY_COUNT integer,DOC_ID TEXT  DEFAULT NULL,SKIP_TYPE integer,PHOTOSET_ID TEXT DEFAULT NULL, TOPIC TEXT DEFAULT NULL)";
             [db executeUpdate: newsSql];
         }
         
@@ -105,6 +105,7 @@
     return model;
 }
 
+// !!!: 建议: 把title改为 topic.
 + (void) newsForTitle: (NSString *) title
                 range: (NSRange) range
               success: (SNNewsModelSuccessBlock) success
@@ -176,8 +177,39 @@
             }];
         }
         
-        // !!!: 迭代至此:根据是否是预加载,使用不同的加载数据的方式.
+        /* 根据range决定如何插入数据. */
+        NSString * newsTable = @"SNNEWS";
         
+        NSMutableArray * newsArraySql = [NSMutableArray arrayWithCapacity: 42];
+        [newsArray enumerateObjectsUsingBlock:^(SNNews * news, NSUInteger idx, BOOL *stop) {
+            NSMutableDictionary * newsDicSql = [NSMutableDictionary dictionaryWithCapacity: 42];
+            
+            [newsDicSql setValue: [news.imgs componentsJoinedByString: @","] forKey: @"IMGS"];
+            [newsDicSql setValue: news.title forKey: @"TITLE"];
+            [newsDicSql setValue: news.digest forKey: @"DIGEST"];
+            [newsDicSql setValue: [NSNumber numberWithUnsignedInteger: news.replyCount] forKey: @"REPLY_COUNT"];
+            [newsDicSql setValue: news.docId forKey: @"DOC_ID"];
+            [newsDicSql setValue: [NSNumber numberWithInteger: news.replyCount] forKey: @"SKIP_TYPE"];
+            [newsDicSql setValue: news.photosetID forKey: @"PHOTOSET_ID"];
+            [newsDicSql setValue: title forKey: @"TOPIC"];
+            
+            NSArray * keys = @[@"IMGS", @"TITLE", @"DIGEST", @"REPLY_COUNT", @"DOC_ID", @"SKIP_TYPE", @"PHOTOSET_ID", @"TOPIC"];
+            [keys enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL *stop) {
+                if (nil == [newsDicSql objectForKey: key]) {
+                    [newsDicSql setObject: @"" forKey: key];
+                }
+            }];
+            
+            [newsArraySql addObject: newsDicSql];
+        }];
+        
+        [db open];
+        if (0 == range.location) { // 说明是刷新数据.
+            [db remove: newsTable  where: @{@"TOPIC" : title}];
+        }
+        
+        [db insert: newsTable batch: newsArraySql];
+        [db close];
         success(newsArray);
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
@@ -211,7 +243,6 @@
         }];
         
         // ???:有一个技术问题： js文件，能否被正确加载？好像没有被执行.
-        
         // !!!: 此处应该是从数据库中获取字体。（对应设置页面的"字体设置".
         [variables setObject: @"'Times New Roman',Georgia,Serif" forKey: @"normalFont"];
         
@@ -252,7 +283,7 @@
     [db open];
     
     YFResultSet * result = [db getWhere: @"SNNEWS" where: @{@"TOPIC": title}];
-    NSLog(@"%@", db.lastErrorMessage);
+    
     while ([result next]) {
         NSArray * imgsTemp = [[result stringForColumn: @"IMGS"] componentsSeparatedByString: @","];
         NSMutableArray * imgs = [NSMutableArray arrayWithCapacity: 42];
@@ -268,7 +299,7 @@
         
         NSString * title = [result stringForColumn: @"TITLE"];
         NSString * digest = [result stringForColumn: @"DIGEST"];
-        NSUInteger replyCount = [result unsignedLongLongIntForColumn: @"REPLY_COUNT"];
+        NSUInteger replyCount = [result intForColumn: @"REPLY_COUNT"];
         NSString * docId = [result stringForColumn: @"DOC_ID"];
         NSString * photosetId = [result stringForColumn: @"PHOTOSET_ID"];
         

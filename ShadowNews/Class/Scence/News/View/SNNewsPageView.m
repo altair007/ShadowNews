@@ -36,6 +36,10 @@
     if (self = [super init]) {
         self.title = title;
         self.preLoad = preLoad;
+        
+        
+        // !!!: 临时测试:关闭bouds.
+//        self.bounces = NO;
     }
     
     return self;

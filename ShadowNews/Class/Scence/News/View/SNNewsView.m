@@ -73,6 +73,8 @@ typedef enum{
     // 仅当第一次显示视图到窗口上时,需要初始化视图.
     if (nil == self.window &&
         YES != self.SNNVSubviewsSetUp) {
+
+        
         [self SNNVSetUpSubviews];
     }
 }
@@ -185,7 +187,6 @@ typedef enum{
     viewContainer.showsVerticalScrollIndicator = NO;
     viewContainer.showsHorizontalScrollIndicator = NO;
     viewContainer.pagingEnabled = YES;
-    viewContainer.bounces = NO;
     viewContainer.translatesAutoresizingMaskIntoConstraints = NO;
     viewContainer.delegate = self;
     viewContainer.backgroundColor = self.backgroundColor;
