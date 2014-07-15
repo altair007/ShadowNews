@@ -39,6 +39,31 @@
     self.SNNDVDetail = [self.dataSource detailInNewsDetailView: self];
     
     [self.SNNDVWebView loadHTMLString: self.SNNDVDetail.htmlStr baseURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    self.SNNDVWebView.allowsInlineMediaPlayback = YES;
+    [self.SNNDVWebView loadHTMLString: self.SNNDVDetail.htmlStr baseURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    
+    
+#define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+    
+    if (IOS_VERSION >= 4.3)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterFullScreen:) name:@"UIMoviePlayerControllerDidEnterFullscreenNotification"object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreen:) name:@"UIMoviePlayerControllerDidExitFullscreenNotification"object:nil];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterFullScreen:) name:@"UIMoviePlayerControllerDidEnterFullcreenNotification"object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreen:) name:@"UIMoviePlayerControllerDidExitFullcreenNotification"object:nil];
+    }
+}
+
+- (void)enterFullScreen:(id)nocc
+{
+
+}
+- (void)exitFullScreen:(id)nocc
+{
+    [self.SNNDVWebView loadHTMLString: self.SNNDVDetail.htmlStr baseURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
 }
 
 // !!!: 使用属性,很鸡肋的方法.而且和reloadData中原来的    self.SNNDVDetail = nil; 容易一起误解.
@@ -63,6 +88,7 @@
     UIView * navigationView = [[UIView alloc] init];
     [navigationView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [self addSubview: navigationView];
+    navigationView.backgroundColor = [UIColor whiteColor];
     SNRelease(navigationView);
     
     UIView * navigationContentView = [[UIView alloc] init];
@@ -95,6 +121,7 @@
     [self addSubview: webView];
     SNRelease(webView);
     self.SNNDVWebView = webView;
+    [self sendSubviewToBack: webView];
     
     
     // ???: 暂时先用自身做代理.
@@ -143,7 +170,8 @@
 //    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[scanCommentsButton(==backButton)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(scanCommentsButton, backButton)]];
 //    
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)]" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView)]];
     
 //    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][webView][bottomView(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView,bottomView)]];
 //    
