@@ -44,7 +44,6 @@
 		C2524699196E5709000A294A /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C252463D196E5709000A294A /* AFURLRequestSerialization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C252469A196E5709000A294A /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C252463F196E5709000A294A /* AFURLResponseSerialization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C252469B196E5709000A294A /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524641196E5709000A294A /* AFURLSessionManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		C252469E196E5709000A294A /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524646196E5709000A294A /* Base64.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C25246A1196E5709000A294A /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C252464B196E5709000A294A /* FMDatabase.m */; };
 		C25246A2196E5709000A294A /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C252464D196E5709000A294A /* FMDatabaseAdditions.m */; };
 		C25246A3196E5709000A294A /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C252464F196E5709000A294A /* FMDatabasePool.m */; };
@@ -71,8 +70,6 @@
 		C25246BC196E5709000A294A /* SNNewsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524687196E5709000A294A /* SNNewsPageView.m */; };
 		C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524689196E5709000A294A /* SNNewsPageViewCell.m */; };
 		C25246BE196E5709000A294A /* SNNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C252468B196E5709000A294A /* SNNewsView.m */; };
-		C25246C0196E5709000A294A /* SNMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524690196E5709000A294A /* SNMenuViewController.m */; };
-		C25246CB196E59F5000A294A /* SNUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25246CA196E59F5000A294A /* SNUserViewController.m */; };
 		C29CF860196ABDA8004AE8C8 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CF85F196ABDA8004AE8C8 /* default.png */; };
 		C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */; };
 		C2A6C29919691C080006E26E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2A6C29819691C080006E26E /* Images.xcassets */; };
@@ -108,11 +105,6 @@
 		C2D656A9196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D6568F196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png */; };
 		C2D656AA196D2A7900F24F22 /* contentview_commentbacky.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */; };
 		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */; };
-		C2F373561974BCAD009ACFD2 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2F3734C1974BCAD009ACFD2 /* MJRefresh.bundle */; };
-		C2F373571974BCAD009ACFD2 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F3734F1974BCAD009ACFD2 /* MJRefreshBaseView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		C2F373581974BCAD009ACFD2 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F373511974BCAD009ACFD2 /* MJRefreshConst.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		C2F373591974BCAD009ACFD2 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F373531974BCAD009ACFD2 /* MJRefreshFooterView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		C2F3735A1974BCAD009ACFD2 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F373551974BCAD009ACFD2 /* MJRefreshHeaderView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,8 +181,6 @@
 		C252463F196E5709000A294A /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		C2524640196E5709000A294A /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		C2524641196E5709000A294A /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		C2524645196E5709000A294A /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		C2524646196E5709000A294A /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		C252464A196E5709000A294A /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		C252464B196E5709000A294A /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		C252464C196E5709000A294A /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -245,18 +235,12 @@
 		C2524689196E5709000A294A /* SNNewsPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewCell.m; sourceTree = "<group>"; };
 		C252468A196E5709000A294A /* SNNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsView.h; sourceTree = "<group>"; };
 		C252468B196E5709000A294A /* SNNewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsView.m; sourceTree = "<group>"; };
-		C252468F196E5709000A294A /* SNMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMenuViewController.h; sourceTree = "<group>"; };
-		C2524690196E5709000A294A /* SNMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMenuViewController.m; sourceTree = "<group>"; };
 		C25246C1196E592A000A294A /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C25246C2196E592A000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		C25246C3196E5942000A294A /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C25246C4196E5942000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C25246C5196E595B000A294A /* LICENCE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENCE.md; sourceTree = "<group>"; };
-		C25246C6196E595B000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		C25246C7196E598B000A294A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C25246C8196E598B000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C25246C9196E59F5000A294A /* SNUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNUserViewController.h; sourceTree = "<group>"; };
-		C25246CA196E59F5000A294A /* SNUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNUserViewController.m; sourceTree = "<group>"; };
 		C29CF85F196ABDA8004AE8C8 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C2A6C29819691C080006E26E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -293,16 +277,6 @@
 		C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentview_commentbacky.png; sourceTree = "<group>"; };
 		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewBigImageCell.h; sourceTree = "<group>"; };
 		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewBigImageCell.m; sourceTree = "<group>"; };
-		C2F3734C1974BCAD009ACFD2 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
-		C2F3734D1974BCAD009ACFD2 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
-		C2F3734E1974BCAD009ACFD2 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
-		C2F3734F1974BCAD009ACFD2 /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
-		C2F373501974BCAD009ACFD2 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
-		C2F373511974BCAD009ACFD2 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
-		C2F373521974BCAD009ACFD2 /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
-		C2F373531974BCAD009ACFD2 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
-		C2F373541974BCAD009ACFD2 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
-		C2F373551974BCAD009ACFD2 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,13 +473,11 @@
 		C252462D196E5709000A294A /* OpenSource */ = {
 			isa = PBXGroup;
 			children = (
-				C2F3734B1974BCAD009ACFD2 /* MJRefresh */,
-				C20E3EF1197112E300AD747F /* MGTemplateEngine */,
 				C252462E196E5709000A294A /* AFNetworking */,
-				C2524644196E5709000A294A /* Base64 */,
+				C252465C196E5709000A294A /* UIKit+AFNetworking */,
+				C20E3EF1197112E300AD747F /* MGTemplateEngine */,
 				C2524649196E5709000A294A /* fmdb */,
 				C2524657196E5709000A294A /* FMDB-ActiveRecord */,
-				C252465C196E5709000A294A /* UIKit+AFNetworking */,
 			);
 			path = OpenSource;
 			sourceTree = "<group>";
@@ -536,17 +508,6 @@
 				C2524641196E5709000A294A /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		C2524644196E5709000A294A /* Base64 */ = {
-			isa = PBXGroup;
-			children = (
-				C25246C5196E595B000A294A /* LICENCE.md */,
-				C25246C6196E595B000A294A /* README.md */,
-				C2524645196E5709000A294A /* Base64.h */,
-				C2524646196E5709000A294A /* Base64.m */,
-			);
-			path = Base64;
 			sourceTree = "<group>";
 		};
 		C2524649196E5709000A294A /* fmdb */ = {
@@ -607,18 +568,9 @@
 		C252466E196E5709000A294A /* Scence */ = {
 			isa = PBXGroup;
 			children = (
-				C252466F196E5709000A294A /* LocalPage */,
 				C2524670196E5709000A294A /* News */,
-				C252468E196E5709000A294A /* Temp */,
 			);
 			path = Scence;
-			sourceTree = "<group>";
-		};
-		C252466F196E5709000A294A /* LocalPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LocalPage;
 			sourceTree = "<group>";
 		};
 		C2524670196E5709000A294A /* News */ = {
@@ -683,34 +635,6 @@
 				C200096C196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C252468E196E5709000A294A /* Temp */ = {
-			isa = PBXGroup;
-			children = (
-				C25246C9196E59F5000A294A /* SNUserViewController.h */,
-				C25246CA196E59F5000A294A /* SNUserViewController.m */,
-				C252468F196E5709000A294A /* SNMenuViewController.h */,
-				C2524690196E5709000A294A /* SNMenuViewController.m */,
-			);
-			path = Temp;
-			sourceTree = "<group>";
-		};
-		C2F3734B1974BCAD009ACFD2 /* MJRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				C2F3734C1974BCAD009ACFD2 /* MJRefresh.bundle */,
-				C2F3734D1974BCAD009ACFD2 /* MJRefresh.h */,
-				C2F3734E1974BCAD009ACFD2 /* MJRefreshBaseView.h */,
-				C2F3734F1974BCAD009ACFD2 /* MJRefreshBaseView.m */,
-				C2F373501974BCAD009ACFD2 /* MJRefreshConst.h */,
-				C2F373511974BCAD009ACFD2 /* MJRefreshConst.m */,
-				C2F373521974BCAD009ACFD2 /* MJRefreshFooterView.h */,
-				C2F373531974BCAD009ACFD2 /* MJRefreshFooterView.m */,
-				C2F373541974BCAD009ACFD2 /* MJRefreshHeaderView.h */,
-				C2F373551974BCAD009ACFD2 /* MJRefreshHeaderView.m */,
-			);
-			path = MJRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -799,7 +723,6 @@
 				C2D65696196D2A7900F24F22 /* contenttoolbar_hd_comment_light.png in Resources */,
 				C2D65676196D209F00F24F22 /* contentview_commentback@2x.png in Resources */,
 				C2D65698196D2A7900F24F22 /* contenttoolbar_hd_comment.png in Resources */,
-				C2F373561974BCAD009ACFD2 /* MJRefresh.bundle in Resources */,
 				C2D656A7196D2A7900F24F22 /* contenttoolbar_hd_share@2x.png in Resources */,
 				C2D6569D196D2A7900F24F22 /* contenttoolbar_hd_fav_light@2x.png in Resources */,
 				C2D656A2196D2A7900F24F22 /* contenttoolbar_hd_fav.png in Resources */,
@@ -850,14 +773,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2F373581974BCAD009ACFD2 /* MJRefreshConst.m in Sources */,
-				C2F373591974BCAD009ACFD2 /* MJRefreshFooterView.m in Sources */,
 				C25246B6196E5709000A294A /* SNNews.m in Sources */,
 				C25246B5196E5709000A294A /* SNNewsViewController.m in Sources */,
-				C252469E196E5709000A294A /* Base64.m in Sources */,
 				C2524693196E5709000A294A /* AFHTTPRequestOperation.m in Sources */,
 				C200096D196F9DEC0023200F /* SNNewsPageViewPhotosetCell.m in Sources */,
-				C25246CB196E59F5000A294A /* SNUserViewController.m in Sources */,
 				C25246A1196E5709000A294A /* FMDatabase.m in Sources */,
 				C2524692196E5709000A294A /* SNNavigationController.m in Sources */,
 				C25246B0196E5709000A294A /* UIProgressView+AFNetworking.m in Sources */,
@@ -892,13 +811,10 @@
 				C25246B9196E5709000A294A /* SNNewsModel.m in Sources */,
 				C25246BA196E5709000A294A /* SNNewsDetailView.m in Sources */,
 				C25246B7196E5709000A294A /* SNNewsDetail.m in Sources */,
-				C2F3735A1974BCAD009ACFD2 /* MJRefreshHeaderView.m in Sources */,
 				C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */,
 				C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */,
 				C2406CCD19729A1300FA729D /* SNNewsPageViewTextCell.m in Sources */,
 				C25246AF196E5709000A294A /* UIImageView+AFNetworking.m in Sources */,
-				C25246C0196E5709000A294A /* SNMenuViewController.m in Sources */,
-				C2F373571974BCAD009ACFD2 /* MJRefreshBaseView.m in Sources */,
 				C25246A3196E5709000A294A /* FMDatabasePool.m in Sources */,
 				C25246A4196E5709000A294A /* FMDatabaseQueue.m in Sources */,
 				C2524691196E5709000A294A /* SNAppDelegate.m in Sources */,

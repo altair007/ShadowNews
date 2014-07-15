@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SNNewsViewController.h"
 @class SNNewsMenu;
 @class YFDataBase;
 
@@ -29,7 +30,7 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
 /**
  *  新闻数据模型.
  */
-@interface SNNewsModel : NSObject
+@interface SNNewsModel : NSObject<SNNewsModelDelegate>
 @property (retain, nonatomic, readonly) SNNewsMenu * menu; //!< 新闻菜单.
 
 /**
@@ -47,7 +48,7 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
  *  @param success 获取数据成功,执行此 block.
  *  @param fail    获取数据失败,执行此 block.
  */
-+ (void) newsForTitle: (NSString *) title
++ (void) newsForTopic: (NSString *) topic
                 range: (NSRange) range
               success: (SNNewsModelSuccessBlock) success
                  fail: (SNNewsModelFailBlock) fail;

@@ -31,8 +31,6 @@
     if (self) {
         // Custom initialization
         
-        // !!!:这个属性,或许可以用来实现抽屉效果.或者下拉菜单.
-//        self.modalInPopover = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     return self;
@@ -49,7 +47,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    // 猜测: 可以根据 导航栏的 pop 对手势的默认支持,模拟抽屉效果.back方法,是什么意思?
     
     /* 自定义导航栏. */
     

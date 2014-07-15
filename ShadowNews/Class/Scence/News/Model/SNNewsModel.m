@@ -59,41 +59,6 @@
                                     @{@"ID": @"T1348649580692", @"NAME": @"科技"},
                                     @{@"ID": @"T1370583240249", @"NAME": @"精选"},
                                     @{@"ID": @"T1348654225495", @"NAME": @"教育"}];
-
-            
-//            NSArray * topicData = @[@{@"ID": @"T1348648756099", @"NAME": @"财经"},
-//                                    @{@"ID": @"T1348649079062", @"NAME": @"体育"},
-//                                    @{@"ID": @"T1348648141035", @"NAME": @"军事"},
-//                                    @{@"ID": @"T1348648517839", @"NAME": @"娱乐"},
-//                                    @{@"ID": @"T1349837670307", @"NAME": @"论坛"},
-//                                    @{@"ID": @"T1349837698345", @"NAME": @"博客"},
-//                                    @{@"ID": @"T1348648037603", @"NAME": @"社会"},
-//                                    @{@"ID": @"T1348648650048", @"NAME": @"电影"},
-//                                    @{@"ID": @"T1348654060988", @"NAME": @"汽车"},
-//                                    @{@"ID": @"T1348649503389", @"NAME": @"中超"},
-//                                    @{@"ID": @"T1399700447917", @"NAME": @"世界杯"},
-//                                    @{@"ID": @"T1356600029035", @"NAME": @"彩票"},
-//                                    @{@"ID": @"T1348649145984", @"NAME": @"NBA"},
-//                                    @{@"ID": @"T1348649176279", @"NAME": @"国际足球"},
-//                                    @{@"ID": @"T1348649475931", @"NAME": @"CBA"},
-//                                    @{@"ID": @"T1348649580692", @"NAME": @"科技"},
-//                                    @{@"ID": @"T1348649654285", @"NAME": @"手机"},
-//                                    @{@"ID": @"T1348649776727", @"NAME": @"数码"},
-//                                    @{@"ID": @"T1351233117091", @"NAME": @"移动互联"},
-//                                    @{@"ID": @"T1350383429665", @"NAME": @"轻松一刻"},
-//                                    @{@"ID": @"T1367050859308", @"NAME": @"原创"},
-//                                    @{@"ID": @"T1370583240249", @"NAME": @"精选"},
-//                                    @{@"ID": @"T1348654105308", @"NAME": @"家居"},
-//                                    @{@"ID": @"T1348654151579", @"NAME": @"游戏"},
-//                                    @{@"ID": @"T1401272877187", @"NAME": @"读书"},
-//                                    @{@"ID": @"T1348654225495", @"NAME": @"教育"},
-//                                    @{@"ID": @"T1348654204705", @"NAME": @"旅游"},
-//                                    @{@"ID": @"T1385429690972", @"NAME": @"酒香"},
-//                                    @{@"ID": @"T1397016069906", @"NAME": @"暴雪游戏"},
-//                                    @{@"ID": @"T1397116135282", @"NAME": @"亲子"},
-//                                    @{@"ID": @"T1402031665628", @"NAME": @"葡萄酒"},
-//                                    @{@"ID": @"T1348650593803", @"NAME": @"时尚"},
-//                                    @{@"ID": @"T1348650839000", @"NAME": @"情感"}];
             [db insert:@"SNTOPIC" batch: topicData];
         }
         
@@ -117,8 +82,7 @@
     return model;
 }
 
-// !!!: 建议: 把title改为 topic.
-+ (void) newsForTitle: (NSString *) title
++ (void) newsForTopic: (NSString *) topic
                 range: (NSRange) range
               success: (SNNewsModelSuccessBlock) success
                  fail: (SNNewsModelFailBlock) fail
@@ -135,7 +99,7 @@
     }
     [db close];
     
-    NSString * secret = [secretsOfTitles objectForKey: title];
+    NSString * secret = [secretsOfTitles objectForKey: topic];
     NSString * urlStr = [NSString stringWithFormat: @"http://c.3g.163.com/nc/article/list/%@/%@-%@.html",secret,[NSNumber numberWithInteger:range.location], [NSNumber numberWithInteger:range.length]];
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
@@ -205,7 +169,7 @@
             [newsDicSql setValue: news.docId forKey: @"DOC_ID"];
             [newsDicSql setValue: [NSNumber numberWithInteger: news.replyCount] forKey: @"SKIP_TYPE"];
             [newsDicSql setValue: news.photosetID forKey: @"PHOTOSET_ID"];
-            [newsDicSql setValue: title forKey: @"TOPIC"];
+            [newsDicSql setValue: topic forKey: @"TOPIC"];
             
             NSArray * keys = @[@"IMGS", @"TITLE", @"DIGEST", @"REPLY_COUNT", @"DOC_ID", @"SKIP_TYPE", @"PHOTOSET_ID", @"TOPIC"];
             [keys enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL *stop) {
@@ -219,7 +183,7 @@
         
         [db open];
         if (0 == range.location) { // 说明是刷新数据.
-            [db remove: newsTable  where: @{@"TOPIC" : title}];
+            [db remove: newsTable  where: @{@"TOPIC" : topic}];
         }
         
         [db insert: newsTable batch: newsArraySql];
@@ -255,7 +219,6 @@
             [variables setObject: obj forKey: key];
         }];
         
-        // ???:有一个技术问题： js文件，能否被正确加载？好像没有被执行.
         // !!!: 此处应该是从数据库中获取字体。（对应设置页面的"字体设置".
         [variables setObject: @"'Times New Roman',Georgia,Serif" forKey: @"normalFont"];
         
@@ -305,7 +268,6 @@
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
     }];
- 
 }
 
 - (instancetype) init

@@ -35,7 +35,7 @@
     
     [self removeObserver: self forKeyPath:@"SNNDNewsArray" context: NULL];
     
-    // ???: 真的有必要监测?
+    // !!!: 第一次加载时请求所有新闻的值.
     [self.SNNDPageView removeObserver: self forKeyPath:@"preLoad" context: NULL];
     
     self.SNNDPageView = nil;
@@ -58,15 +58,10 @@
         // ???:真的有必要检测自身的SNNDNewsArray属性?
         [self addObserver: self forKeyPath:@"SNNDNewsArray" options:0 context:NULL];
         
-        // !!!: 应该设置用户用户刷新的时间,比如五分钟内同一页面只允许刷新一次等.
         /* 当视图由预加载状态变为加载状态时,可能需要额外请求数据. */
         [self.SNNDPageView addObserver:self forKeyPath:@"preLoad" options:NSKeyValueObservingOptionNew context:NULL];
-        // !!!: 无论是什么请求有,都先用本地数据获取数据,进行初始化.
-        // !!!: 可能有一个潜在的BUG,本地数据不存在,第一次使用,可能会崩溃.
-        // !!!: 具体方案是:是"预加载" 则不执行下一步: 异步联网请求.
-        // ???:应该根据是否是"预加载",采用不同的获取数据的策略.
-        // !!!: 暂时直接让它向网络发起请求.
-        [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
+
+        [SNNewsModel newsForTopic: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
             self.SNNDNewsArray = newsArray;
             [self.SNNDPageView reloadData];
         } fail:^(NSError *error) {
@@ -78,19 +73,6 @@
             self.SNNDNewsArray = nil;
             [self.SNNDPageView reloadData];
         }];
-//        if (YES != self.SNNDPageView.preLoad) {
-//            [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
-//                self.SNNDNewsArray = newsArray;
-//                [self.SNNDPageView reloadData];
-//            } fail:^(NSError *error) {
-//                if (YES != self.SNNDPageView.preLoad) {
-//                    // ???:优化方向:网易的"弹窗"会自动消失哦!
-//                    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//                    [alertView show];
-//                    SNRelease(alertView);
-//                }
-//            }];
-//        }
     }
     
     return self;
@@ -101,7 +83,7 @@
     if ([self.SNNDPageView isEqual: object] &&
         [keyPath isEqualToString: @"preLoad"] &&
         YES != [[change objectForKey: @"new"] boolValue]){
-        [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
+        [SNNewsModel newsForTopic: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
             self.SNNDNewsArray = newsArray;
             [self.SNNDPageView reloadData];
         } fail:^(NSError *error) {
@@ -120,10 +102,6 @@
 - (NSArray *)SNNDNewsArray
 {
     if (nil == _SNNDNewsArray) { // 从数据库获取最新数据.
-        // ???:暂时不考虑,上拉加载,下拉刷新的情况.
-        // !!!:一个思路:给代理添加一个值,用它来确定请求多少条数据.暂时只获取20条,且数据库中数据暂时不清空.或者此处持有SNNewsArray.其他处可以修改它的值,检测某个量.
-        // !!!: 一个建议: 数据库中只保留 20 条数据.
-        // !!!: 一个简单的策略: 每次都从数据库中完全读取数据,让它们去关心数据库容量和优化的问题吧.(不过,逻辑上有些混乱.).
        self.SNNDNewsArray = [SNNewsModel localNewsForTitle: self.SNNDPageView.title];
     }
     
