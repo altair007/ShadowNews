@@ -48,40 +48,52 @@
         if (0 == [db countAllResults:@"SNTOPIC"]) {
             NSString * topicSql = @"CREATE TABLE IF NOT EXISTS SNTOPIC(ID TEXT PRIMARY KEY  NOT NULL  DEFAULT (null) ,NAME TEXT);";
             [db executeUpdate: topicSql];
+            // !!!: 临时屏蔽 "轻松一刻", @"论坛", @"原创".
             
             NSArray * topicData = @[@{@"ID": @"T1348648756099", @"NAME": @"财经"},
                                     @{@"ID": @"T1348649079062", @"NAME": @"体育"},
                                     @{@"ID": @"T1348648141035", @"NAME": @"军事"},
                                     @{@"ID": @"T1348648517839", @"NAME": @"娱乐"},
-                                    @{@"ID": @"T1349837670307", @"NAME": @"论坛"},
                                     @{@"ID": @"T1349837698345", @"NAME": @"博客"},
                                     @{@"ID": @"T1348648037603", @"NAME": @"社会"},
-                                    @{@"ID": @"T1348648650048", @"NAME": @"电影"},
-                                    @{@"ID": @"T1348654060988", @"NAME": @"汽车"},
-                                    @{@"ID": @"T1348649503389", @"NAME": @"中超"},
-                                    @{@"ID": @"T1399700447917", @"NAME": @"世界杯"},
-                                    @{@"ID": @"T1356600029035", @"NAME": @"彩票"},
-                                    @{@"ID": @"T1348649145984", @"NAME": @"NBA"},
-                                    @{@"ID": @"T1348649176279", @"NAME": @"国际足球"},
-                                    @{@"ID": @"T1348649475931", @"NAME": @"CBA"},
                                     @{@"ID": @"T1348649580692", @"NAME": @"科技"},
-                                    @{@"ID": @"T1348649654285", @"NAME": @"手机"},
-                                    @{@"ID": @"T1348649776727", @"NAME": @"数码"},
-                                    @{@"ID": @"T1351233117091", @"NAME": @"移动互联"},
-                                    @{@"ID": @"T1350383429665", @"NAME": @"轻松一刻"},
-                                    @{@"ID": @"T1367050859308", @"NAME": @"原创"},
                                     @{@"ID": @"T1370583240249", @"NAME": @"精选"},
-                                    @{@"ID": @"T1348654105308", @"NAME": @"家居"},
-                                    @{@"ID": @"T1348654151579", @"NAME": @"游戏"},
-                                    @{@"ID": @"T1401272877187", @"NAME": @"读书"},
-                                    @{@"ID": @"T1348654225495", @"NAME": @"教育"},
-                                    @{@"ID": @"T1348654204705", @"NAME": @"旅游"},
-                                    @{@"ID": @"T1385429690972", @"NAME": @"酒香"},
-                                    @{@"ID": @"T1397016069906", @"NAME": @"暴雪游戏"},
-                                    @{@"ID": @"T1397116135282", @"NAME": @"亲子"},
-                                    @{@"ID": @"T1402031665628", @"NAME": @"葡萄酒"},
-                                    @{@"ID": @"T1348650593803", @"NAME": @"时尚"},
-                                    @{@"ID": @"T1348650839000", @"NAME": @"情感"}];
+                                    @{@"ID": @"T1348654225495", @"NAME": @"教育"}];
+
+            
+//            NSArray * topicData = @[@{@"ID": @"T1348648756099", @"NAME": @"财经"},
+//                                    @{@"ID": @"T1348649079062", @"NAME": @"体育"},
+//                                    @{@"ID": @"T1348648141035", @"NAME": @"军事"},
+//                                    @{@"ID": @"T1348648517839", @"NAME": @"娱乐"},
+//                                    @{@"ID": @"T1349837670307", @"NAME": @"论坛"},
+//                                    @{@"ID": @"T1349837698345", @"NAME": @"博客"},
+//                                    @{@"ID": @"T1348648037603", @"NAME": @"社会"},
+//                                    @{@"ID": @"T1348648650048", @"NAME": @"电影"},
+//                                    @{@"ID": @"T1348654060988", @"NAME": @"汽车"},
+//                                    @{@"ID": @"T1348649503389", @"NAME": @"中超"},
+//                                    @{@"ID": @"T1399700447917", @"NAME": @"世界杯"},
+//                                    @{@"ID": @"T1356600029035", @"NAME": @"彩票"},
+//                                    @{@"ID": @"T1348649145984", @"NAME": @"NBA"},
+//                                    @{@"ID": @"T1348649176279", @"NAME": @"国际足球"},
+//                                    @{@"ID": @"T1348649475931", @"NAME": @"CBA"},
+//                                    @{@"ID": @"T1348649580692", @"NAME": @"科技"},
+//                                    @{@"ID": @"T1348649654285", @"NAME": @"手机"},
+//                                    @{@"ID": @"T1348649776727", @"NAME": @"数码"},
+//                                    @{@"ID": @"T1351233117091", @"NAME": @"移动互联"},
+//                                    @{@"ID": @"T1350383429665", @"NAME": @"轻松一刻"},
+//                                    @{@"ID": @"T1367050859308", @"NAME": @"原创"},
+//                                    @{@"ID": @"T1370583240249", @"NAME": @"精选"},
+//                                    @{@"ID": @"T1348654105308", @"NAME": @"家居"},
+//                                    @{@"ID": @"T1348654151579", @"NAME": @"游戏"},
+//                                    @{@"ID": @"T1401272877187", @"NAME": @"读书"},
+//                                    @{@"ID": @"T1348654225495", @"NAME": @"教育"},
+//                                    @{@"ID": @"T1348654204705", @"NAME": @"旅游"},
+//                                    @{@"ID": @"T1385429690972", @"NAME": @"酒香"},
+//                                    @{@"ID": @"T1397016069906", @"NAME": @"暴雪游戏"},
+//                                    @{@"ID": @"T1397116135282", @"NAME": @"亲子"},
+//                                    @{@"ID": @"T1402031665628", @"NAME": @"葡萄酒"},
+//                                    @{@"ID": @"T1348650593803", @"NAME": @"时尚"},
+//                                    @{@"ID": @"T1348650839000", @"NAME": @"情感"}];
             [db insert:@"SNTOPIC" batch: topicData];
         }
         
@@ -177,6 +189,8 @@
             }];
         }
         
+        success(newsArray);
+        
         /* 根据range决定如何插入数据. */
         NSString * newsTable = @"SNNEWS";
         
@@ -210,7 +224,6 @@
         
         [db insert: newsTable batch: newsArraySql];
         [db close];
-        success(newsArray);
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         fail(error);
     }];
@@ -253,7 +266,36 @@
         [variables setObject: @"font_normal" forKey: @"fontClass"];
         
         // 处理模板,并输出结果.
-        NSString * htmlStr = [engine processTemplateInFileAtPath:templatePath withVariables:variables];
+        NSMutableString * htmlStr = [NSMutableString stringWithString: [engine processTemplateInFileAtPath:templatePath withVariables:variables]];
+        
+        NSArray * imgArray = [variables objectForKey:@"img"];
+        NSArray * videoArray = [variables objectForKey:@"video"];
+        
+        // !!!: 此处的HTML5标签,可能是不合适的.
+        // !!!: 尝试关闭银屏,视频的全屏模式.
+        if (imgArray.count > 0) {
+            [imgArray enumerateObjectsUsingBlock:^(NSDictionary * obj, NSUInteger idx, BOOL *stop) {
+                
+                NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"<!--IMG#%@-->", [NSNumber numberWithUnsignedInteger: idx]] options:NSRegularExpressionCaseInsensitive error:nil];
+                NSString * src = [imgArray[idx] objectForKey:@"src"];
+                NSArray * sizeArray = [[imgArray[idx] objectForKey:@"pixel"] componentsSeparatedByString:@"*"];
+                
+                // ???:此处的逻辑,好像是不合适的.
+                CGFloat  width = 280;
+                CGFloat height = 280 *([sizeArray[1] floatValue]/3)/([sizeArray[0] floatValue]/3);
+                
+                // !!!: 网络图片加载时,应该有一个占位图片.本地占位图片.这个效果怎么实现?
+                [regex replaceMatchesInString:htmlStr options:0 range:NSMakeRange(0, [htmlStr length]) withTemplate:[NSString stringWithFormat:@"<img src= %@ width = %f height = %f/>",src,width,height]];
+            }];
+            
+        }
+        if (videoArray.count > 0) {
+            [videoArray enumerateObjectsUsingBlock:^(NSDictionary * obj, NSUInteger idx, BOOL *stop) {
+                
+                NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"<!--VIDEO#%@-->", [NSNumber numberWithUnsignedInteger: idx]] options:NSRegularExpressionCaseInsensitive error:nil];
+                [regex replaceMatchesInString:htmlStr options:0 range:NSMakeRange(0, [htmlStr length]) withTemplate:[NSString stringWithFormat:@"<embed src= %@ width = 280 height = 150 volume = 200 autostart = true webkit-playsinline/embed>",[videoArray[idx] objectForKey:@"url_mp4"]]];
+            }];
+        }
         
         NSString * docId = [variables objectForKey: @"docid"];
         NSUInteger replyCoutn = [[variables objectForKey: @"replyCount"] integerValue];

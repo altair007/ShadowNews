@@ -66,6 +66,8 @@
 // !!!: 统一下各cell的布局.
 - (void)SNNPVCSetUpSubviews
 {
+    
+    
     UIImageView * imageView = [[UIImageView alloc] init];
     UILabel * titleLabel = [[UILabel alloc] init];
     UILabel * digestLabel = [[UILabel alloc] init];

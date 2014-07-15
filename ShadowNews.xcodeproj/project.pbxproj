@@ -108,6 +108,11 @@
 		C2D656A9196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D6568F196D2A7900F24F22 /* contenttoolbar_hd_thumbnail_light@2x.png */; };
 		C2D656AA196D2A7900F24F22 /* contentview_commentbacky.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */; };
 		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */; };
+		C2F373561974BCAD009ACFD2 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2F3734C1974BCAD009ACFD2 /* MJRefresh.bundle */; };
+		C2F373571974BCAD009ACFD2 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F3734F1974BCAD009ACFD2 /* MJRefreshBaseView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C2F373581974BCAD009ACFD2 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F373511974BCAD009ACFD2 /* MJRefreshConst.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C2F373591974BCAD009ACFD2 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F373531974BCAD009ACFD2 /* MJRefreshFooterView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C2F3735A1974BCAD009ACFD2 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F373551974BCAD009ACFD2 /* MJRefreshHeaderView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +293,16 @@
 		C2D65690196D2A7900F24F22 /* contentview_commentbacky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentview_commentbacky.png; sourceTree = "<group>"; };
 		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewBigImageCell.h; sourceTree = "<group>"; };
 		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewBigImageCell.m; sourceTree = "<group>"; };
+		C2F3734C1974BCAD009ACFD2 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		C2F3734D1974BCAD009ACFD2 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		C2F3734E1974BCAD009ACFD2 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		C2F3734F1974BCAD009ACFD2 /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		C2F373501974BCAD009ACFD2 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		C2F373511974BCAD009ACFD2 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		C2F373521974BCAD009ACFD2 /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		C2F373531974BCAD009ACFD2 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		C2F373541974BCAD009ACFD2 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		C2F373551974BCAD009ACFD2 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +499,7 @@
 		C252462D196E5709000A294A /* OpenSource */ = {
 			isa = PBXGroup;
 			children = (
+				C2F3734B1974BCAD009ACFD2 /* MJRefresh */,
 				C20E3EF1197112E300AD747F /* MGTemplateEngine */,
 				C252462E196E5709000A294A /* AFNetworking */,
 				C2524644196E5709000A294A /* Base64 */,
@@ -680,6 +696,23 @@
 			path = Temp;
 			sourceTree = "<group>";
 		};
+		C2F3734B1974BCAD009ACFD2 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C2F3734C1974BCAD009ACFD2 /* MJRefresh.bundle */,
+				C2F3734D1974BCAD009ACFD2 /* MJRefresh.h */,
+				C2F3734E1974BCAD009ACFD2 /* MJRefreshBaseView.h */,
+				C2F3734F1974BCAD009ACFD2 /* MJRefreshBaseView.m */,
+				C2F373501974BCAD009ACFD2 /* MJRefreshConst.h */,
+				C2F373511974BCAD009ACFD2 /* MJRefreshConst.m */,
+				C2F373521974BCAD009ACFD2 /* MJRefreshFooterView.h */,
+				C2F373531974BCAD009ACFD2 /* MJRefreshFooterView.m */,
+				C2F373541974BCAD009ACFD2 /* MJRefreshHeaderView.h */,
+				C2F373551974BCAD009ACFD2 /* MJRefreshHeaderView.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -766,6 +799,7 @@
 				C2D65696196D2A7900F24F22 /* contenttoolbar_hd_comment_light.png in Resources */,
 				C2D65676196D209F00F24F22 /* contentview_commentback@2x.png in Resources */,
 				C2D65698196D2A7900F24F22 /* contenttoolbar_hd_comment.png in Resources */,
+				C2F373561974BCAD009ACFD2 /* MJRefresh.bundle in Resources */,
 				C2D656A7196D2A7900F24F22 /* contenttoolbar_hd_share@2x.png in Resources */,
 				C2D6569D196D2A7900F24F22 /* contenttoolbar_hd_fav_light@2x.png in Resources */,
 				C2D656A2196D2A7900F24F22 /* contenttoolbar_hd_fav.png in Resources */,
@@ -816,6 +850,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2F373581974BCAD009ACFD2 /* MJRefreshConst.m in Sources */,
+				C2F373591974BCAD009ACFD2 /* MJRefreshFooterView.m in Sources */,
 				C25246B6196E5709000A294A /* SNNews.m in Sources */,
 				C25246B5196E5709000A294A /* SNNewsViewController.m in Sources */,
 				C252469E196E5709000A294A /* Base64.m in Sources */,
@@ -856,11 +892,13 @@
 				C25246B9196E5709000A294A /* SNNewsModel.m in Sources */,
 				C25246BA196E5709000A294A /* SNNewsDetailView.m in Sources */,
 				C25246B7196E5709000A294A /* SNNewsDetail.m in Sources */,
+				C2F3735A1974BCAD009ACFD2 /* MJRefreshHeaderView.m in Sources */,
 				C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */,
 				C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */,
 				C2406CCD19729A1300FA729D /* SNNewsPageViewTextCell.m in Sources */,
 				C25246AF196E5709000A294A /* UIImageView+AFNetworking.m in Sources */,
 				C25246C0196E5709000A294A /* SNMenuViewController.m in Sources */,
+				C2F373571974BCAD009ACFD2 /* MJRefreshBaseView.m in Sources */,
 				C25246A3196E5709000A294A /* FMDatabasePool.m in Sources */,
 				C25246A4196E5709000A294A /* FMDatabaseQueue.m in Sources */,
 				C2524691196E5709000A294A /* SNAppDelegate.m in Sources */,

@@ -33,9 +33,9 @@
     if (self = [super init]) {
         // !!!:建议,已添加,未添加的栏目,和上次浏览的节目,应从本地数据库中读取数据.此处暂时用固定值.
         // !!!:请实现剩余20%界面.
-        NSArray * itemsAdded = @[@"财经", @"体育", @"军事", @"娱乐", @"社会", @"论坛", @"NBA", @"中超", @"CBA", @"电影", @"国际足球", @"数码", @"彩票", @"世界杯", @"博客", @"科技", @"轻松一刻", @"原创", @"汽车", @"手机", @"移动互联", @"精选", @"家居", @"游戏", @"读书", @"教育", @"旅游", @"酒香", @"暴雪游戏",@"亲子", @"葡萄酒", @"时尚", @"情感"];
-        NSArray * itemsNotAdded = @[@"本地", @"推荐", @"聚合阅读", @"头条", @"房产"];
-        NSString * itemLastScan = @"轻松一刻";
+        NSArray * itemsAdded = @[@"精选", @"社会", @"财经", @"体育", @"娱乐", @"科技", @"博客", @"军事", @"教育"];
+        NSString * itemLastScan = @"精选";
+        NSArray * itemsNotAdded = nil;
         
         self.itemsAdded = itemsAdded;
         self.itemsNotAdded = itemsNotAdded;

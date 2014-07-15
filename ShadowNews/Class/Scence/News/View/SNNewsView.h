@@ -14,6 +14,8 @@
 @class SNNewsView;
 @class SNNewsMenu;
 @class SNNewsPageView;
+// !!!: 猜测: 真正要轮转的不是 view ,而是 controller,应该是controller之间的平滑切换.或许,用不到scrollView的,然后就可以实现轮转!
+
 /**
  *  新闻视图布局协议.
  */

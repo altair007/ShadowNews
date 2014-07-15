@@ -164,13 +164,13 @@ typedef enum{
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [navigationContentView addSubview: titleLabel];
     
-    UIButton * settingButton = [UIButton buttonWithType: UIButtonTypeSystem];
-    [settingButton setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [settingButton setTitle: @"设置" forState: UIControlStateNormal];
-    [settingButton addTarget: self.delegate action: @selector(newsView:didClickSettingButtonButtonAction:) forControlEvents: UIControlEventTouchUpInside];
-    settingButton.titleLabel.textColor = [UIColor whiteColor];
-    [settingButton setTintColor:[UIColor whiteColor]];
-    [titleLabel addSubview: settingButton];
+    // !!!:临时屏蔽"设置页面".
+//    UIButton * settingButton = [UIButton buttonWithType: UIButtonTypeSystem];
+//    [settingButton setTranslatesAutoresizingMaskIntoConstraints: NO];
+//    [settingButton setTitle: @"设置" forState: UIControlStateNormal];
+//    [settingButton addTarget: self.delegate action: @selector(newsView:didClickSettingButtonButtonAction:) forControlEvents: UIControlEventTouchUpInside];
+//    settingButton.titleLabel.textColor = [UIColor whiteColor];
+//    [titleLabel addSubview: settingButton];
     
     /* 设置页眉. */
     SNNewsHeaderView * headerView = [[SNNewsHeaderView alloc] init];
@@ -187,6 +187,7 @@ typedef enum{
     viewContainer.showsVerticalScrollIndicator = NO;
     viewContainer.showsHorizontalScrollIndicator = NO;
     viewContainer.pagingEnabled = YES;
+    viewContainer.bounces = NO;
     viewContainer.translatesAutoresizingMaskIntoConstraints = NO;
     viewContainer.delegate = self;
     viewContainer.backgroundColor = self.backgroundColor;
@@ -198,7 +199,10 @@ typedef enum{
     // !!!: 视图遮罩层,用于实现夜间模式/日间模式的切换.
     UIView * maskView = [[UIView alloc] init];
     [maskView setTranslatesAutoresizingMaskIntoConstraints: NO];
-    maskView.backgroundColor = [UIColor blackColor]; //???:用黑色,合适吗?
+    
+    // !!!:临时更改.
+    maskView.backgroundColor = [UIColor clearColor];
+//    maskView.backgroundColor = [UIColor blackColor]; //???:用黑色,合适吗?
     maskView.alpha = 0.0;
     maskView.userInteractionEnabled = NO;
     [self insertSubview: maskView atIndex: self.subviews.count];
@@ -213,8 +217,10 @@ typedef enum{
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-20-[navigationContentView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationContentView)]];
     
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[titleLabel]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(titleLabel)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"[settingButton(==35)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(settingButton)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[settingButton(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(settingButton)]];
+    
+    // !!!: 临时屏蔽"设置"页.
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"[settingButton(==35)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(settingButton)]];
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[settingButton(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(settingButton)]];
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[titleLabel(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(titleLabel)]];
     
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[headerView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(headerView)]];
@@ -286,6 +292,7 @@ typedef enum{
  *
  *  @param index 要显示的视图的位置.
  */
+// !!!: 视图命名可以改一下!
 - (void) SNNVShowCellAtIndex: (NSUInteger) index
 {
     // 移除已有的子视图及其"约束",避免冲突.
@@ -314,7 +321,7 @@ typedef enum{
     // 中间的视图.
     NSString * titleMiddle= self.SNNVMenu.itemsAdded[index];
     SNNewsPageView * viewMiddle = [self.SNNVLoadedViews objectForKey: titleMiddle];
-    viewMiddle.preLoad = YES;
+    viewMiddle.preLoad = NO;
     if (nil == viewMiddle) {
         viewMiddle = [self.dataSource newsView: self viewForTitle: titleMiddle preLoad: NO];
         [self.SNNVLoadedViews setObject: viewMiddle forKey: titleMiddle];
@@ -333,7 +340,7 @@ typedef enum{
     SNNewsPageView * viewLeft = [self.SNNVLoadedViews objectForKey: titleLeft];
     viewLeft.preLoad = YES;
     if (nil == viewLeft) {
-        viewLeft = [self.dataSource newsView: self viewForTitle: titleLeft preLoad: NO];
+        viewLeft = [self.dataSource newsView: self viewForTitle: titleLeft preLoad: YES];
         [self.SNNVLoadedViews setObject: viewLeft forKey: titleLeft];
         
         // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.
@@ -349,7 +356,7 @@ typedef enum{
     SNNewsPageView * viewRight = [self.SNNVLoadedViews objectForKey: titleRight];
     viewRight.preLoad = YES;
     if (nil == viewRight) {
-        viewRight = [self.dataSource newsView: self viewForTitle: titleRight preLoad: NO];
+        viewRight = [self.dataSource newsView: self viewForTitle: titleRight preLoad: YES];
         [self.SNNVLoadedViews setObject: viewRight forKey: titleRight];
         
         // 因为代理通常是 assign, 所以此处额外持有一次delegate,以避免潜在的内存管理异常.

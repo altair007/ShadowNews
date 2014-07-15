@@ -65,18 +65,32 @@
         // !!!: 可能有一个潜在的BUG,本地数据不存在,第一次使用,可能会崩溃.
         // !!!: 具体方案是:是"预加载" 则不执行下一步: 异步联网请求.
         // ???:应该根据是否是"预加载",采用不同的获取数据的策略.
-        if (YES != self.SNNDPageView.preLoad) {
-            [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
-                self.SNNDNewsArray = newsArray;
-            } fail:^(NSError *error) {
-                if (YES != self.SNNDPageView.preLoad) {
-                    // ???:优化方向:网易的"弹窗"会自动消失哦!
-                    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                    [alertView show];
-                    SNRelease(alertView);
-                }
-            }];
-        }
+        // !!!: 暂时直接让它向网络发起请求.
+        [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
+            self.SNNDNewsArray = newsArray;
+            [self.SNNDPageView reloadData];
+        } fail:^(NSError *error) {
+            if (YES != self.SNNDPageView.preLoad) {
+                UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+                SNRelease(alertView);
+            }
+            self.SNNDNewsArray = nil;
+            [self.SNNDPageView reloadData];
+        }];
+//        if (YES != self.SNNDPageView.preLoad) {
+//            [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
+//                self.SNNDNewsArray = newsArray;
+//                [self.SNNDPageView reloadData];
+//            } fail:^(NSError *error) {
+//                if (YES != self.SNNDPageView.preLoad) {
+//                    // ???:优化方向:网易的"弹窗"会自动消失哦!
+//                    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"网络故障,暂无法连接到互联网!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//                    [alertView show];
+//                    SNRelease(alertView);
+//                }
+//            }];
+//        }
     }
     
     return self;
@@ -84,10 +98,12 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (self.SNNDPageView == object &&
-        [keyPath isEqualToString: @"preLoad"]) {
+    if ([self.SNNDPageView isEqual: object] &&
+        [keyPath isEqualToString: @"preLoad"] &&
+        YES != [[change objectForKey: @"new"] boolValue]){
         [SNNewsModel newsForTitle: self.SNNDPageView.title range: NSMakeRange(0, 20) success:^(NSArray *newsArray) {
             self.SNNDNewsArray = newsArray;
+            [self.SNNDPageView reloadData];
         } fail:^(NSError *error) {
             if (YES != self.SNNDPageView.preLoad) {
                 // ???:优化方向:网易的"弹窗"会自动消失哦!
@@ -99,8 +115,6 @@
         return;
     }
     
-    // ???:总感觉,这个对代理自身的观察者,有些鸡肋.
-    [self.SNNDPageView reloadData];
 }
 
 - (NSArray *)SNNDNewsArray

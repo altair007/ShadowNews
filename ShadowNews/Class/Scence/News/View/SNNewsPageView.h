@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MJRefreshHeaderView;
+@class MJRefreshFooterView;
 
 // !!!: 如果能实现这个类的复用,也会非常帅.画面会异常流畅.
 // !!!: 使用 "类簇"模式,设计其他新闻页面.http://www.cocoachina.com/applenews/devnews/2014/0109/7681.html
@@ -18,6 +20,9 @@
 @property (copy, nonatomic, readonly) NSString * title; //!< 新闻板块名称.
 @property (assign, nonatomic) BOOL preLoad; //!< 是否是预加载.出于用户体验的考虑,新闻视图可能会预加载某些页面.对于预加载的页面,往往可以暂不发起网络请求,获取最新数据.
 
+// !!!: 临时用于支持下拉加载上拉刷新.可能不需要暴露这个属性.
+//@property(nonatomic,retain)MJRefreshFooterView * footerRefreshView;
+//@property(nonatomic,retain)MJRefreshHeaderView * headerRefreshView;
 /**
  *  便利初始化.
  *

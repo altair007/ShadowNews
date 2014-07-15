@@ -77,15 +77,17 @@
     UIButton * backButton = [UIButton buttonWithType: UIButtonTypeSystem];
     [backButton setTranslatesAutoresizingMaskIntoConstraints: NO];
     [backButton setTitle: @"返回" forState: UIControlStateNormal];
+    [backButton setTintColor:[UIColor whiteColor]];
     [backButton addTarget: self.delegate action: @selector(newsDetailView:didClickBackButtonAction:) forControlEvents: UIControlEventTouchUpInside];
     [navigationContentView addSubview: backButton];
     
-    UIButton * scanCommentsButton = [UIButton buttonWithType: UIButtonTypeSystem];
-    [scanCommentsButton setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [scanCommentsButton setTitle: @"查看评论(+0)" forState: UIControlStateNormal];
-    scanCommentsButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [scanCommentsButton addTarget: self.delegate action: @selector(newsDetailView:didClickScanReplyButtonAction:) forControlEvents: UIControlEventTouchUpInside];
-    [navigationContentView addSubview: scanCommentsButton];
+//    UIButton * scanCommentsButton = [UIButton buttonWithType: UIButtonTypeSystem];
+//    [scanCommentsButton setTranslatesAutoresizingMaskIntoConstraints: NO];
+//    [scanCommentsButton setTitle: @"查看评论(+0)" forState: UIControlStateNormal];
+//    scanCommentsButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    [scanCommentsButton setTintColor:[UIColor whiteColor]];
+//    [scanCommentsButton addTarget: self.delegate action: @selector(newsDetailView:didClickScanReplyButtonAction:) forControlEvents: UIControlEventTouchUpInside];
+//    [navigationContentView addSubview: scanCommentsButton];
     
     UIWebView * webView = [[UIWebView alloc] init];
     [webView setTranslatesAutoresizingMaskIntoConstraints: NO];
@@ -99,30 +101,32 @@
     // !!!: 迭代至此!
     webView.delegate = self;
     
-    UIView * bottomView = [[UIView alloc] init];
-    [bottomView setTranslatesAutoresizingMaskIntoConstraints: NO];
-    bottomView.backgroundColor = [UIColor grayColor];
-    [self addSubview: bottomView];
-    SNRelease(bottomView);
-    
-    UITextField * commentTF = [[UITextField alloc] init];
-    [commentTF setTranslatesAutoresizingMaskIntoConstraints: NO];
-    commentTF.backgroundColor = [UIColor whiteColor];
-    commentTF.placeholder = @"说点什么吧...";
-    [bottomView addSubview: commentTF];
-    SNRelease(commentTF);
-    
-    UIButton * shareButton = [UIButton buttonWithType: UIButtonTypeSystem];
-    [shareButton setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [shareButton setTitle: @"分享" forState: UIControlStateNormal];
-    [shareButton addTarget: self.delegate action: @selector(newsDetailView:didClickShareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview: shareButton];
-    
-    UIButton * favorButton = [UIButton buttonWithType: UIButtonTypeSystem];
-    [favorButton setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [favorButton setTitle: @"收藏(未)" forState: UIControlStateNormal];
-    [favorButton addTarget: self.delegate action: @selector(newsDetailView:didClickFavorButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview: favorButton];
+//    UIView * bottomView = [[UIView alloc] init];
+//    [bottomView setTranslatesAutoresizingMaskIntoConstraints: NO];
+//    bottomView.backgroundColor = [UIColor blackColor];
+//    [self addSubview: bottomView];
+//    SNRelease(bottomView);
+//    
+//    UITextField * commentTF = [[UITextField alloc] init];
+//    [commentTF setTranslatesAutoresizingMaskIntoConstraints: NO];
+//    commentTF.backgroundColor = [UIColor whiteColor];
+//    commentTF.placeholder = @"说点什么吧...";
+//    [bottomView addSubview: commentTF];
+//    SNRelease(commentTF);
+//    
+//    UIButton * shareButton = [UIButton buttonWithType: UIButtonTypeSystem];
+//    [shareButton setTranslatesAutoresizingMaskIntoConstraints: NO];
+//    [shareButton setTitle: @"分享" forState: UIControlStateNormal];
+//    [shareButton setTintColor: [UIColor whiteColor]];
+//    [shareButton addTarget: self.delegate action: @selector(newsDetailView:didClickShareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [bottomView addSubview: shareButton];
+//    
+//    UIButton * favorButton = [UIButton buttonWithType: UIButtonTypeSystem];
+//    [favorButton setTranslatesAutoresizingMaskIntoConstraints: NO];
+//    [favorButton setTitle: @"收藏(未)" forState: UIControlStateNormal];
+//    [favorButton setTintColor: [UIColor whiteColor]];
+//    [favorButton addTarget: self.delegate action: @selector(newsDetailView:didClickFavorButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [bottomView addSubview: favorButton];
     
     /* 设置视图约束. */
     NSMutableArray * constraintsArray = [NSMutableArray arrayWithCapacity: 42];
@@ -132,21 +136,24 @@
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[navigationContentView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationContentView)]];
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-20-[navigationContentView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationContentView)]];
     
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|-(8)-[backButton(==35)]-(>=0)-[scanCommentsButton(==100)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(backButton, scanCommentsButton)]];
+        [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|-(8)-[backButton(==35)]" options:0 metrics:nil views: NSDictionaryOfVariableBindings(backButton)]];
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|-(8)-[backButton(==35)]-(>=0)-[scanCommentsButton(==100)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(backButton, scanCommentsButton)]];
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[backButton(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(backButton)]];
 
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[scanCommentsButton(==backButton)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(scanCommentsButton, backButton)]];
-    
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[scanCommentsButton(==backButton)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(scanCommentsButton, backButton)]];
+//    
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(webView)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][webView][bottomView(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView,bottomView)]];
+    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][webView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView)]];
     
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[bottomView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(bottomView)]];
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|[navigationView(==64)][webView][bottomView(==44)]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(navigationView,webView,bottomView)]];
+//    
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|[bottomView]|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(bottomView)]];
+//    
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|-(8)-[commentTF]-[shareButton(==50)]-[favorButton(==70)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(commentTF, shareButton, favorButton)]];
     
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"|-(8)-[commentTF]-[shareButton(==50)]-[favorButton(==70)]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(commentTF, shareButton, favorButton)]];
-    
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[commentTF]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(commentTF)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[shareButton]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(shareButton)]];
-    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[favorButton]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(favorButton)]];
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[commentTF]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(commentTF)]];
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[shareButton]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(shareButton)]];
+//    [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(8)-[favorButton]-(8)-|" options:0 metrics:nil views: NSDictionaryOfVariableBindings(favorButton)]];
     
     [self addConstraints: constraintsArray];
 }
