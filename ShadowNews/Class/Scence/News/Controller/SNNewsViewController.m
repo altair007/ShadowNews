@@ -7,7 +7,6 @@
 //
 
 #import "SNNewsViewController.h"
-#import "SNNewsModel.h"
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
@@ -34,8 +33,8 @@
         // 不让控制器自动调整UIScrollview位置.
         self.automaticallyAdjustsScrollViewInsets = NO;
         
-        /* 在控制器初始化时,完成所有*/
-        // TODO: 迭代至此! 一个猜想:  或许view在决定model,甚至controller,model,也应该用代理来限制,而不是一个具体的类型.意思说,也就是所谓的"泛型"!这样,V,C,M三者同时解耦,才可以真正做到解耦!原来如此.
+        /* 在控制器初始化时,完成所有数据的请求. */
+        
     }
     return self;
 }
@@ -54,6 +53,8 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"魅影资讯";
     
+    // !!!: 这个好像,应该在外部指定.
+    // !!!: 迭代至此!
     self.model = [SNNewsModel model];
 }
 

@@ -76,7 +76,7 @@
  *
  *  @return 一个新闻菜单对象.
  */
-- (SNNewsMenu *) menuInNewsView: (SNNewsView *) newsView;
+- (id<SNNewsMenuDelegate>) menuInNewsView: (SNNewsView *) newsView;
 
 @optional
 /**

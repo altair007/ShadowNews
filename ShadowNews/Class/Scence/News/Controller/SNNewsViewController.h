@@ -8,18 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SNNewsView.h"
-@class  SNNewsModel;
 
-@protocol SNNewsModelDelegate <NSObject>
-@required
-- (NSString *)title;
-
-@end
 
 /**
  *  新闻页面控制器.
  */
 @interface SNNewsViewController : UIViewController<SNNewsViewDelegate, SNNewsViewDataSource>
-@property (retain, nonatomic) SNNewsModel<SNNewsModelDelegate> * model; //!< 新闻数据模型.
+@property (retain, nonatomic) id<SNNewsModelDelegate> model; //!< 新闻数据模型.
 
 @end

@@ -11,15 +11,24 @@
 
 @implementation SNAppDelegate
 
+- (void)dealloc
+{
+    self.window = nil;
+    
+#if ! __has_feature(objc_arc)
+    [super dealloc];
+#endif
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    
+//    self.window.rootViewController = [SNNavigationController sharedInstance];
     
-    self.window.rootViewController = [SNNavigationController sharedInstance];
-    
-    [self.window makeKeyAndVisible];
+//    [self.window makeKeyAndVisible];
     return YES;
 }
 
