@@ -10,7 +10,8 @@
                 <navigationController definesPresentationContext="YES" id="P4B-R1-RdP" customClass="SNNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3L8-bf-BSF">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
                             <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
@@ -21,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAq-ix-q5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="69"/>
+            <point key="canvasLocation" x="-372" y="-82"/>
         </scene>
         <!--News View Controller - 魅影资讯-->
         <scene sceneID="80f-5X-pcm">
@@ -36,14 +37,38 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </view>
                     <navigationItem key="navigationItem" title="魅影资讯" id="g7C-pm-uls">
+                        <barButtonItem key="backBarButtonItem" title=" " style="plain" id="XcG-pb-4Kh"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="cZD-aq-9DX" kind="push" identifier="NewsDigestPushToNewsDetail" id="6uf-fx-7cu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SMO-tD-niE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="-83"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cd0-5Q-pdc">
+            <objects>
+                <viewController id="cZD-aq-9DX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y14-yt-dgb"/>
+                        <viewControllerLayoutGuide type="bottom" id="ddC-Cj-nrT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JDr-nn-2EY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bt3-EA-vhF">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="title" value=""/>
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SMO-tD-niE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Dn-mr-no3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="69"/>
+            <point key="canvasLocation" x="523" y="-83"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

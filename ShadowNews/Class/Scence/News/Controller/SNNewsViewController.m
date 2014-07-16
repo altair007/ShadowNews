@@ -49,12 +49,10 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     /* 在控制器初始化时,完成所有数据的请求. */
-    
-//    self.navigationItem.title = @"魅影资讯";
-    
     // !!!: 这个好像,应该在外部指定.
     // !!!: 迭代至此!
     self.model = [SNNewsModel model];
+//    UIStoryboardSegue
 }
 
 - (void)didReceiveMemoryWarning

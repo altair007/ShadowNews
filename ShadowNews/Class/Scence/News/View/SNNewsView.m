@@ -166,14 +166,6 @@ typedef enum{
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [navigationContentView addSubview: titleLabel];
     
-    // !!!:临时屏蔽"设置页面".
-//    UIButton * settingButton = [UIButton buttonWithType: UIButtonTypeSystem];
-//    [settingButton setTranslatesAutoresizingMaskIntoConstraints: NO];
-//    [settingButton setTitle: @"设置" forState: UIControlStateNormal];
-//    [settingButton addTarget: self.delegate action: @selector(newsView:didClickSettingButtonButtonAction:) forControlEvents: UIControlEventTouchUpInside];
-//    settingButton.titleLabel.textColor = [UIColor whiteColor];
-//    [titleLabel addSubview: settingButton];
-    
     /* 设置页眉. */
     SNNewsHeaderView * headerView = [[SNNewsHeaderView alloc] init];
     headerView.dataSource = self;

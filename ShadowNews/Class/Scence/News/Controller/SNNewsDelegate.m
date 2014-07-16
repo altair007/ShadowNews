@@ -46,6 +46,11 @@
 #endif
 }
 
+- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    
+}
+
 - (instancetype) initWithPageView: (SNNewsPageView *) pageView;
 {
     if (self = [super init]) {
@@ -127,9 +132,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO: 迭代至此!
     NSString * docId = [(SNNews *)self.SNNDNewsArray[indexPath.row] docId];
-    SNNewsDetailViewController * detailVC = [[SNNewsDetailViewController alloc] initWIthDocId:docId];
-    [[SNNavigationController sharedInstance] pushViewController:detailVC animated: YES];
+    [self performSegueWithIdentifier: @"NewsDigestPushToNewsDetail" sender: docId];
+//    SNNewsDetailViewController * detailVC = [[SNNewsDetailViewController alloc] initWIthDocId:docId];
+//    [[SNNavigationController sharedInstance] pushViewController:detailVC animated: YES];
 }
 
 #pragma mark - UITableViewDataSource协议方法.

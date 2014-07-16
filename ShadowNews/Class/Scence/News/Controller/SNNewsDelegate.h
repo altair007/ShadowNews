@@ -13,7 +13,7 @@
 /**
  *  新闻代理类.
  */
-@interface SNNewsDelegate : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface SNNewsDelegate : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 /**
  *  便利构造器.
