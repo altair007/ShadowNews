@@ -182,7 +182,6 @@
     if ([self.delegate respondsToSelector: @selector(newsHeaderView:widthForCellAtIndex:)]) {
         width = [self.delegate newsHeaderView: self widthForCellAtIndex: index];
     }
-    
     return width;
 }
 

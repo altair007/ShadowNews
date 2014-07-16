@@ -61,11 +61,6 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-    
-        SNNewsViewController * newsVC = [[SNNewsViewController alloc] init];
-        [self pushViewController: newsVC animated:YES];
-        
-        self.navigationBarHidden = YES;
     }
     return self;
 }
