@@ -1,0 +1,12 @@
+{
+    "id": "WorldCupHeader",
+    "entries": [
+        {
+            "type": "header",
+            "params": {
+                "tid":"T1399700447917",
+                "viewHeight":126
+            }
+        }
+    ]
+}

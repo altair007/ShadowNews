@@ -1,0 +1,392 @@
+ [
+  {
+  "tid": "tongji",
+  "tname": "通缉令",
+  "size": "{394,520}",
+  "scale": 2,
+  "digests": [
+              "万万妹想到啊",
+              "头条没上反被槽,快跑吧…"
+              ],
+  "share": "万万妹想到啊！头条没上反被槽,快跑吧…",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.jpg",
+             "rect": "{{0,0},{394,520}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{38,186},{316,296}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "src": "mask.png",
+             "rect": "{{0,152},{394,120}}"
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{354,380}",
+             "color": "246,246,246",
+             "bgColor": "190,0,0",
+             "align": "right",
+             "fontsize": 40
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "text": "猥亵大黄鸭／拐卖小龙虾",
+             "position": "{354,430}",
+             "color": "246,246,246",
+             "bgColor": "190,0,0",
+             "align": "right",
+             "fontsize": 24
+             }
+             }
+             ]
+  },
+  {
+  "tid": "xinwen",
+  "tname": "CCAV",
+  "size": "{577,433}",
+  "scale": 2,
+  "digests": [
+              "成了世界上最幸福的人了？",
+              "不忍直视。"
+              ],
+  "share": "上联播就成了世界上最幸福的人了？不忍直视。",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{577,433}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{44,98},{192,222}}"
+             }
+             }
+             ]
+  },
+  {
+  "tid": "shidai",
+  "tname": "时代",
+  "size": "{394,519}",
+  "scale": 2,
+  "digests": [
+              "没上成头条？",
+              "上了时代周刊？？继续努力吧！"
+              ],
+  "share": "没上成头条？上了时代周刊？？继续努力吧！",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{394,519}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{32,128},{332,360}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "src": "corner.png",
+             "rect": "{{32,454},{68,34}}"
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{364,346}",
+             "color": "246,246,246",
+             "bgColor": "190,0,0",
+             "align": "right",
+             "fontsize": 46
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "text": "年度最具影响力人物",
+             "position": "{364,406}",
+             "color": "246,246,246",
+             "bgColor": "190,0,0",
+             "align": "right",
+             "fontsize": 22
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "text": "Niubility of 拆哪",
+             "position": "{364,438}",
+             "color": "246,246,246",
+             "bgColor": "190,0,0",
+             "align": "right",
+             "fontsize": 28
+             }
+             }
+             ]
+  },
+  {
+  "tid": "dafeiji",
+  "tname": "打飞机",
+  "size": "{453,626}",
+  "scale": 2,
+  "digests": [
+              "今天已经多少发了，你还行么？",
+              "注意身体，头条明天再上吧。"
+              ],
+  "share": "今天已经多少发了，你还行么？注意身体，头条明天再上吧。",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{5,307},{374,310}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "src": "mask.png",
+             "rect": "{{0,0},{453,626}}"
+             }
+             }
+             ]
+  },
+  {
+  "tid": "headline",
+  "tname": "头条",
+  "size": "{394,519}",
+  "scale": 2,
+  "digests": [
+              "真NB，上网易新闻头条了！",
+              "赶紧分享给小伙伴们嘚瑟一把！"
+              ],
+  "share": "真NB啊！上网易新闻头条了！不要说我嘚瑟哦~小伙伴们也来上头条吧！",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{394,519}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{19,128},{358,209}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "src": "titleboard.png",
+             "rect": "{{19,308},{358,29}}"
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{30,310}",
+             "color": "246,246,246",
+             "align": "left",
+             "fontsize": 19,
+             "text": "{{username}}密切接见曹县领导金三胖"
+             }
+             }
+             ]
+  },
+  {
+  "tid": "yiminribao",
+  "tname": "易民日报",
+  "size": "{447,588}",
+  "scale": 2,
+  "digests": [
+              "易民日报爱易民",
+              "报纸都上了，头条还远么？"
+              ],
+  "share": "易民日报爱易民，报纸都上了，头条还远么？",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{447,588}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{33,192},{382,224}}"
+             }
+             }
+             ]
+  },
+  {
+  "tid": "xunren",
+  "tname": "寻人",
+  "size": "{447,588}",
+  "scale": 2,
+  "digests": [
+              "你走丢了你家里人知道吗？",
+              "赶快回来上头条啊！"
+              ],
+  "share": "你走丢了你家里人知道吗？赶快回来上头条啊！",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{447,588}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{236,205},{145,139}}"
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{67,168}",
+             "color": "233,177,101",
+             "bgColor": "190,0,0",
+             "align": "center",
+             "fontsize": 20,
+             "text": "{{username}}　年龄不大　性别不详"
+             }
+             }
+             ]
+  },
+  {
+  "tid": "liumang",
+  "tname": "流氓证",
+  "size": "{577,426}",
+  "scale": 2,
+  "digests": [
+              "流氓不可怕，就怕流氓有文化",
+              "不上头条不作罢！"
+              ],
+  "share": "流氓不可怕，就怕流氓有文化。不上头条不作罢！",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{577,426}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{46,66},{218,290}}"
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{300,166}",
+             "color": "228,239,254",
+             "bgColor": "0,0,0",
+             "align": "left",
+             "fontsize": 24,
+             "text": " 姓名：{{username}} "
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{300,202}",
+             "color": "228,239,254",
+             "bgColor": "0,0,0",
+             "align": "left",
+             "fontsize": 24,
+             "text": " 年龄：不详 "
+             }
+             }
+             ]
+  },
+  {
+  "tid": "naocan",
+  "tname": "脑残证",
+  "size": "{577,433}",
+  "scale": 2,
+  "digests": [
+              "只要不放弃治疗",
+              "马上就能上头条！"
+              ],
+  "share": "只要不放弃治疗，马上就能上头条！",
+  "layers": [
+             {
+             "type": "image",
+             "info": {
+             "src": "bg.png",
+             "rect": "{{0,0},{577,433}}"
+             }
+             },
+             {
+             "type": "image",
+             "info": {
+             "userimage": true,
+             "rect": "{{55,161},{181,219}}"
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{282,153}",
+             "color": "248,226,212",
+             "bgColor": "0,0,0",
+             "align": "left",
+             "fontsize": 24,
+             "text": " 姓名：{{username}} "
+             }
+             },
+             {
+             "type": "text",
+             "info": {
+             "username": true,
+             "position": "{282,190}",
+             "color": "248,226,212",
+             "bgColor": "0,0,0",
+             "align": "left",
+             "fontsize": 24,
+             "text": " 年龄：不详 "
+             }
+             }
+             ]
+  }
+  ]

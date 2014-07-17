@@ -1,0 +1,15 @@
+{
+    "id": "WorldCupSpecialLink",
+    "entries": [
+        {
+            "type":"link",
+            "params":{
+                "regex":[
+                    "http\\://3g\\.163\\.com/.*/special/00340H1J/match\\.html\\?matchid=(.+)$",
+                    "http\\://3g\\.163\\.com/.*/special/00340H1J/team\\.html\\?teamid=(.+)$",
+                    "http\\://m\\.163\\.com/special/newsclient/WChds\\.html$"
+                ]
+            }
+        }
+    ]
+}

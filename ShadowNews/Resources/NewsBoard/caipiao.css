@@ -1,0 +1,34 @@
+.ssqgrayBtn,.ssqredBtn{display:inline-block;height:32px;line-height:32px;margin-left:10px; text-align:center;color:#1f1f1f; text-decoration:none;border-radius:4px;font:bold 16px/32px 'Microsoft YaHei',Simhei;}
+span.ssqgrayBtn{color:#999;}
+.ssqgrayBtn{width:30%;border:1px solid #cacaca;background:-webkit-gradient(linear,left top, left bottom ,color-stop(0.02,rgb(255,255,255)),color-stop(0.05,rgb(241,241,241)),color-stop(1,rgb(230,230,230)) );}
+.ssqredBtn{ width:55%;color:#fff;border:1px solid #830a0a;background:-webkit-gradient(linear,left top, left bottom ,color-stop(0.02,rgb(195,0,0)),color-stop(0.05,rgb(190,0,0)),color-stop(1,rgb(185,0,0)) );text-shadow:#950000 0 1px 0;}
+.ssq_bb {padding:10px 0;text-align:center}
+
+#ssq_wrap {text-align:center;-webkit-user-select:none;margin-top:10px;}
+.section_header #ssqlogo {content: url("caipiao_ssqlogo.png");width:28px;vertical-align:middle;margin-right: 5px;margin-bottom:5px;}
+.redball,.blueball{display:inline-block;padding:0;margin:0 6px;width:28px;height:28px; border:2px solid #c0223d; border-radius:18px;}
+.redball input,.blueball input{ margin:0; padding:0; border:0; background:none; width:28px; height:28px; text-align:center;font:bold 19px/28px Arial;color:#c0223d; outline:none}
+.blueball{ border-color:#0e52a7;}
+.blueball input{color:#0e52a7;}
+.redball #first{margin-left:0;}
+
+#ssq_br{margin-left: 2px;margin-right: 15px}
+#ssq_bn{margin-left: 5px;margin-right: 0px;padding-right: 0}
+
+/***********夜间模式*************************************************************************************************/
+body.night .redball{ border-color:#852837}
+body.night .redball input,body.night .redNum input{color:#852837}
+body.night .blueball{ border-color:#2a5181}
+body.night .blueball input,body.night .blueNum input{color:#2a5181}
+body.night .ssqgrayBtn,body.night .squareBtn{color:#aeb8c5; border-color:#131416;background:-webkit-gradient(linear,left top, left bottom ,color-stop(0.02,rgb(64,66,71)),color-stop(0.05,rgb(52,54,60)),color-stop(1,rgb(47,49,53)) );}
+body.night .ssqredBtn{color:#aeb8c5; border-color:#350303;background:-webkit-gradient(linear,left top, left bottom ,color-stop(0.02,rgb(92,0,0)),color-stop(0.05,rgb(78,4,4)),color-stop(1,rgb(85,0,0)) );}
+body.night span.ssqgrayBtn{color:#666}
+body.night .section_header #ssqlogo{opacity: 0.5}
+
+/*
+ @2x
+*/
+@media screen and (-webkit-device-pixel-ratio: 2) {
+.section_header #ssqlogo {content: url("caipiao_ssqlogo@2x.png");}
+
+}

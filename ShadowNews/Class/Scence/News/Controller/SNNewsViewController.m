@@ -11,6 +11,7 @@
 #import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
 #import "SNNewsDetailViewController.h"
+#import "SNNewsModel.h"
 
 @interface SNNewsViewController ()
 @end
@@ -49,7 +50,7 @@
     // 不让控制器自动调整UIScrollview位置.
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    SNNewsView * view = self.view;
+    SNNewsView * view = (SNNewsView *)self.view;
     view.delegate = self;
     view.dataSource = self;
     

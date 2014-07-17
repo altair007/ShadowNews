@@ -1,0 +1,22 @@
+{
+    "id":"WoCao",
+    "entries":[
+        {
+            "type":"sidebarBlock",
+            "params":{
+                "title":"每日一槽",
+                "icon":"icon",
+                "icon_setting":"icon_setting",
+                "class":"helper"
+            }
+        },
+        {
+            "type":"link",
+            "params":{
+                "regex":[
+                    "http\\://m\\.163\\.com/.*/wocao_introduction\\.html$"
+                ]
+            }
+        }
+    ]
+}
