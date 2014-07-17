@@ -56,21 +56,11 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
 }
 #endif
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-// !!!:一个建议: 导航栏控制器根据当前正在显示的控制器,自动更新导航栏内容.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    id a = self.storyboard;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,16 +68,5 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
 
 @end

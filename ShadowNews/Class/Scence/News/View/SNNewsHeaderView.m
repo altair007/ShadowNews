@@ -125,6 +125,7 @@
  */
 - (void) SNNHVSetUpSubviews
 {
+    self.backgroundColor = [UIColor whiteColor];
     /* 创建视图. */
     UIScrollView * scrollView = [[UIScrollView alloc] init];
     scrollView.translatesAutoresizingMaskIntoConstraints = NO;

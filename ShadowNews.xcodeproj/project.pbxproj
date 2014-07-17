@@ -70,6 +70,7 @@
 		C25246BC196E5709000A294A /* SNNewsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524687196E5709000A294A /* SNNewsPageView.m */; };
 		C25246BD196E5709000A294A /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524689196E5709000A294A /* SNNewsPageViewCell.m */; };
 		C25246BE196E5709000A294A /* SNNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C252468B196E5709000A294A /* SNNewsView.m */; };
+		C268B1791977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png in Resources */ = {isa = PBXBuildFile; fileRef = C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */; };
 		C29CF860196ABDA8004AE8C8 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CF85F196ABDA8004AE8C8 /* default.png */; };
 		C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */; };
 		C2D64A731976725B00C190E1 /* SNNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D64A721976725B00C190E1 /* SNNews.storyboard */; };
@@ -243,6 +244,7 @@
 		C25246C4196E5942000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		C25246C7196E598B000A294A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C25246C8196E598B000A294A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png"; sourceTree = "<group>"; };
 		C29CF85F196ABDA8004AE8C8 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C2D64A721976725B00C190E1 /* SNNews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SNNews.storyboard; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 		C2D6482D19764E8600C190E1 /* visiual */ = {
 			isa = PBXGroup;
 			children = (
+				C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */,
 				C2D64A721976725B00C190E1 /* SNNews.storyboard */,
 			);
 			name = visiual;
@@ -739,6 +742,7 @@
 				C20E3F14197113DD00AD747F /* content.js in Resources */,
 				C2F37C221975466200263191 /* Images.xcassets in Resources */,
 				C2D6569F196D2A7900F24F22 /* contenttoolbar_hd_fav_selected_light@2x.png in Resources */,
+				C268B1791977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png in Resources */,
 				C2D65675196D209F00F24F22 /* contentview_commentback_selected@2x.png in Resources */,
 				C20E3F13197113DD00AD747F /* content.css in Resources */,
 				C2D65691196D2A7900F24F22 /* contenttoolbar_hd_back_light.png in Resources */,

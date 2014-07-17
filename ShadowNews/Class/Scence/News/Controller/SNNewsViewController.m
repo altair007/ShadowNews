@@ -34,13 +34,13 @@
     return self;
 }
 
-- (void)loadView
-{
-    SNNewsView * view = [[SNNewsView alloc] init];
-    view.delegate = self;
-    view.dataSource = self;
-    self.view = view;
-}
+//- (void)loadView
+//{
+//    SNNewsView * view = [[SNNewsView alloc] init];
+//    view.delegate = self;
+//    view.dataSource = self;
+//    self.view = view;
+//}
 
 - (void)viewDidLoad
 {
@@ -49,11 +49,14 @@
     // 不让控制器自动调整UIScrollview位置.
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    SNNewsView * view = self.view;
+    view.delegate = self;
+    view.dataSource = self;
+    
     /* 在控制器初始化时,完成所有数据的请求. */
     // !!!: 这个好像,应该在外部指定.
     // !!!: 迭代至此!
     self.model = [SNNewsModel model];
-//    UIStoryboardSegue
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -73,7 +73,7 @@ typedef enum{
         YES != self.SNNVSubviewsSetUp) {
 
         
-        [self SNNVSetUpSubviews];
+//        [self SNNVSetUpSubviews];
     }
 }
 

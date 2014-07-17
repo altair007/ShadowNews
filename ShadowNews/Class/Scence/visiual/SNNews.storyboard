@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="P4B-R1-RdP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -18,60 +19,218 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="emg-MF-x9i" kind="relationship" relationship="rootViewController" id="sTs-mb-a3G"/>
+                        <segue destination="HJ5-bd-VOa" kind="relationship" relationship="rootViewController" id="VWl-bX-9jW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAq-ix-q5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1326" y="-94"/>
+            <point key="canvasLocation" x="-1984" y="48"/>
         </scene>
-        <!--News View Controller - 魅影资讯-->
-        <scene sceneID="80f-5X-pcm">
+        <!--View Controller - 精选-->
+        <scene sceneID="u3j-fZ-uH9">
             <objects>
-                <viewController id="emg-MF-x9i" customClass="SNNewsViewController" sceneMemberID="viewController">
+                <viewController id="Xih-TF-egG" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="43a-tt-fJf"/>
-                        <viewControllerLayoutGuide type="bottom" id="oEY-Ct-oUO"/>
+                        <viewControllerLayoutGuide type="top" id="4q2-gf-BAY"/>
+                        <viewControllerLayoutGuide type="bottom" id="C4U-jR-Xxl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xk1-GP-sre" customClass="SNNewsView">
+                    <view key="view" contentMode="scaleToFill" id="20k-O5-Gsc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Y7-yB-0z2">
+                                <rect key="frame" x="0.0" y="63" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q52-4D-1no">
+                                <rect key="frame" x="0.0" y="107" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem title="Item" id="THd-pt-rwh"/>
+                                    <barButtonItem title="1" width="42" style="plain" id="BdO-DK-cIM"/>
+                                    <barButtonItem title="2" width="42" style="plain" id="wcc-zj-eiD"/>
+                                    <barButtonItem title="3" width="42" style="plain" id="j98-hi-L0I"/>
+                                    <barButtonItem title="4" width="42" style="plain" id="qxi-mU-QkU"/>
+                                    <barButtonItem title="5" width="42" style="plain" id="jdb-8J-xtV"/>
+                                    <barButtonItem title="6" width="42" style="plain" id="jxY-xA-euB"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Q52-4D-1no" secondAttribute="height" multiplier="80:11" id="f8d-LU-oy5"/>
+                            <constraint firstAttribute="width" secondItem="Q52-4D-1no" secondAttribute="width" id="mLV-Ix-n43"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="魅影资讯" id="g7C-pm-uls">
-                        <barButtonItem key="backBarButtonItem" title=" " style="plain" id="XcG-pb-4Kh"/>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="cZD-aq-9DX" kind="push" identifier="NewsDigestPushToNewsDetail" id="6uf-fx-7cu"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="精选" image="contenttoolbar_hd_back.png" id="W0r-lg-q4R"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SMO-tD-niE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w4h-ml-1Xy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-875" y="-94"/>
+            <point key="canvasLocation" x="-1020" y="-1012"/>
         </scene>
-        <!--News Detail View Controller-->
-        <scene sceneID="cd0-5Q-pdc">
+        <!--Tab Bar Controller-->
+        <scene sceneID="vXW-hy-eZR">
             <objects>
-                <viewController storyboardIdentifier="SNNewsDetailViewController" id="cZD-aq-9DX" customClass="SNNewsDetailViewController" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="HJ5-bd-VOa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dtG-kw-NLx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="F7j-xg-5ql">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Xih-TF-egG" kind="relationship" relationship="viewControllers" id="A6F-qD-fb0"/>
+                        <segue destination="9po-aU-kyY" kind="relationship" relationship="viewControllers" id="JDh-86-pQP"/>
+                        <segue destination="LYe-rg-YBd" kind="relationship" relationship="viewControllers" id="7kQ-5q-uNj"/>
+                        <segue destination="HTv-Op-gNa" kind="relationship" relationship="viewControllers" id="8U7-RI-oa1"/>
+                        <segue destination="lzZ-Vn-4DC" kind="relationship" relationship="viewControllers" id="yJP-2F-7v2"/>
+                        <segue destination="CRD-44-hR9" kind="relationship" relationship="viewControllers" id="l4S-84-u3X"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6zG-CL-1XT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1437" y="18"/>
+        </scene>
+        <!--View Controller - 财经-->
+        <scene sceneID="2Fv-21-ORu">
+            <objects>
+                <viewController id="LYe-rg-YBd" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Y14-yt-dgb"/>
-                        <viewControllerLayoutGuide type="bottom" id="ddC-Cj-nrT"/>
+                        <viewControllerLayoutGuide type="top" id="tvZ-1d-oDG"/>
+                        <viewControllerLayoutGuide type="bottom" id="MkO-2q-M2b"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JDr-nn-2EY">
+                    <view key="view" contentMode="scaleToFill" id="DED-UB-Y28">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bt3-EA-vhF">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="title" value=""/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="财经" id="Ftj-Dn-UZu"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Dn-mr-no3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CbG-3q-Cpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-423" y="-94"/>
+            <point key="canvasLocation" x="-627" y="30"/>
+        </scene>
+        <!--View Controller - 体育-->
+        <scene sceneID="HQq-Wi-aWR">
+            <objects>
+                <viewController id="HTv-Op-gNa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ONg-cW-oUE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vx4-kO-LQ6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ON2-Pw-u3f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbi-lx-2he">
+                                <rect key="frame" x="0.0" y="72" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem systemItem="featured" id="yn6-eg-Zr6"/>
+                                    <tabBarItem title="1" id="Dzg-qB-ufa"/>
+                                    <tabBarItem title="2" id="dtr-fY-MeE"/>
+                                    <tabBarItem title="3" id="Dpo-zx-gwS"/>
+                                    <tabBarItem title="4" id="0Xu-5G-gk9"/>
+                                    <tabBarItem title="5" id="nN5-2b-1pz"/>
+                                    <tabBarItem title="6" id="eSr-M0-J7p"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="体育" id="yja-4N-guC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gty-gz-lVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-627" y="696"/>
+        </scene>
+        <!--View Controller - 社会-->
+        <scene sceneID="aRE-6w-rS2">
+            <objects>
+                <viewController id="9po-aU-kyY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B4W-F5-Xbs"/>
+                        <viewControllerLayoutGuide type="bottom" id="HPm-fL-hDE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LLj-zB-je1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQk-UU-xVF">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9po-aU-kyY" id="Web-zb-Ugc"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="社会" id="ZbQ-fJ-0Vh"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="fHB-8d-X9X" id="PG5-1G-bx3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iR8-bS-YEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="fHB-8d-X9X">
+                    <connections>
+                        <outlet property="delegate" destination="9po-aU-kyY" id="VFN-Yh-YHg"/>
+                        <outlet property="searchBar" destination="dQk-UU-xVF" id="61f-NU-YJK"/>
+                        <outlet property="searchContentsController" destination="9po-aU-kyY" id="VBV-9Q-wSw"/>
+                        <outlet property="searchResultsDataSource" destination="9po-aU-kyY" id="dMf-fi-7bK"/>
+                        <outlet property="searchResultsDelegate" destination="9po-aU-kyY" id="Tdb-x8-eJ5"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-572" y="-953"/>
+        </scene>
+        <!--View Controller - 测试-->
+        <scene sceneID="BlH-Ov-6Q8">
+            <objects>
+                <viewController id="CRD-44-hR9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h3B-nQ-iqe"/>
+                        <viewControllerLayoutGuide type="bottom" id="HjF-Sm-w4b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DGr-5w-eVu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="测试" id="U5f-gQ-sDL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lM2-tp-W1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1314" y="724"/>
+        </scene>
+        <!--View Controller - 娱乐-->
+        <scene sceneID="dqY-fE-3Ka">
+            <objects>
+                <viewController id="lzZ-Vn-4DC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fI8-JK-rJV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xvg-qc-Ffq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gca-tK-iOF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="娱乐" id="Ade-Md-290"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dw4-lp-CmF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-647" y="1346"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="contenttoolbar_hd_back.png" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
