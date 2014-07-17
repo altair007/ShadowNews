@@ -70,6 +70,7 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    id a = self.storyboard;
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +83,6 @@ static SNNavigationController * sharedObj = nil; //!< 单例对象.
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-// ???: 为什么这个方法,不执行?
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].

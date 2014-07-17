@@ -10,6 +10,7 @@
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
+#import "SNNewsDetailViewController.h"
 
 @interface SNNewsViewController ()
 @end
@@ -55,6 +56,11 @@
 //    UIStoryboardSegue
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    SNNewsDetailViewController * detailVC = (SNNewsDetailViewController *)segue.destinationViewController;
+    detailVC.docId = sender;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -73,6 +79,7 @@
     SNNewsDelegate * delegate = [SNNewsDelegate delegateWithPageView: pageView];
     pageView.delegate = delegate;
     pageView.dataSource = delegate;
+    delegate.newsVC = self;
     pageView.backgroundColor = [UIColor whiteColor];
     return pageView;
 }

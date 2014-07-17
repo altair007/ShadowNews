@@ -8,6 +8,7 @@
         <scene sceneID="rLN-7Y-h9u">
             <objects>
                 <navigationController definesPresentationContext="YES" id="P4B-R1-RdP" customClass="SNNavigationController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="waR-KQ-ZJs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3L8-bf-BSF">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -22,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAq-ix-q5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-372" y="-82"/>
+            <point key="canvasLocation" x="-1326" y="-94"/>
         </scene>
         <!--News View Controller - 魅影资讯-->
         <scene sceneID="80f-5X-pcm">
@@ -45,12 +46,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMO-tD-niE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="-83"/>
+            <point key="canvasLocation" x="-875" y="-94"/>
         </scene>
-        <!--View Controller-->
+        <!--News Detail View Controller-->
         <scene sceneID="cd0-5Q-pdc">
             <objects>
-                <viewController id="cZD-aq-9DX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SNNewsDetailViewController" id="cZD-aq-9DX" customClass="SNNewsDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y14-yt-dgb"/>
                         <viewControllerLayoutGuide type="bottom" id="ddC-Cj-nrT"/>
@@ -68,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dn-mr-no3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="523" y="-83"/>
+            <point key="canvasLocation" x="-423" y="-94"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

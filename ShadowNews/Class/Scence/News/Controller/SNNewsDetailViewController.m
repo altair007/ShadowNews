@@ -78,7 +78,10 @@
     [[SNNavigationController sharedInstance] popViewControllerAnimated: YES];
 }
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+}
 
 // !!!: 跟帖的借口,是get请求,与docid存在对应关系.,但是需要分析,预处理一下,才可以显示.
 // !!!: 关于跟帖借口:

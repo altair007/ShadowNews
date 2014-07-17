@@ -35,7 +35,7 @@
     
     [self removeObserver: self forKeyPath:@"SNNDNewsArray" context: NULL];
     
-    // !!!: 第一次加载时请求所有新闻的值.
+    //  !!!: 第一次加载时请求所有新闻的值.
     [self.SNNDPageView removeObserver: self forKeyPath:@"preLoad" context: NULL];
     
     self.SNNDPageView = nil;
@@ -46,7 +46,7 @@
 #endif
 }
 
-- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
 }
@@ -132,11 +132,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: 迭代至此!
     NSString * docId = [(SNNews *)self.SNNDNewsArray[indexPath.row] docId];
-    [self performSegueWithIdentifier: @"NewsDigestPushToNewsDetail" sender: docId];
-//    SNNewsDetailViewController * detailVC = [[SNNewsDetailViewController alloc] initWIthDocId:docId];
-//    [[SNNavigationController sharedInstance] pushViewController:detailVC animated: YES];
+    [self.newsVC performSegueWithIdentifier: @"NewsDigestPushToNewsDetail" sender: docId];
 }
 
 #pragma mark - UITableViewDataSource协议方法.

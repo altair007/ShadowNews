@@ -60,6 +60,8 @@ typedef enum{
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // !!!: 迭代至此!
+        // !!!: 尝试用 故事板 重画视图.
     }
     return self;
 }
