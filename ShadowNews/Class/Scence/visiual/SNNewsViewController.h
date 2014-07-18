@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SNNewsViewController : UIViewController
+- (IBAction)handleSegmentedControlValueChangedAction:(UISegmentedControl *)sender;
+@property (retain, nonatomic) IBOutlet UISegmentedControl *navSC;
 
 @end

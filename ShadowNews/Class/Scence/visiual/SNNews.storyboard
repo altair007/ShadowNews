@@ -177,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCE-9R-ePb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6869" y="132"/>
+            <point key="canvasLocation" x="-6797" y="137"/>
         </scene>
         <!--Navigation Controller - 订阅-->
         <scene sceneID="u5u-7H-m50">
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nf2-dF-UDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6869" y="-562"/>
+            <point key="canvasLocation" x="-6581" y="-576"/>
         </scene>
         <!--Navigation Controller - 新闻-->
         <scene sceneID="0AA-7P-puf">
@@ -294,6 +294,9 @@
                                             <segment title="时尚"/>
                                             <segment title="情感"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="handleSegmentedControlValueChangedAction:" destination="iOl-xa-SXX" eventType="valueChanged" id="nfC-XN-0gU"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
@@ -324,21 +327,24 @@
                     <navigationItem key="navigationItem" title="新闻" id="LWy-4e-ioy"/>
                     <keyCommands/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navSC" destination="mDG-oT-MUe" id="B9Y-9Z-FMe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neM-Vo-0s4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6869" y="-1312"/>
         </scene>
-        <!--Table View Controller-->
+        <!--News Page Table View Controller-->
         <scene sceneID="3Z5-sk-zid">
             <objects>
-                <tableViewController id="CU8-We-BVl" sceneMemberID="viewController">
+                <tableViewController id="CU8-We-BVl" customClass="SNNewsPageTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B0K-hO-WOq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="429"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="97a-Xu-nUM">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" id="97a-Xu-nUM">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="97a-Xu-nUM" id="sK7-0v-bxD">
