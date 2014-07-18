@@ -35,30 +35,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    CGRect frame = self.navigation.frame;
-    CGRect superFrame = self.navigation.superview.frame
-    ;
-    UIView * superView = self.navigation.superview;
-    CGSize superContentSize= [self.navigation.superview contentSize];
-    ;
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (void)dealloc {
-    [_navigation release];
-    [_navCollection release];
     [super dealloc];
 }
 @end

@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SNNewsViewController : UIViewController
-@property (retain, nonatomic) IBOutlet UIToolbar *navigation;
-@property (retain, nonatomic) IBOutletCollection(UIToolbar) NSArray *navCollection;
 
 @end
