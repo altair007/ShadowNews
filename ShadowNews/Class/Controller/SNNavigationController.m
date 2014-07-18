@@ -7,7 +7,7 @@
 //
 
 #import "SNNavigationController.h"
-#import "SNNewsViewController.h"
+#import "SNNewsViewControllerT.h"
 
 @interface SNNavigationController ()
 

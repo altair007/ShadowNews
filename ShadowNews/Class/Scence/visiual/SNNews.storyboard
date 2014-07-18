@@ -230,10 +230,10 @@
             </objects>
             <point key="canvasLocation" x="-6770" y="-824"/>
         </scene>
-        <!--View Controller - 新闻-->
+        <!--News View Controller - 新闻-->
         <scene sceneID="RXg-Ro-4om">
             <objects>
-                <viewController id="iOl-xa-SXX" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="iOl-xa-SXX" customClass="SNNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XRg-u9-yiD"/>
                         <viewControllerLayoutGuide type="bottom" id="QbB-Cu-jI1"/>
@@ -242,33 +242,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JcO-Jh-S42">
-                                <rect key="frame" x="-376" y="270" width="1071" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <segments>
-                                    <segment title="头条"/>
-                                    <segment title="轻松一刻"/>
-                                    <segment title="推荐"/>
-                                    <segment title="聚合阅读"/>
-                                    <segment title="精选"/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                </segments>
-                            </segmentedControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeR-vV-cLM" customClass="SNNewsNavigationView">
+                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1v-A8-JZ0">
+                                        <rect key="frame" x="0.0" y="0.0" width="900" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="cIl-TY-RAo"/>
+                                        </constraints>
+                                        <items>
+                                            <barButtonItem title="头条" id="4YJ-Li-DcB"/>
+                                            <barButtonItem title="轻松一刻" id="gFZ-CI-LdJ"/>
+                                            <barButtonItem title="推荐" id="Naf-7z-PB1"/>
+                                            <barButtonItem title="聚合阅读" id="27b-Th-38k"/>
+                                            <barButtonItem title="精选" id="RMC-Ks-Sz6"/>
+                                            <barButtonItem title="科技" id="CkA-ef-P4O"/>
+                                            <barButtonItem title="娱乐" id="nes-G0-xYQ"/>
+                                            <barButtonItem title="体育" id="Lp2-nA-e9h"/>
+                                            <barButtonItem title="财经" id="A7g-pP-OI7"/>
+                                            <barButtonItem title="汽车" id="H3J-wg-M7O"/>
+                                            <barButtonItem title="本地" id="V2l-L2-gul"/>
+                                            <barButtonItem title="军事" id="6ql-Oq-B0d"/>
+                                            <barButtonItem title="读书" id="s4G-Ij-tFA"/>
+                                            <barButtonItem title="原创" id="nrk-Ny-L9s"/>
+                                            <barButtonItem title="社会" id="KYC-7w-9w8"/>
+                                            <barButtonItem title="电影" id="7aR-f1-a3Z"/>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="U1v-A8-JZ0" secondAttribute="trailing" id="9TD-86-JIt"/>
+                                    <constraint firstItem="U1v-A8-JZ0" firstAttribute="centerY" secondItem="AeR-vV-cLM" secondAttribute="centerY" id="Awb-qD-a0G"/>
+                                    <constraint firstItem="U1v-A8-JZ0" firstAttribute="top" secondItem="AeR-vV-cLM" secondAttribute="top" id="GeR-kP-IjR"/>
+                                    <constraint firstAttribute="width" constant="320" id="NI6-n4-tCt"/>
+                                    <constraint firstAttribute="height" constant="44" id="g4H-af-Zlo"/>
+                                    <constraint firstAttribute="bottom" secondItem="U1v-A8-JZ0" secondAttribute="bottom" id="pum-ah-xZv"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1v-A8-JZ0" secondAttribute="trailing" id="t23-jc-AdZ"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AeR-vV-cLM" firstAttribute="top" secondItem="XRg-u9-yiD" secondAttribute="bottom" constant="1" id="Muy-aD-cb0"/>
+                            <constraint firstItem="AeR-vV-cLM" firstAttribute="leading" secondItem="IZO-zb-xjM" secondAttribute="leading" id="kbl-vJ-zIf"/>
+                            <constraint firstAttribute="trailing" secondItem="AeR-vV-cLM" secondAttribute="trailing" id="wjC-Aw-RXf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="新闻" id="LWy-4e-ioy"/>
+                    <keyCommands>
+                        <keyCommand input="d" actionName="delete"/>
+                    </keyCommands>
+                    <connections>
+                        <outlet property="navigation" destination="U1v-A8-JZ0" id="gzg-R5-sBr"/>
+                        <outletCollection property="Navigation" destination="Awb-qD-a0G" id="2Sd-vf-olQ"/>
+                        <outletCollection property="navCollection" destination="U1v-A8-JZ0" id="CuP-3g-BCX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neM-Vo-0s4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -308,7 +339,6 @@
         <image name="sidebar_nav_reading.png" width="25" height="25"/>
         <image name="sidebar_nav_video.png" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SNNewsViewController.h"
+#import "SNNewsViewControllerT.h"
 @class SNNewsMenu;
 @class YFDataBase;
 

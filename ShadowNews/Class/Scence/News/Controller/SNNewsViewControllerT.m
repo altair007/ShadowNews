@@ -6,17 +6,17 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-#import "SNNewsViewController.h"
+#import "SNNewsViewControllerT.h"
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
 #import "SNNewsDetailViewController.h"
 #import "SNNewsModel.h"
 
-@interface SNNewsViewController ()
+@interface SNNewsViewControllerT ()
 @end
 
-@implementation SNNewsViewController
+@implementation SNNewsViewControllerT
 -(void)dealloc
 {
     self.model = nil;

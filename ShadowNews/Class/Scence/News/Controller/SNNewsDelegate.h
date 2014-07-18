@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 @class SNNewsPageView;
 @class SNNewsModel;
-@class SNNewsViewController;
+@class SNNewsViewControllerT;
 
 /**
  *  新闻代理类.
  */
 @interface SNNewsDelegate : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (retain, nonatomic) SNNewsViewController * newsVC;
+@property (retain, nonatomic) SNNewsViewControllerT * newsVC;
 
 /**
  *  便利构造器.

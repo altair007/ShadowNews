@@ -13,7 +13,7 @@
 /**
  *  新闻页面控制器.
  */
-@interface SNNewsViewController : UIViewController<SNNewsViewDelegate, SNNewsViewDataSource>
+@interface SNNewsViewControllerT : UIViewController<SNNewsViewDelegate, SNNewsViewDataSource>
 @property (retain, nonatomic) id<SNNewsModelDelegate> model; //!< 新闻数据模型.
 
 @end
