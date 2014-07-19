@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.model detailModelWithDocId: self.docId success:^(id responseObject) {
+        [self.webView loadHTMLString: responseObject baseURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    } fail:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +40,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [_webView release];
+    [super dealloc];
+}
 @end

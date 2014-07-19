@@ -448,6 +448,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Tdr-W4-msP"/>
+                    <connections>
+                        <outlet property="webView" destination="VrL-bq-f3N" id="mdo-qA-o2M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Re-uP-WOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

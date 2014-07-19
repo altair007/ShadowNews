@@ -10,6 +10,8 @@
 #import "SNNewsDetailModelDelegate.h"
 
 @interface SNNewsDetailViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UIWebView *webView;
+
 @property (copy, nonatomic) NSString * docId; //!< 文章唯一标识符.
 @property (retain, nonatomic) id<SNNewsDetailModelDelegate> model; //!< 数据模型.
 @property (copy, nonatomic) NSString * detailHtmlStr; //!< 新闻详情,它是一个html格式的字符串.
