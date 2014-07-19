@@ -279,14 +279,14 @@
     return self;
 }
 
-+ (NSArray *) localNewsForTitle: (NSString *) title
++ (NSArray *) localNewsForTopic: (NSString *) topic
 {
     NSMutableArray * newsArray = [NSMutableArray arrayWithCapacity: 42];
     
     YFDataBase * db =  [[self class] db];
     [db open];
     
-    YFResultSet * result = [db getWhere: @"SNNEWS" where: @{@"TOPIC": title}];
+    YFResultSet * result = [db getWhere: @"SNNEWS" where: @{@"TOPIC": topic}];
     
     while ([result next]) {
         NSArray * imgsTemp = [[result stringForColumn: @"IMGS"] componentsSeparatedByString: @","];

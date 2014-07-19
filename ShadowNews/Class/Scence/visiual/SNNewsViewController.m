@@ -7,7 +7,8 @@
 //
 
 #import "SNNewsViewController.h"
-#import "SNNewsPageTableViewController.h"
+#import "SNNewsPageViewController.h"
+#import "SNNewsPageModel.h"
 
 @interface SNNewsViewController ()
 
@@ -40,21 +41,28 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    NSString * topic = [self.navSC titleForSegmentAtIndex: self.navSC.selectedSegmentIndex];
-    SNNewsPageTableViewController * pageVC = segue.destinationViewController;
+    NSString * topic = [self currentTopic];
+    SNNewsPageViewController * pageVC = segue.destinationViewController;
     pageVC.topic = topic;
-    pageVC.newsArray = @[@"新闻1", @"新闻2", @"新闻3", @"新闻四"];
+    pageVC.model = [[[SNNewsPageModel alloc] init] autorelease];
+    self.embedVC = pageVC;
 }
-
 
 - (void)dealloc {
     [_navSC release];
     [super dealloc];
 }
+
 - (IBAction)handleSegmentedControlValueChangedAction:(UISegmentedControl *)sender {
-    
-    
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message: [NSString stringWithFormat: @"您点击了第 %@ 个按钮!", [NSNumber numberWithUnsignedInteger: sender.selectedSegmentIndex]] delegate: nil cancelButtonTitle: @"确定" otherButtonTitles: nil];
-    [alertView show];
+    if (YES == [self.embedVC isKindOfClass: [SNNewsPageViewController class]]) {
+        SNNewsPageViewController * pageVC = (SNNewsPageViewController *)self.embedVC;
+        pageVC.topic = [self currentTopic];
+        [pageVC reloadData];
+    }
+}
+
+- (NSString *) currentTopic
+{
+    return [self.navSC titleForSegmentAtIndex: self.navSC.selectedSegmentIndex];
 }
 @end

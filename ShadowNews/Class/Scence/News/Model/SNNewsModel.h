@@ -74,10 +74,10 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
 /**
  *  获取本地存储的某一新闻板块的全部新闻.
  *
- *  @param title 新闻板块名称.
+ *  @param topic 新闻板块名称.
  *
  *  @return 存储新闻对象的数组.
  */
-+ (NSArray *) localNewsForTitle: (NSString *) title;
++ (NSArray *) localNewsForTopic: (NSString *) topic;
 
 @end

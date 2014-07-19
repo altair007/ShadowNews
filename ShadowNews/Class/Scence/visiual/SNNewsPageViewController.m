@@ -1,18 +1,18 @@
 //
-//  SNNewsPageTableViewController.m
+//  SNNewsPageViewController.m
 //  ShadowNews
 //
 //  Created by 颜风 on 14-7-18.
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-#import "SNNewsPageTableViewController.h"
+#import "SNNewsPageViewController.h"
 
-@interface SNNewsPageTableViewController ()
+@interface SNNewsPageViewController ()
 
 @end
 
-@implementation SNNewsPageTableViewController
+@implementation SNNewsPageViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,12 +32,30 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self setUpData];
+}
+
+- (void) setUpData
+{
+    [self reloadData];
+}
+
+- (void) reloadData
+{
+    [self.model newsForTopic: self.topic range: NSMakeRange(0, 20) success:^(id responseObject) {
+        self.newsArray = responseObject;
+        [self.tableView reloadData];
+    } fail: NULL];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    if (YES == [self isViewLoaded] && nil == self.view.window) {
+        self.view = nil;
+    }
 }
 
 #pragma mark - Table view data source
@@ -68,7 +86,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = self.newsArray[indexPath.row];
+    cell.textLabel.text = [(NSDictionary *)self.newsArray[indexPath.row] objectForKey: @"title"];
     
     return cell;
 }

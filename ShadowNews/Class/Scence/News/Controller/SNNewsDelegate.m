@@ -107,7 +107,7 @@
 - (NSArray *)SNNDNewsArray
 {
     if (nil == _SNNDNewsArray) { // 从数据库获取最新数据.
-       self.SNNDNewsArray = [SNNewsModel localNewsForTitle: self.SNNDPageView.title];
+       self.SNNDNewsArray = [SNNewsModel localNewsForTopic: self.SNNDPageView.title];
     }
     
     return _SNNDNewsArray;

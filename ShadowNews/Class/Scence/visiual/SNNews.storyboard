@@ -312,7 +312,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="CU8-We-BVl" kind="embed" id="daT-fS-9xa"/>
+                                    <segue destination="CU8-We-BVl" kind="embed" identifier="NewsVCToNewsPageVCSegue" id="daT-fS-9xa"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -335,10 +335,10 @@
             </objects>
             <point key="canvasLocation" x="-6869" y="-1312"/>
         </scene>
-        <!--News Page Table View Controller-->
+        <!--News Page View Controller-->
         <scene sceneID="3Z5-sk-zid">
             <objects>
-                <tableViewController id="CU8-We-BVl" customClass="SNNewsPageTableViewController" sceneMemberID="viewController">
+                <tableViewController id="CU8-We-BVl" customClass="SNNewsPageViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B0K-hO-WOq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="429"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
