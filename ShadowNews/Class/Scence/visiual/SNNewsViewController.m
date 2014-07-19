@@ -49,6 +49,8 @@
 }
 
 - (void)dealloc {
+    [_embedVC release];
+    
     [_navSC release];
     [super dealloc];
 }
@@ -65,4 +67,5 @@
 {
     return [self.navSC titleForSegmentAtIndex: self.navSC.selectedSegmentIndex];
 }
+
 @end

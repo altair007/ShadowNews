@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SNNewsPageViewCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UIImageView *relatedImageView;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *digestLabel;
+@property (retain, nonatomic) IBOutlet UILabel *replyLabel;
 
+@property (copy, nonatomic) NSString * docId; //!< 唯一新闻标识符.
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SNNewsDetailView.h"
-@interface SNNewsDetailViewController : UIViewController<SNNewsDetailViewDataSource, SNNewsDetailViewDelegate>
+@interface SNNewsDetailViewControllerT : UIViewController<SNNewsDetailViewDataSource, SNNewsDetailViewDelegate>
 // ???:直接异步传一个SNNewsDetail对象进来是不是更合适?
 @property (copy, nonatomic) NSString * docId; //!< 唯一新闻标识符.
 @property (retain, nonatomic) SNNewsDetailView * view; //!< 重新声明视图对象.

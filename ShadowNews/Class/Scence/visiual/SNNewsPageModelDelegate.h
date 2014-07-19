@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  新闻页面数据模型代理.
- */
-@protocol SNNewsPageModelDelegate <NSObject>
-/**
  *  获取数据成功时,执行此 block.
  *
  *  @param array 一个数组,存储请求到的数据对象.
@@ -26,6 +22,10 @@ typedef void(^SNNewsPageModelSuccessBlock)(id responseObject);
  */
 typedef void(^SNNewsPageModelFailBlock)(NSError * error);
 
+/**
+ *  新闻页面数据模型代理.
+ */
+@protocol SNNewsPageModelDelegate <NSObject>
 @required
 /**
  *  获取某一新闻版块的新闻.

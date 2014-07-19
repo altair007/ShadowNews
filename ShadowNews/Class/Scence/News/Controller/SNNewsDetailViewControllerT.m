@@ -6,16 +6,16 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
-#import "SNNewsDetailViewController.h"
+#import "SNNewsDetailViewControllerT.h"
 #import "SNNewsModel.h"
 #import "SNNewsDetail.h"
 #import "SNNavigationController.h"
 
-@interface SNNewsDetailViewController ()
+@interface SNNewsDetailViewControllerT ()
 @property (retain, nonatomic) SNNewsDetail * SNNDDVCDetail; //!< 新闻详情.
 @end
 
-@implementation SNNewsDetailViewController
+@implementation SNNewsDetailViewControllerT
 - (instancetype) initWIthDocId: (NSString *) docId
 {
     if (self = [super init]) {

@@ -10,7 +10,7 @@
 #import "SNNewsMenu.h"
 #import "SNNewsPageView.h"
 #import "SNNewsDelegate.h"
-#import "SNNewsDetailViewController.h"
+#import "SNNewsDetailViewControllerT.h"
 #import "SNNewsModel.h"
 
 @interface SNNewsViewControllerT ()
@@ -62,7 +62,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    SNNewsDetailViewController * detailVC = (SNNewsDetailViewController *)segue.destinationViewController;
+    SNNewsDetailViewControllerT * detailVC = (SNNewsDetailViewControllerT *)segue.destinationViewController;
     detailVC.docId = sender;
 }
 - (void)didReceiveMemoryWarning

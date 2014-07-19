@@ -31,4 +31,14 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+
+    [_docId release];
+    
+    [_relatedImageView release];
+    [_titleLabel release];
+    [_digestLabel release];
+    [_replyLabel release];
+    [super dealloc];
+}
 @end

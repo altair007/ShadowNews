@@ -17,7 +17,6 @@
 @property (retain, nonatomic) NSArray * newsArray; //!< 存储新闻的数组.
 @property (copy, nonatomic) NSString * topic; // !< 新闻主题.
 @property (retain, nonatomic) id<SNNewsPageModelDelegate> model; //!< 数据模型.
-@property (retain, nonatomic) UIViewController * embedVC; //!< 用于展示内容的控制器.
 
 /**
  *  初始化数据.

@@ -6,8 +6,11 @@
 //  Copyright (c) 2014年 ShadowNews. All rights reserved.
 //
 
+#import "UIKit+AFNetworking.h"
 #import "SNNewsPageViewController.h"
 #import "SNNewsPageViewCell.h"
+#import "SNNewsDetailViewController.h"
+#import "SNNewsDetailModel.h"
 
 @interface SNNewsPageViewController ()
 
@@ -35,18 +38,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self setUpData];
+    [self reloadData];
 }
 
 - (void) setUpData
 {
-    [self reloadData];
+    /* 从数据库中获取数据进行初始化. */
+    self.newsArray = @[@{@"title": [NSString stringWithFormat:@"%@ 板块,数据库中缓存的内容", self.topic]}];
+    [self.tableView reloadData];
 }
 
 - (void) reloadData
 {
-    self.newsArray = @[@{@"title": [NSString stringWithFormat:@"%@ 板块,数据库中缓存的内容", self.topic]}];
-    [self.tableView reloadData];
-    
     [self.model newsForTopic: self.topic range: NSMakeRange(0, 20) success:^(id responseObject) {
         self.newsArray = responseObject;
         [self.tableView reloadData];
@@ -92,7 +95,15 @@
     SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SNNewsPageViewCell class]) forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [(NSDictionary *)self.newsArray[indexPath.row] objectForKey: @"title"];
+    NSDictionary * news = [self.newsArray objectAtIndex: indexPath.row];
+
+    NSString * imgsrc = [news objectForKey: @"imgsrc"];
+    [cell.relatedImageView setImageWithURL: [NSURL URLWithString: imgsrc]];
+    cell.titleLabel.text = [news objectForKey: @"title"];
+    cell.digestLabel.text = [news objectForKey: @"digest"];
+    cell.replyLabel.text =  [NSString stringWithFormat:@"%@ 跟帖数", [news objectForKey: @"replyCount"]];
+    cell.docId = [news objectForKey: @"docid"];
+    
     return cell;
 }
 
@@ -135,7 +146,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -143,10 +154,20 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if (YES == [segue.identifier isEqualToString: @"newsDigestToNewsDetailSegue"]) {
+        SNNewsDetailViewController * detailVC = segue.destinationViewController;
+        detailVC.docId = [(SNNewsPageViewCell *)sender docId];
+        SNNewsDetailModel * model = [[SNNewsDetailModel alloc] init];
+        detailVC.model = model;
+        [model release];
+    }
 }
-*/
 
 - (void)dealloc {
+    [_newsArray release];
+    [_topic release];
+    [_model release];
+    
     [super dealloc];
 }
 @end

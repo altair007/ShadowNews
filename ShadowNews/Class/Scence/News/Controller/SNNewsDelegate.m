@@ -12,7 +12,7 @@
 #import "SNNews.h"
 #import "SNNewsPageViewCellT.h"
 #import "SNNavigationController.h"
-#import "SNNewsDetailViewController.h"
+#import "SNNewsDetailViewControllerT.h"
 #import "SNNewsPageViewBigImageCell.h"
 #import "SNNewsPageViewPhotosetCell.h"
 #import "SNNewsPageViewTextCell.h"
