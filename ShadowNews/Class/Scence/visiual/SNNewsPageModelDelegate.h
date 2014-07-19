@@ -15,7 +15,7 @@
 /**
  *  获取数据成功时,执行此 block.
  *
- *  @param array 一个数组,存储本地新闻对象.
+ *  @param array 一个数组,存储请求到的数据对象.
  */
 typedef void(^SNNewsPageModelSuccessBlock)(id responseObject);
 

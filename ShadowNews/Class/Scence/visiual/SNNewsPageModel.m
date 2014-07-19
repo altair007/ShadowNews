@@ -10,17 +10,31 @@
 #import "SNNewsPageModel.h"
 
 @implementation SNNewsPageModel
+- (void)dealloc
+{
+    self.queue = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype) init
+{
+    self = [super init];
+    if (nil != self) {
+        NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+        self.queue = queue;
+        [queue release];
+    }
+    
+    return self;
+}
+
 - (void) newsForTopic: (NSString *) topic
                 range: (NSRange) range
               success: (SNNewsPageModelSuccessBlock) success
                  fail: (SNNewsPageModelFailBlock) fail
 {
-    // FIXME: 感觉没必要使用AFNETWORKING.NSData就可以了!
     NSString * urlStr = [self urlForTopic: topic range: range];
-    
-    // !!!: 临时测试.
-    NSString * str = [NSString stringWithContentsOfURL: [NSURL URLWithString: urlStr] encoding:NSUTF8StringEncoding error: nil];
-//    NSJSONSerialization
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];

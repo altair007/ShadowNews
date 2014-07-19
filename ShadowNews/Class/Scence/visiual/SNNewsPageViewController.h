@@ -13,6 +13,7 @@
  *  新闻单页面控制器.
  */
 @interface SNNewsPageViewController : UITableViewController
+
 @property (retain, nonatomic) NSArray * newsArray; //!< 存储新闻的数组.
 @property (copy, nonatomic) NSString * topic; // !< 新闻主题.
 @property (retain, nonatomic) id<SNNewsPageModelDelegate> model; //!< 数据模型.

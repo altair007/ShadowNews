@@ -7,6 +7,7 @@
 //
 
 #import "SNNewsPageViewController.h"
+#import "SNNewsPageViewCell.h"
 
 @interface SNNewsPageViewController ()
 
@@ -43,10 +44,15 @@
 
 - (void) reloadData
 {
+    self.newsArray = @[@{@"title": [NSString stringWithFormat:@"%@ 板块,数据库中缓存的内容", self.topic]}];
+    [self.tableView reloadData];
+    
     [self.model newsForTopic: self.topic range: NSMakeRange(0, 20) success:^(id responseObject) {
         self.newsArray = responseObject;
         [self.tableView reloadData];
-    } fail: NULL];
+    } fail:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,11 +89,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SNNewsPageViewCell class]) forIndexPath:indexPath];
     
     // Configure the cell...
     cell.textLabel.text = [(NSDictionary *)self.newsArray[indexPath.row] objectForKey: @"title"];
-    
     return cell;
 }
 
@@ -141,4 +146,7 @@
 }
 */
 
+- (void)dealloc {
+    [super dealloc];
+}
 @end

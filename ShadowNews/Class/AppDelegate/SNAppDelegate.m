@@ -22,14 +22,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    
-//    self.window.rootViewController = [SNNavigationController sharedInstance];
-    
-//    [self.window makeKeyAndVisible];
-    // TODO: 有一个bug: 轮转视图无法和分段配合使用.原因可能是: 分段视图的约束,不应该依赖于轮转视图的宽和高,而应该是仅依赖上和右边界.
     return YES;
 }
 

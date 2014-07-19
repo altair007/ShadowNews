@@ -10,7 +10,7 @@
 #import "SNNewsPageView.h"
 #import "SNNewsModel.h"
 #import "SNNews.h"
-#import "SNNewsPageViewCell.h"
+#import "SNNewsPageViewCellT.h"
 #import "SNNavigationController.h"
 #import "SNNewsDetailViewController.h"
 #import "SNNewsPageViewBigImageCell.h"
@@ -55,7 +55,7 @@
 {
     if (self = [super init]) {
         self.SNNDPageView = pageView;
-        [pageView registerClass:[SNNewsPageViewCell class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
+        [pageView registerClass:[SNNewsPageViewCellT class] forCellReuseIdentifier:@"SNNewsPageViewCell"];
         [pageView registerClass:[SNNewsPageViewBigImageCell class] forCellReuseIdentifier: @"SNNewsPageViewBigImageCell"];
         [pageView registerClass: [SNNewsPageViewPhotosetCell class] forCellReuseIdentifier: @"SNNewsPageViewPhotosetCell"];
         [pageView registerClass: [SNNewsPageViewTextCell class] forCellReuseIdentifier: @"SNNewsPageViewTextCell"];
@@ -171,7 +171,7 @@
     }
     
     
-    SNNewsPageViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SNNewsPageViewCell" forIndexPath: indexPath];
+    SNNewsPageViewCellT * cell = [tableView dequeueReusableCellWithIdentifier:@"SNNewsPageViewCell" forIndexPath: indexPath];
     
     cell.news = news;
     

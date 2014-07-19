@@ -17,7 +17,7 @@
 /**
  *  用于各个新闻页面的单元格类
  */
-@interface SNNewsPageViewCell : UITableViewCell
+@interface SNNewsPageViewCellT : UITableViewCell
 // !!!: 总感觉cell也要通过代理获取news,这样的好处是,灵活性非常高,可以自由决定在是什么时机去请求数据.
 @property(nonatomic,retain) SNNews * news; //!< 单条概要新闻.
 

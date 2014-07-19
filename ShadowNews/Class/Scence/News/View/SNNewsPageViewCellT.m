@@ -7,17 +7,17 @@
 //
 
 #import "UIKit+AFNetworking.h"
-#import "SNNewsPageViewCell.h"
+#import "SNNewsPageViewCellT.h"
 #import "SNNews.h"
 
-@interface SNNewsPageViewCell ()
+@interface SNNewsPageViewCellT ()
 @property (retain, nonatomic) UIImageView * SNNPVCImageView; //!< 图片视图.
 @property (retain, nonatomic) UILabel * SNNPVCTitleLabel; //!< 新闻主题.
 @property (retain, nonatomic) UILabel * SNNPVCDigestLabel; //!< 新闻摘要.
 @property (retain, nonatomic) UILabel * SNNPVCReplyCoutLabel; //!< 回帖数.
 @end
 
-@implementation SNNewsPageViewCell
+@implementation SNNewsPageViewCellT
 - (void)dealloc
 {
     self.SNNPVCImageView = nil;
