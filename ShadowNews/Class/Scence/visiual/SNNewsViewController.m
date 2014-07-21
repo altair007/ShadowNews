@@ -41,11 +41,13 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    NSString * topic = [self currentTopic];
-    SNNewsPageViewController * pageVC = segue.destinationViewController;
-    pageVC.topic = topic;
-    pageVC.model = [[[SNNewsPageModel alloc] init] autorelease];
-    self.embedVC = pageVC;
+    if (YES ==[segue.identifier isEqualToString: @"NewsVCToNewsPageVCSegue"]) {
+        NSString * topic = [self currentTopic];
+        SNNewsPageViewController * pageVC = segue.destinationViewController;
+        pageVC.topic = topic;
+        pageVC.model = [[[SNNewsPageModel alloc] init] autorelease];
+        self.embedVC = pageVC;
+    }
 }
 
 - (void)dealloc {
