@@ -32,6 +32,8 @@
     } fail:^(NSError *error) {
         NSLog(@"%@", error);
     }];
+    
+    self.view.window.backgroundColor = [UIColor redColor];
 }
 
 - (void)didReceiveMemoryWarning

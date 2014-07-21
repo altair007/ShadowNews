@@ -14,7 +14,7 @@
 
 @end
 
-@protocol SNNewsModelDelegate <NSObject>
+@protocol SNNewsModelDelegateT <NSObject>
 @required
 - (id<SNNewsMenuDelegate>) menu;
 

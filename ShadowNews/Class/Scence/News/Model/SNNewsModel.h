@@ -30,7 +30,7 @@ typedef void(^SNNewsModelFailBlock)(NSError * error);
 /**
  *  新闻数据模型.
  */
-@interface SNNewsModel : NSObject<SNNewsModelDelegate>
+@interface SNNewsModel : NSObject<SNNewsModelDelegateT>
 @property (retain, nonatomic, readonly) SNNewsMenu * menu; //!< 新闻菜单.
 
 /**

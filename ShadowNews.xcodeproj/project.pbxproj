@@ -1654,6 +1654,10 @@
 		C268B1791977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png in Resources */ = {isa = PBXBuildFile; fileRef = C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */; };
 		C29CF860196ABDA8004AE8C8 /* defaultImg.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CF85F196ABDA8004AE8C8 /* defaultImg.png */; };
 		C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */; };
+		C2CE8887197D0FA4000546FC /* theme.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2CE8886197D0FA4000546FC /* theme.jpg */; };
+		C2CE888A197D2D8F000546FC /* SNNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CE8889197D2D8F000546FC /* SNNavigationViewController.m */; };
+		C2CE8890197D4365000546FC /* SNNavigationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CE888F197D4365000546FC /* SNNavigationModel.m */; };
+		C2CE8893197D50A0000546FC /* SNNavigationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CE8892197D50A0000546FC /* SNNavigationTableViewCell.m */; };
 		C2D64A731976725B00C190E1 /* SNNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D64A721976725B00C190E1 /* SNNews.storyboard */; };
 		C2D66035197A70E700E26550 /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D66034197A70E700E26550 /* SNNewsPageViewCell.m */; };
 		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */; };
@@ -3388,6 +3392,14 @@
 		C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png"; sourceTree = "<group>"; };
 		C29CF85F196ABDA8004AE8C8 /* defaultImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultImg.png; sourceTree = "<group>"; };
 		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		C2CE8886197D0FA4000546FC /* theme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theme.jpg; sourceTree = "<group>"; };
+		C2CE8888197D2D8F000546FC /* SNNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationViewController.h; sourceTree = "<group>"; };
+		C2CE8889197D2D8F000546FC /* SNNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNavigationViewController.m; sourceTree = "<group>"; };
+		C2CE888D197D4098000546FC /* SNNavigationModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNNavigationModelDelegate.h; sourceTree = "<group>"; };
+		C2CE888E197D4365000546FC /* SNNavigationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationModel.h; sourceTree = "<group>"; };
+		C2CE888F197D4365000546FC /* SNNavigationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNavigationModel.m; sourceTree = "<group>"; };
+		C2CE8891197D50A0000546FC /* SNNavigationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNavigationTableViewCell.h; sourceTree = "<group>"; };
+		C2CE8892197D50A0000546FC /* SNNavigationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNavigationTableViewCell.m; sourceTree = "<group>"; };
 		C2D64A721976725B00C190E1 /* SNNews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SNNews.storyboard; sourceTree = "<group>"; };
 		C2D66033197A70E700E26550 /* SNNewsPageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewCell.h; sourceTree = "<group>"; };
 		C2D66034197A70E700E26550 /* SNNewsPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewCell.m; sourceTree = "<group>"; };
@@ -5336,6 +5348,7 @@
 		C2D6482D19764E8600C190E1 /* visiual */ = {
 			isa = PBXGroup;
 			children = (
+				C2CE8886197D0FA4000546FC /* theme.jpg */,
 				C21667FD1978CF4300859893 /* SNNewsViewController.h */,
 				C21667FE1978CF4300859893 /* SNNewsViewController.m */,
 				C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */,
@@ -5352,6 +5365,13 @@
 				C21F8DBD197AB4F300A2B406 /* SNNewsDetailModelDelegate.h */,
 				C21F8DBE197AB60E00A2B406 /* SNNewsDetailModel.h */,
 				C21F8DBF197AB60E00A2B406 /* SNNewsDetailModel.m */,
+				C2CE8888197D2D8F000546FC /* SNNavigationViewController.h */,
+				C2CE8889197D2D8F000546FC /* SNNavigationViewController.m */,
+				C2CE888D197D4098000546FC /* SNNavigationModelDelegate.h */,
+				C2CE888E197D4365000546FC /* SNNavigationModel.h */,
+				C2CE888F197D4365000546FC /* SNNavigationModel.m */,
+				C2CE8891197D50A0000546FC /* SNNavigationTableViewCell.h */,
+				C2CE8892197D50A0000546FC /* SNNavigationTableViewCell.m */,
 			);
 			name = visiual;
 			path = ShadowNews/Class/Scence/visiual;
@@ -5713,6 +5733,7 @@
 				C214BE761977EDE900CE42F6 /* 7589_s@2x.png in Resources */,
 				C214BEAC1977EDE900CE42F6 /* about_award_btn@2x.png in Resources */,
 				C214C2BB1977EDE900CE42F6 /* red0012@2x.png in Resources */,
+				C2CE8887197D0FA4000546FC /* theme.jpg in Resources */,
 				C214C1F81977EDE900CE42F6 /* night_user_mission_explain_4_1@2x.png in Resources */,
 				C214C4441977EDE900CE42F6 /* wc_activity_c01@2x.png in Resources */,
 				C214C2A51977EDE900CE42F6 /* recommendlist_cell_close@2x.png in Resources */,
@@ -7067,6 +7088,7 @@
 				C21A9A6E197967AB00E0ACEF /* SNNewsPageViewController.m in Sources */,
 				C20E3F01197112E300AD747F /* MGTemplateEngine.m in Sources */,
 				C20E3F02197112E300AD747F /* MGTemplateStandardFilters.m in Sources */,
+				C2CE8890197D4365000546FC /* SNNavigationModel.m in Sources */,
 				C2524694196E5709000A294A /* AFHTTPRequestOperationManager.m in Sources */,
 				C25246BE196E5709000A294A /* SNNewsView.m in Sources */,
 				C25246B3196E5709000A294A /* SNNewsDelegate.m in Sources */,
@@ -7076,6 +7098,7 @@
 				C2524696196E5709000A294A /* AFNetworkReachabilityManager.m in Sources */,
 				C20E3F0E197112FB00AD747F /* NSDictionary_DeepMutableCopy.m in Sources */,
 				C25246B2196E5709000A294A /* UIWebView+AFNetworking.m in Sources */,
+				C2CE8893197D50A0000546FC /* SNNavigationTableViewCell.m in Sources */,
 				C25246A5196E5709000A294A /* FMResultSet.m in Sources */,
 				C25246B8196E5709000A294A /* SNNewsMenu.m in Sources */,
 				C252469A196E5709000A294A /* AFURLResponseSerialization.m in Sources */,
@@ -7100,6 +7123,7 @@
 				C2406CCD19729A1300FA729D /* SNNewsPageViewTextCell.m in Sources */,
 				C25246AF196E5709000A294A /* UIImageView+AFNetworking.m in Sources */,
 				C25246A3196E5709000A294A /* FMDatabasePool.m in Sources */,
+				C2CE888A197D2D8F000546FC /* SNNavigationViewController.m in Sources */,
 				C25246A4196E5709000A294A /* FMDatabaseQueue.m in Sources */,
 				C2524691196E5709000A294A /* SNAppDelegate.m in Sources */,
 				C25246BC196E5709000A294A /* SNNewsPageView.m in Sources */,

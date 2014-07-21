@@ -9,9 +9,10 @@
 #import "SNNewsViewController.h"
 #import "SNNewsPageViewController.h"
 #import "SNNewsPageModel.h"
+#import "SNNavigationViewController.h"
+#import "SNNavigationModel.h"
 
 @interface SNNewsViewController ()
-
 @end
 
 @implementation SNNewsViewController
@@ -47,6 +48,13 @@
         pageVC.topic = topic;
         pageVC.model = [[[SNNewsPageModel alloc] init] autorelease];
         self.embedVC = pageVC;
+    }
+    
+    if (YES == [segue.identifier isEqualToString: @"mainVCToNavVCSegue"]) {
+        SNNavigationViewController * navVC = segue.destinationViewController;
+        SNNavigationModel * model = [[SNNavigationModel alloc] init];
+        navVC.model = model;
+        [model release];
     }
 }
 
