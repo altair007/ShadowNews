@@ -1661,6 +1661,7 @@
 		C2D64A731976725B00C190E1 /* SNNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D64A721976725B00C190E1 /* SNNews.storyboard */; };
 		C2D66035197A70E700E26550 /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D66034197A70E700E26550 /* SNNewsPageViewCell.m */; };
 		C2E6401B197E645800449389 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2E64019197E645800449389 /* Model.xcdatamodeld */; };
+		C2E6401D197E926D00449389 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E6401C197E926D00449389 /* CoreData.framework */; };
 		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */; };
 		C2F37C221975466200263191 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2F37C211975466200263191 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -3405,6 +3406,7 @@
 		C2D66033197A70E700E26550 /* SNNewsPageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewCell.h; sourceTree = "<group>"; };
 		C2D66034197A70E700E26550 /* SNNewsPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewCell.m; sourceTree = "<group>"; };
 		C2E6401A197E645800449389 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C2E6401C197E926D00449389 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewBigImageCell.h; sourceTree = "<group>"; };
 		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewBigImageCell.m; sourceTree = "<group>"; };
 		C2F37C211975466200263191 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -3415,6 +3417,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2E6401D197E926D00449389 /* CoreData.framework in Frameworks */,
 				C2A6C291196918DA0006E26E /* libsqlite3.0.dylib in Frameworks */,
 				C22E957519605FE8001B8745 /* CoreGraphics.framework in Frameworks */,
 				C22E957719605FE8001B8745 /* UIKit.framework in Frameworks */,
@@ -5090,6 +5093,7 @@
 		C22E957119605FE8001B8745 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2E6401C197E926D00449389 /* CoreData.framework */,
 				C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */,
 				C22E957219605FE8001B8745 /* Foundation.framework */,
 				C22E957419605FE8001B8745 /* CoreGraphics.framework */,

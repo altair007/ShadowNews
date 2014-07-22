@@ -11,6 +11,8 @@
 #import "SNNewsPageModel.h"
 #import "SNNavigationViewController.h"
 #import "SNNavigationModel.h"
+#import "SNAppDelegate.h"
+
 
 @interface SNNewsViewController ()
 @end
@@ -31,6 +33,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = self.category;
+    
+    // !!!:测试coreData.
+    SNAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entityDes = [NSEntityDescription entityForName: @"TOPIC" inManagedObjectContext: context];
+    request.entity = entityDes;
 }
 
 - (void)didReceiveMemoryWarning
