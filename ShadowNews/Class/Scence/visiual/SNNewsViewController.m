@@ -30,12 +30,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = self.category;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    if (YES == [self isViewLoaded] && nil == self.view.window) {
+        self.view = nil;
+    }
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -65,7 +70,7 @@
     [super dealloc];
 }
 
-- (IBAction)handleSegmentedControlValueChangedAction:(UISegmentedControl *)sender {
+- (IBAction)handleSegmentedControlValueChangedAction:(UISegmentedControl *)segmentedCtl {
     if (YES == [self.embedVC isKindOfClass: [SNNewsPageViewController class]]) {
         SNNewsPageViewController * pageVC = (SNNewsPageViewController *)self.embedVC;
         pageVC.topic = [self currentTopic];
@@ -73,6 +78,12 @@
     }
 }
 
+
+
+- (IBAction) backToMainPage: (UIStoryboardSegue *) segue
+{
+    self.navigationItem.title = self.category;
+}
 
 - (NSString *) currentTopic
 {

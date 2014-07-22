@@ -54,20 +54,16 @@
         NSArray * videoArray = [variables objectForKey:@"video"];
         
         // !!!: 此处的HTML5标签,可能是不合适的.
-        // !!!: 尝试关闭银屏,视频的全屏模式.
         if (imgArray.count > 0) {
             [imgArray enumerateObjectsUsingBlock:^(NSDictionary * obj, NSUInteger idx, BOOL *stop) {
                 
                 NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"<!--IMG#%@-->", [NSNumber numberWithUnsignedInteger: idx]] options:NSRegularExpressionCaseInsensitive error:nil];
                 NSString * src = [imgArray[idx] objectForKey:@"src"];
-                NSArray * sizeArray = [[imgArray[idx] objectForKey:@"pixel"] componentsSeparatedByString:@"*"];
                 
-                // ???:此处的逻辑,好像是不合适的.
-                CGFloat  width = 280;
-                CGFloat height = 280 *([sizeArray[1] floatValue]/3)/([sizeArray[0] floatValue]/3);
+                // FIXME: 暂时先用固定值.一个更合理的解决方案是:设置合适的标签的 class 值,使用样式表来进行布局.
+                CGFloat  width = 288;
                 
-                // !!!: 网络图片加载时,应该有一个占位图片.本地占位图片.这个效果怎么实现?
-                [regex replaceMatchesInString:htmlStr options:0 range:NSMakeRange(0, [htmlStr length]) withTemplate:[NSString stringWithFormat:@"<img src= %@ width = %f height = %f/>",src,width,height]];
+                [regex replaceMatchesInString:htmlStr options:0 range:NSMakeRange(0, [htmlStr length]) withTemplate:[NSString stringWithFormat:@"<img src= %@ width = %f/>",src,width]];
             }];
             
         }

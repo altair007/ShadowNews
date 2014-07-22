@@ -36,8 +36,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    // !!!: 迭代至此: 为什么此设置无效!
-    self.navigationItem.title = @"aaaa";
     [self setUpData];
     [self reloadData];
 }
@@ -51,8 +49,6 @@
 
 - (void) reloadData
 {
-    self.navigationItem.title = self.topic;
-    
     [self.model newsForTopic: self.topic range: NSMakeRange(0, 20) success:^(id responseObject) {
         self.newsArray = responseObject;
         [self.tableView reloadData];
@@ -68,12 +64,6 @@
     if (YES == [self isViewLoaded] && nil == self.view.window) {
         self.view = nil;
     }
-}
-
-
-- (IBAction) backToMainPage: (UIStoryboardSegue *) segue
-{
-    [self reloadData];
 }
 
 #pragma mark - Table view data source

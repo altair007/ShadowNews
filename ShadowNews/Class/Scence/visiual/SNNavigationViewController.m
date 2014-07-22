@@ -8,7 +8,7 @@
 
 #import "SNNavigationViewController.h"
 #import "SNNavigationTableViewCell.h"
-#import "SNNewsPageViewController.h"
+#import "SNNewsViewController.h"
 #import "SNNavigationTableViewCell.h"
 
 @interface SNNavigationViewController ()
@@ -45,9 +45,9 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    SNNewsPageViewController * pageVC = segue.destinationViewController;
+    SNNewsViewController * pageVC = segue.destinationViewController;
     SNNavigationTableViewCell * cell = sender;
-    pageVC.topic = cell.topicTitleLabel.text;
+    pageVC.category = cell.topicTitleLabel.text;
 }
 
 
