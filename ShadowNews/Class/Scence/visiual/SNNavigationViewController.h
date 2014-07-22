@@ -13,5 +13,4 @@
 
 @property (retain, nonatomic) id<SNNavigationModelDelegate> model;
 
-
 @end

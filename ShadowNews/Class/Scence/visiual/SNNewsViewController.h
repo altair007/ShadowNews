@@ -14,6 +14,8 @@
 
 @property (retain, nonatomic) UIViewController * embedVC; //!< 用于展示内容的控制器.
 
+
+
 /**
  *  获取当前新闻主题.
  *

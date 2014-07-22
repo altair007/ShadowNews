@@ -18,6 +18,9 @@
 @property (copy, nonatomic) NSString * topic; // !< 新闻主题.
 @property (retain, nonatomic) id<SNNewsPageModelDelegate> model; //!< 数据模型.
 
+
+- (IBAction) backToMainPage: (UIStoryboardSegue *) segue;
+
 /**
  *  初始化数据.
  */

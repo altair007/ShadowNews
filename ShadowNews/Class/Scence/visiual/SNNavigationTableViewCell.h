@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SNNavigationTableViewCell : UITableViewCell
-@property (retain, nonatomic) IBOutlet UIImageView *topicImgView;
-@property (retain, nonatomic) IBOutlet UILabel *topicTitleLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *topicImgView; //!< 新闻板块图标.
+@property (retain, nonatomic) IBOutlet UILabel *topicTitleLabel; //!< 新闻板块名称.
 
 @end

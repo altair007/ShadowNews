@@ -8,6 +8,8 @@
 
 #import "SNNavigationViewController.h"
 #import "SNNavigationTableViewCell.h"
+#import "SNNewsPageViewController.h"
+#import "SNNavigationTableViewCell.h"
 
 @interface SNNavigationViewController ()
 
@@ -36,7 +38,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -44,8 +45,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    SNNewsPageViewController * pageVC = segue.destinationViewController;
+    SNNavigationTableViewCell * cell = sender;
+    pageVC.topic = cell.topicTitleLabel.text;
 }
-*/
+
 
 #pragma mark - UITableViewDelegate协议方法.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,7 +57,6 @@
     CGFloat height =  SCREEN_HEIGHT / (self.model.navItemTitles.count + 1);
     return height;
 }
-
 
 #pragma mark - UITableViewDataSource协议方法.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -64,7 +67,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SNNavigationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier: @"SNNavigationTableViewCell" forIndexPath: indexPath];
-//    cell.textLabel.text = self.model.navItemTitles[indexPath.row];
     cell.topicTitleLabel.text = self.model.navItemTitles[indexPath.row];
     cell.topicImgView.image = [UIImage imageNamed:self.model.navItemImgs[indexPath.row]];
     

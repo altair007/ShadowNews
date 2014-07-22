@@ -73,6 +73,7 @@
     }
 }
 
+
 - (NSString *) currentTopic
 {
     return [self.navSC titleForSegmentAtIndex: self.navSC.selectedSegmentIndex];

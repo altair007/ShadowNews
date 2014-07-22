@@ -267,6 +267,7 @@
                                         <connections>
                                             <outlet property="topicImgView" destination="lTP-Bo-bNc" id="aa3-mb-0eO"/>
                                             <outlet property="topicTitleLabel" destination="QCc-jO-ayx" id="JOd-RB-X6w"/>
+                                            <segue destination="SEO-iN-1Cj" kind="unwind" unwindAction="backToMainPage:" id="FtI-4B-kal"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -278,9 +279,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0J-At-qFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SEO-iN-1Cj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-8079" y="-1337"/>
         </scene>
@@ -397,7 +400,7 @@
                     <navigationItem key="navigationItem" title="新闻" id="LWy-4e-ioy">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="night_top_navigation_menuicon.png" id="ZRr-Xu-Zlt">
                             <connections>
-                                <segue destination="6dh-fi-Df5" kind="modal" identifier="mainVCToNavVCSegue" modalTransitionStyle="flipHorizontal" id="t28-58-dlr"/>
+                                <segue destination="6dh-fi-Df5" kind="modal" identifier="mainVCToNavVCSegue" modalTransitionStyle="coverVertical" id="t28-58-dlr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -419,6 +422,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="429"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="47b-wG-kum">
+                            <rect key="frame" x="0.0" y="100" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SNNewsPageViewCell" rowHeight="78" id="97a-Xu-nUM" customClass="SNNewsPageViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="78"/>
