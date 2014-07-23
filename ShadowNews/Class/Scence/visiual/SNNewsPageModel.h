@@ -10,7 +10,12 @@
 #import "SNNewsPageModelDelegate.h"
 
 @interface SNNewsPageModel : NSObject <SNNewsPageModelDelegate>
-@property (retain, nonatomic) NSOperationQueue * queue; //!< 此数据模型的专属队列.
+@property (retain, nonatomic) NSDictionary * urlSegmentsOfAllTopics; //!< 存储所有新闻板块及其对应的url分段信息.系统将使用此分段信息请求数据.
+
+/**
+ *  初始化数据.
+ */
+- (void) setUpData;
 
 /**
  *  获取某一新闻主题对应的URL.

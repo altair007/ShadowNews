@@ -92,6 +92,7 @@
     }
 
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ShadowNews" withExtension:@"momd"];
+    
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }

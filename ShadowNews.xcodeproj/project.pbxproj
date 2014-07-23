@@ -3392,8 +3392,6 @@
 		C25672D8197A0EBB00D90162 /* SNNewsPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageModel.m; sourceTree = "<group>"; };
 		C25672DA197A0EF700D90162 /* SNNewsPageModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNNewsPageModelDelegate.h; sourceTree = "<group>"; };
 		C268B1781977AF6300190C2C /* iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS 模拟器屏幕快照“2014年7月17日 15.14.26”.png"; sourceTree = "<group>"; };
-		C28C69FF197F68830082F938 /* ShadowNews.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = ShadowNews.mom; sourceTree = "<group>"; };
-		C28C6A00197F68830082F938 /* VersionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = VersionInfo.plist; sourceTree = "<group>"; };
 		C29CF85F196ABDA8004AE8C8 /* defaultImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultImg.png; sourceTree = "<group>"; };
 		C2A6C290196918DA0006E26E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C2CE8886197D0FA4000546FC /* theme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theme.jpg; sourceTree = "<group>"; };
@@ -5354,15 +5352,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		C28C69FE197F68830082F938 /* ShadowNews.momd */ = {
-			isa = PBXGroup;
-			children = (
-				C28C69FF197F68830082F938 /* ShadowNews.mom */,
-				C28C6A00197F68830082F938 /* VersionInfo.plist */,
-			);
-			path = ShadowNews.momd;
-			sourceTree = "<group>";
-		};
 		C2D6482D19764E8600C190E1 /* visiual */ = {
 			isa = PBXGroup;
 			children = (
@@ -5398,7 +5387,6 @@
 		C2E64018197E644F00449389 /* coreData */ = {
 			isa = PBXGroup;
 			children = (
-				C28C69FE197F68830082F938 /* ShadowNews.momd */,
 				C2E64019197E645800449389 /* ShadowNews.xcdatamodeld */,
 			);
 			name = coreData;
