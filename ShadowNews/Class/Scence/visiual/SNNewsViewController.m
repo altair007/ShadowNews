@@ -38,8 +38,11 @@
     SNAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext * context = [appDelegate managedObjectContext];
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    NSEntityDescription * entityDes = [NSEntityDescription entityForName: @"TOPIC" inManagedObjectContext: context];
+    NSEntityDescription * entityDes = [NSEntityDescription entityForName: @"Topic" inManagedObjectContext: context];
     request.entity = entityDes;
+    
+    NSError * error = nil;
+    NSArray * objects = [context executeFetchRequest: request error: &error];
 }
 
 - (void)didReceiveMemoryWarning

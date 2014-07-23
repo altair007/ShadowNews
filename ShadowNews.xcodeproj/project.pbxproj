@@ -1660,7 +1660,7 @@
 		C2CE8893197D50A0000546FC /* SNNavigationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CE8892197D50A0000546FC /* SNNavigationTableViewCell.m */; };
 		C2D64A731976725B00C190E1 /* SNNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D64A721976725B00C190E1 /* SNNews.storyboard */; };
 		C2D66035197A70E700E26550 /* SNNewsPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D66034197A70E700E26550 /* SNNewsPageViewCell.m */; };
-		C2E6401B197E645800449389 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2E64019197E645800449389 /* Model.xcdatamodeld */; };
+		C2E6401B197E645800449389 /* ShadowNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2E64019197E645800449389 /* ShadowNews.xcdatamodeld */; };
 		C2E6401D197E926D00449389 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E6401C197E926D00449389 /* CoreData.framework */; };
 		C2EE69CD196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */; };
 		C2F37C221975466200263191 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2F37C211975466200263191 /* Images.xcassets */; };
@@ -3405,7 +3405,7 @@
 		C2D64A721976725B00C190E1 /* SNNews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SNNews.storyboard; sourceTree = "<group>"; };
 		C2D66033197A70E700E26550 /* SNNewsPageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewCell.h; sourceTree = "<group>"; };
 		C2D66034197A70E700E26550 /* SNNewsPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewCell.m; sourceTree = "<group>"; };
-		C2E6401A197E645800449389 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C2E6401A197E645800449389 /* ShadowNews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShadowNews.xcdatamodel; sourceTree = "<group>"; };
 		C2E6401C197E926D00449389 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C2EE69CB196ED5880071F9E3 /* SNNewsPageViewBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsPageViewBigImageCell.h; sourceTree = "<group>"; };
 		C2EE69CC196ED5880071F9E3 /* SNNewsPageViewBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsPageViewBigImageCell.m; sourceTree = "<group>"; };
@@ -5387,7 +5387,7 @@
 		C2E64018197E644F00449389 /* coreData */ = {
 			isa = PBXGroup;
 			children = (
-				C2E64019197E645800449389 /* Model.xcdatamodeld */,
+				C2E64019197E645800449389 /* ShadowNews.xcdatamodeld */,
 			);
 			name = coreData;
 			path = ShadowNews/Class/Scence/coreData;
@@ -7105,7 +7105,7 @@
 				C20E3F01197112E300AD747F /* MGTemplateEngine.m in Sources */,
 				C20E3F02197112E300AD747F /* MGTemplateStandardFilters.m in Sources */,
 				C2CE8890197D4365000546FC /* SNNavigationModel.m in Sources */,
-				C2E6401B197E645800449389 /* Model.xcdatamodeld in Sources */,
+				C2E6401B197E645800449389 /* ShadowNews.xcdatamodeld in Sources */,
 				C2524694196E5709000A294A /* AFHTTPRequestOperationManager.m in Sources */,
 				C25246BE196E5709000A294A /* SNNewsView.m in Sources */,
 				C25246B3196E5709000A294A /* SNNewsDelegate.m in Sources */,
@@ -7381,13 +7381,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C2E64019197E645800449389 /* Model.xcdatamodeld */ = {
+		C2E64019197E645800449389 /* ShadowNews.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C2E6401A197E645800449389 /* Model.xcdatamodel */,
+				C2E6401A197E645800449389 /* ShadowNews.xcdatamodel */,
 			);
-			currentVersion = C2E6401A197E645800449389 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = C2E6401A197E645800449389 /* ShadowNews.xcdatamodel */;
+			path = ShadowNews.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
