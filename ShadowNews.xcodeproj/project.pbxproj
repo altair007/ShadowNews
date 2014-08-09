@@ -3289,17 +3289,17 @@
 		C21F8DBE197AB60E00A2B406 /* SNNewsDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsDetailModel.h; sourceTree = "<group>"; };
 		C21F8DBF197AB60E00A2B406 /* SNNewsDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsDetailModel.m; sourceTree = "<group>"; };
 		C223CBE219760CFB00D51044 /* SNDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SNDelegate.h; path = ShadowNews/Class/Scence/Delegate/SNDelegate.h; sourceTree = SOURCE_ROOT; };
-		C22E956F19605FE8001B8745 /* ShadowNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C22E956F19605FE8001B8745 /* shadownews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadownews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E957219605FE8001B8745 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C22E957419605FE8001B8745 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C22E957619605FE8001B8745 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C22E957A19605FE8001B8745 /* ShadowNews-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowNews-Info.plist"; sourceTree = "<group>"; };
+		C22E957A19605FE8001B8745 /* shadownews.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "shadownews.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
 		C22E957C19605FE8001B8745 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C22E957E19605FE8001B8745 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C22E958019605FE8001B8745 /* ShadowNews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowNews-Prefix.pch"; sourceTree = "<group>"; };
-		C22E958A19605FE8001B8745 /* ShadowNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShadowNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C22E958019605FE8001B8745 /* shadownews.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadownews.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
+		C22E958A19605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shadownews.temp_caseinsensitive_renameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E958B19605FE8001B8745 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		C22E959319605FE8001B8745 /* ShadowNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowNewsTests-Info.plist"; sourceTree = "<group>"; };
+		C22E959319605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "shadownews.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = "<group>"; };
 		C22E959519605FE8001B8745 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C22E959719605FE8001B8745 /* ShadowNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowNewsTests.m; sourceTree = "<group>"; };
 		C22E95A119606399001B8745 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -5084,8 +5084,8 @@
 		C22E957019605FE8001B8745 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C22E956F19605FE8001B8745 /* ShadowNews.app */,
-				C22E958A19605FE8001B8745 /* ShadowNewsTests.xctest */,
+				C22E956F19605FE8001B8745 /* shadownews.app */,
+				C22E958A19605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5118,10 +5118,10 @@
 			children = (
 				C2F37C211975466200263191 /* Images.xcassets */,
 				C22E95A119606399001B8745 /* README.md */,
-				C22E957A19605FE8001B8745 /* ShadowNews-Info.plist */,
+				C22E957A19605FE8001B8745 /* shadownews.temp_caseinsensitive_rename-Info.plist */,
 				C22E957B19605FE8001B8745 /* InfoPlist.strings */,
 				C22E957E19605FE8001B8745 /* main.m */,
-				C22E958019605FE8001B8745 /* ShadowNews-Prefix.pch */,
+				C22E958019605FE8001B8745 /* shadownews.temp_caseinsensitive_rename-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -5138,7 +5138,7 @@
 		C22E959219605FE8001B8745 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C22E959319605FE8001B8745 /* ShadowNewsTests-Info.plist */,
+				C22E959319605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests-Info.plist */,
 				C22E959419605FE8001B8745 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -5405,9 +5405,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C22E956E19605FE8001B8745 /* ShadowNews */ = {
+		C22E956E19605FE8001B8745 /* shadownews */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C22E959B19605FE8001B8745 /* Build configuration list for PBXNativeTarget "ShadowNews" */;
+			buildConfigurationList = C22E959B19605FE8001B8745 /* Build configuration list for PBXNativeTarget "shadownews" */;
 			buildPhases = (
 				C22E956C19605FE8001B8745 /* Frameworks */,
 				C22E956D19605FE8001B8745 /* Resources */,
@@ -5417,14 +5417,14 @@
 			);
 			dependencies = (
 			);
-			name = ShadowNews;
+			name = shadownews;
 			productName = ShadowNews;
-			productReference = C22E956F19605FE8001B8745 /* ShadowNews.app */;
+			productReference = C22E956F19605FE8001B8745 /* shadownews.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C22E958919605FE8001B8745 /* ShadowNewsTests */ = {
+		C22E958919605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C22E959E19605FE8001B8745 /* Build configuration list for PBXNativeTarget "ShadowNewsTests" */;
+			buildConfigurationList = C22E959E19605FE8001B8745 /* Build configuration list for PBXNativeTarget "shadownews.temp_caseinsensitive_renameTests" */;
 			buildPhases = (
 				C22E958619605FE8001B8745 /* Sources */,
 				C22E958719605FE8001B8745 /* Frameworks */,
@@ -5435,9 +5435,9 @@
 			dependencies = (
 				C22E959019605FE8001B8745 /* PBXTargetDependency */,
 			);
-			name = ShadowNewsTests;
+			name = shadownews.temp_caseinsensitive_renameTests;
 			productName = ShadowNewsTests;
-			productReference = C22E958A19605FE8001B8745 /* ShadowNewsTests.xctest */;
+			productReference = C22E958A19605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -5448,14 +5448,17 @@
 			attributes = {
 				CLASSPREFIX = SN;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = ShadowNews;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
+					C22E956E19605FE8001B8745 = {
+						DevelopmentTeam = GJEL3SJ9F8;
+					};
 					C22E958919605FE8001B8745 = {
 						TestTargetID = C22E956E19605FE8001B8745;
 					};
 				};
 			};
-			buildConfigurationList = C22E956A19605FE8001B8745 /* Build configuration list for PBXProject "ShadowNews" */;
+			buildConfigurationList = C22E956A19605FE8001B8745 /* Build configuration list for PBXProject "shadownews" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -5469,8 +5472,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C22E956E19605FE8001B8745 /* ShadowNews */,
-				C22E958919605FE8001B8745 /* ShadowNewsTests */,
+				C22E956E19605FE8001B8745 /* shadownews */,
+				C22E958919605FE8001B8745 /* shadownews.temp_caseinsensitive_renameTests */,
 			);
 		};
 /* End PBXProject section */
@@ -7161,7 +7164,7 @@
 /* Begin PBXTargetDependency section */
 		C22E959019605FE8001B8745 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C22E956E19605FE8001B8745 /* ShadowNews */;
+			target = C22E956E19605FE8001B8745 /* shadownews */;
 			targetProxy = C22E958F19605FE8001B8745 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -7282,11 +7285,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShadowNews/ShadowNews-Prefix.pch";
-				INFOPLIST_FILE = "ShadowNews/ShadowNews-Info.plist";
+				GCC_PREFIX_HEADER = "ShadowNews/shadownews.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "ShadowNews/shadownews.temp_caseinsensitive_rename-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shadownews;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -7298,11 +7304,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShadowNews/ShadowNews-Prefix.pch";
-				INFOPLIST_FILE = "ShadowNews/ShadowNews-Info.plist";
+				GCC_PREFIX_HEADER = "ShadowNews/shadownews.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "ShadowNews/shadownews.temp_caseinsensitive_rename-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shadownews;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -7323,8 +7332,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ShadowNewsTests/ShadowNewsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ShadowNewsTests/shadownews.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = shadownews.temp_caseinsensitive_renameTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -7341,8 +7350,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowNews/ShadowNews-Prefix.pch";
-				INFOPLIST_FILE = "ShadowNewsTests/ShadowNewsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ShadowNewsTests/shadownews.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = shadownews.temp_caseinsensitive_renameTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -7351,7 +7360,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C22E956A19605FE8001B8745 /* Build configuration list for PBXProject "ShadowNews" */ = {
+		C22E956A19605FE8001B8745 /* Build configuration list for PBXProject "shadownews" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C22E959919605FE8001B8745 /* Debug */,
@@ -7360,7 +7369,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C22E959B19605FE8001B8745 /* Build configuration list for PBXNativeTarget "ShadowNews" */ = {
+		C22E959B19605FE8001B8745 /* Build configuration list for PBXNativeTarget "shadownews" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C22E959C19605FE8001B8745 /* Debug */,
@@ -7369,7 +7378,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C22E959E19605FE8001B8745 /* Build configuration list for PBXNativeTarget "ShadowNewsTests" */ = {
+		C22E959E19605FE8001B8745 /* Build configuration list for PBXNativeTarget "shadownews.temp_caseinsensitive_renameTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C22E959F19605FE8001B8745 /* Debug */,

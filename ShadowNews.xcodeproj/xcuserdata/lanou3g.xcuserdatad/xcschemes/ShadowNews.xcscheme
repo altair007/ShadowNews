@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C22E956E19605FE8001B8745"
-               BuildableName = "ShadowNews.app"
-               BlueprintName = "ShadowNews"
-               ReferencedContainer = "container:ShadowNews.xcodeproj">
+               BuildableName = "shadownews.app"
+               BlueprintName = "shadownews"
+               ReferencedContainer = "container:shadownews.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C22E958919605FE8001B8745"
-               BuildableName = "ShadowNewsTests.xctest"
-               BlueprintName = "ShadowNewsTests"
-               ReferencedContainer = "container:ShadowNews.xcodeproj">
+               BuildableName = "shadownews.temp_caseinsensitive_renameTests.xctest"
+               BlueprintName = "shadownews.temp_caseinsensitive_renameTests"
+               ReferencedContainer = "container:shadownews.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C22E956E19605FE8001B8745"
-            BuildableName = "ShadowNews.app"
-            BlueprintName = "ShadowNews"
-            ReferencedContainer = "container:ShadowNews.xcodeproj">
+            BuildableName = "shadownews.app"
+            BlueprintName = "shadownews"
+            ReferencedContainer = "container:shadownews.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C22E956E19605FE8001B8745"
-            BuildableName = "ShadowNews.app"
-            BlueprintName = "ShadowNews"
-            ReferencedContainer = "container:ShadowNews.xcodeproj">
+            BuildableName = "shadownews.app"
+            BlueprintName = "shadownews"
+            ReferencedContainer = "container:shadownews.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C22E956E19605FE8001B8745"
-            BuildableName = "ShadowNews.app"
-            BlueprintName = "ShadowNews"
-            ReferencedContainer = "container:ShadowNews.xcodeproj">
+            BuildableName = "shadownews.app"
+            BlueprintName = "shadownews"
+            ReferencedContainer = "container:shadownews.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

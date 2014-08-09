@@ -1,6 +1,6 @@
 //
 //  Prefix header
-//
+///Users/lanou3g/Library/Application Support/iPhone Simulator
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
 
@@ -14,7 +14,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
-#endif
 
 #import "SNDelegate.h"
 
@@ -56,4 +55,7 @@
 #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #else
 #define NSLog(FORMAT, ...) nil
+#endif
+
+
 #endif
